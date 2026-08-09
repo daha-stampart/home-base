@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Suspense,
   useEffect,
   useRef,
   useState,
@@ -51,7 +52,7 @@ const getImageUrl = (
   return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`;
 };
 
-export default function EditPage() {
+export function EditPage() {
 
   const [portfolio, setPortfolio] =
     useState<Portfolio | null>(null);
@@ -455,7 +456,7 @@ export default function EditPage() {
 
   };
 
-const handleDelete = async () => {
+ const handleDelete = async () => {
   if (!portfolio) return;
 
   const confirmed = window.confirm(
@@ -1424,5 +1425,22 @@ const handleDelete = async () => {
 
     </main>
 
+  );
+}
+export default function EditPageWrapper() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-[#07090f] text-white">
+          <div className="flex min-h-screen items-center justify-center">
+            <p className="text-sm text-zinc-500">
+              Memuat halaman edit...
+            </p>
+          </div>
+        </main>
+      }
+    >
+      <EditPage />
+    </Suspense>
   );
 }
