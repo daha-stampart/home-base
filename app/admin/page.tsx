@@ -60,7 +60,7 @@ import {
              </h1>
 
              <p className="text-xs text-zinc-500">
-                  Kelola portfolio Daha.Stampart
+                  Kelola portofolio Daha.Stampart
              </p>
          </div>
 
@@ -83,7 +83,7 @@ import {
          <div className="grid gap-6 sm:grid-cols-2">
              {/* TAMBAH DESAIN */}
              <a
-                 href="/admin/portfolio"
+                 href="/admin/portofolio"
                  className="group rounded-2xl border border-white/10 bg-white/[0.025] p-6 transition hover:-translate-y-1 hover:border-red-500/40"
                  >
 
@@ -96,13 +96,13 @@ import {
                  </h2>
 
                  <p className="mt-2 text-sm leading-6 text-zinc-500">
-                     Tambahkan karya baru ke portfolio Daha.Stampart.
+                     Tambahkan karya baru ke portofolio Daha.Stampart.
                  </p>
              </a>
 
              {/* KELOLA DESAIN */}
              <a
-                 href="/admin/portfolio/manage"
+                 href="/admin/portofolio/kelola"
                  className="group rounded-2xl border border-white/10 bg-white/[0.025] p-6 transition hover:-translate-y-1 hover:border-red-500/40"
                  >
 
@@ -115,7 +115,7 @@ import {
                  </h2>
 
                  <p className="mt-2 text-sm leading-6 text-zinc-500">
-                     Edit, ganti cover, tambah gambar, atau hapus portfolio.
+                     Edit, ganti cover, tambah gambar, atau hapus desain.
                  </p>
              </a>
          </div>

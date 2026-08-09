@@ -114,10 +114,10 @@ export default function Home() {
             {/* Portofolio */}
             <button
              type="button"
-             onClick={() => goToPage("/portfolio")}
+             onClick={() => goToPage("/portofolio")}
              className="group inline-flex items-center gap-3 rounded-full bg-red-500 px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-red-400"
              >
-              Lihat Portfolio
+              Lihat Portofolio
             </button>
 
           </div>

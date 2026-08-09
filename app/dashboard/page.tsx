@@ -43,33 +43,11 @@ const services = [
   },
 ];
 
-const portfolio = [
-  {
-    title: "Company Profile Otolink",
-    category: "Desain Company Profile",
-    image: "/images/portfolio-otolink.jpg",
-  },
-  {
-    title: "Promo Kopiku",
-    category: "Desain Promosi",
-    image: "/images/portfolio-kopiku.jpg",
-  },
-  {
-    title: "Branding Axelon",
-    category: "Brand Identity",
-    image: "/images/portfolio-axelon.jpg",
-  },
-  {
-    title: "Social Media Design",
-    category: "Konten Instagram",
-    image: "/images/portfolio-social.jpg",
-  },
-  {
-    title: "Event Banner Otolink",
-    category: "Desain Banner Event",
-    image: "/images/portfolio-event.jpg",
-  },
-];
+const portfolio: {
+  title: string;
+  category: string;
+  image: string;
+}[] = [];
 
 export default function DashboardPage() {
   return (
@@ -119,7 +97,7 @@ export default function DashboardPage() {
               href="/portofolio"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
-              Portfolio
+              Portofolio
             </a>
 
             <a
@@ -239,7 +217,7 @@ export default function DashboardPage() {
                href="/portofolio"
                className="group inline-flex items-center gap-3 rounded-xl bg-red-500 px-6 py-3.5 text-sm font-semibold transition hover:bg-red-400"
                >
-               Lihat Portfolio
+               Lihat Desain
 
                <ArrowRight
                  size={17}
@@ -354,7 +332,7 @@ export default function DashboardPage() {
       </section>
 
      {/* =========================================================
-          PORTFOLIO
+          PORTOFOLIO
       ========================================================= */}
 
       <section className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10">
@@ -362,7 +340,7 @@ export default function DashboardPage() {
        <div className="flex items-end justify-between gap-5">
          <div>
            <h2 className="text-3xl font-bold sm:text-4xl">
-             Portfolio Terbaru
+             Desain Selesai
            </h2>
 
            <p className="mt-2 text-sm text-zinc-500">
@@ -375,7 +353,7 @@ export default function DashboardPage() {
            href="/portofolio"
            className="hidden items-center gap-2 text-sm font-semibold text-red-500 transition hover:text-red-400 sm:flex"
            >
-           Lihat Semua Portfolio
+           Lihat Semua Desain
 
            <ArrowRight size={16} />
          </a>
@@ -383,53 +361,56 @@ export default function DashboardPage() {
         </div>
 
 
-       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-         {portfolio.map((item) => (
+       {portfolio.length === 0 ? (
+          <div className="col-span-full mx-2 mt-6 flex min-h-[200px] items-center justify-center rounded-xl border border-white/10 bg-white/[0.025]">
+            <p className="text-sm text-zinc-500">
+              Desain belum tersedia
+            </p>
+          </div>
+        ) : (
+          portfolio.map((item) => (
+            <a
+              href="/portofolio"
+              key={`${item.title}-${item.category}`}
+              className="group overflow-hidden rounded-xl border border-white/10 bg-white/[0.025] transition duration-300 hover:-translate-y-1 hover:border-red-500/30"
+              >
+              <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-zinc-800 via-zinc-900 to-black">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  onError={(event) => {
+                  event.currentTarget.style.display = "none";
+                  }}
+                />
 
-         <a
-           href="/portfolio"
-           key={item.title}
-           className="group overflow-hidden rounded-xl border border-white/10 bg-white/[0.025] transition duration-300 hover:-translate-y-1 hover:border-red-500/30"
-           >
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-red-500/20 via-transparent to-purple-500/20">
+                  <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/30">
+                    Portofolio
+                  </span>
+                </div>
+              </div>
 
-           <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-zinc-800 via-zinc-900 to-black">
-             <img
-               src={item.image}
-               alt={item.title}
-               className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-               onError={(event) => {
-               event.currentTarget.style.display = "none";
-               }}
-              />
+              <div className="p-4">
+                <h3 className="text-sm font-semibold">
+                  {item.title}
+                </h3>
 
-             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-red-500/20 via-transparent to-purple-500/20">
-               <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/30">
-                 Portfolio
-               </span>
-             </div>
-           </div>
-
-
-           <div className="p-4">
-             <h3 className="text-sm font-semibold">
-               {item.title}
-             </h3>
-
-             <p className="mt-1 text-xs text-zinc-600">
-               {item.category}
-             </p>
-           </div>
-         </a>
-         ))}
-        </div>
+                <p className="mt-1 text-xs text-zinc-600">
+                  {item.category}
+                </p>
+              </div>
+            </a>
+          ))
+        )}
 
 
        <div className="mt-6 flex justify-center sm:hidden">
          <a
-           href="/portfolio"
-           className="flex items-center gap-2 text-sm font-semibold text-red-500"
+           href="/portofolio"
+           className="flex items-center gap-2 text-sm font-semibold text-blue-500"
            >
-           Lihat Semua Portfolio
+           Lihat Semua Desain
            <ArrowRight size={16} />
          </a>
 
@@ -451,10 +432,10 @@ export default function DashboardPage() {
 
            <div>
              <p className="max-w-2xl text-lg font-medium leading-7">
-               Desain bukan hanya tentang estetika,
+               Desain bukan hanya tentang estetika, 
                <br className="hidden sm:block" />
                tapi tentang pesan yang{" "}
-               <span className="text-red-400">
+               <span className="text-red-500">
                  menyampaikan gagasan.
                </span>
              </p>
@@ -495,7 +476,7 @@ export default function DashboardPage() {
      {/* FOOTER */}
 
      <footer className="border-t border-white/[0.06] px-6 py-7">
-       <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-3 text-xs text-zinc-600 sm:flex-row">
+       <div className="mx-auto flex max-w-[1400px] flex-col justify-center gap-3 text-xs text-zinc-600 sm:flex-row">
          <p>
            © 2003 Daha.Stampart
          </p>

@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
           </h1>
 
           <p className="mt-2 text-sm text-zinc-500">
-            Masuk untuk mengelola portfolio Daha.Stampart
+            Masuk untuk mengelola desain Daha.Stampart
           </p>
 
         </div>
