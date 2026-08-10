@@ -95,13 +95,13 @@ export default function Home() {
 
 
           {/* Buttons */}
-          <div className="-translate-y-20 mt-10 flex justify-center gap-30">
+          <div className="-translate-y-20 mt-10 flex flex-col item-center justify-center gap-4 sm:flex-row sm:gap-6">
 
             {/* Dashboard */}
             <button
              type="button"
              onClick={() => goToPage("/dashboard")}
-             className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.02] px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:border-white/30 hover:bg-white/[0.06]"
+             className="group inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.02] px-26 py-3.5 text-sm font-semibold text-white transition duration-300 hover:border-white/30 hover:bg-white/[0.06]"
              >
               Masuk Dashboard
 
@@ -115,7 +115,7 @@ export default function Home() {
             <button
              type="button"
              onClick={() => goToPage("/portofolio")}
-             className="group inline-flex items-center gap-3 rounded-full bg-red-500 px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-red-400"
+             className="group inline-flex items-center gap-3 rounded-full bg-red-500 px-30 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-red-400"
              >
               Lihat Portofolio
             </button>

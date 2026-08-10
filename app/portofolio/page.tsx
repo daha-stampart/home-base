@@ -10,6 +10,7 @@ import {
   Grid3X3,
   List,
   ChevronDown,
+  UserRound,
 } from "lucide-react";
 
 const API_URL =
@@ -29,6 +30,7 @@ type Portfolio = {
 };
 
 export default function PortfolioPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -37,6 +39,7 @@ export default function PortfolioPage() {
   const [sortOrder, setSortOrder] = useState("Terbaru");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showSortMenu, setShowSortMenu] = useState(false);
+  const [showCategoryMenu, setShowCategoryMenu] = useState(false);
 
   useEffect(() => {
     async function loadPortfolio() {
@@ -172,16 +175,86 @@ filteredPortfolios.sort((a, b) => {
 
           {/* Right */}
           <div className="flex items-center gap-3">
+
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-zinc-300 transition hover:border-red-500/40 hover:text-white lg:hidden"
+              aria-label="Buka menu"
+              >
+              ☰
+            </button>
+
+            {/* Hubungi Saya */}
             <a
               href="/maintenance"
               className="hidden items-center gap-2 rounded-full border border-red-500/70 px-5 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-500 hover:text-white sm:flex"
-            >
+              >
               <MessageCircle size={16} />
               Hubungi Saya
             </a>
-          </div>
 
-        </div>
+            {/* User */}
+            <a
+              href="/admin/login"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-zinc-300 transition hover:border-red-500/40 hover:text-white"
+              >
+              <UserRound size={18} />
+            </a>
+
+          </div>
+        </div> 
+
+        {/* Mobile Navigation */}
+          {isMobileMenuOpen && (
+            <div className="fixed left-0 right-0 top-16 z-40 border-b border-white/[0.06] bg-[#07090f]/95 backdrop-blur-xl lg:hidden">
+              <nav className="mx-auto flex max-w-[1400px] flex-col px-6 py-4">
+
+                <a
+                  href="/dashboard"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
+                  >
+                  Home
+                </a>
+
+                <a
+                  href="/portofolio"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="border-b border-white/[0.06] py-3 text-sm font-medium text-red-500"
+                  >
+                  Portofolio
+                </a>
+
+                <a
+                  href="/maintenance"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
+                  >
+                  Produk
+                </a>
+
+                <a
+                  href="/maintenance"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
+                  >
+                  Web Partner
+                </a>
+
+                <a
+                  href="/maintenance"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="py-3 text-sm font-medium text-zinc-300"
+                  >
+                  All About Me
+                </a>
+
+              </nav>
+            </div>
+          )}
+        {/* Akhir Mobile Navigation */}
       </header>
 
       {/* AREA BACKGROUND */}
@@ -189,32 +262,27 @@ filteredPortfolios.sort((a, b) => {
 
         {/* Background */}
         <div
-          className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
+          className="pointer-events-none absolute inset-0 bg-no-repeat opacity-100"
           style={{
             backgroundImage:
-              "url('/images/portfolio-hero.png')",
+            "url('/images/portfolio-hero.png')",
+            backgroundPosition: "center top, center top",
+            backgroundSize: "100% auto, 100% auto",
+            backgroundRepeat: "no-repeat, no-repeat",
           }}
+
         />
-
-        {/* Dark Overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-[#07090f]/55" />
-
-        {/* Bottom Gradient */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-72 bg-gradient-to-t from-[#07090f] via-[#1b080f]/80 to-transparent" />
-
-        {/* Vignette */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,rgba(0,0,0,0.75)_100%)]" />
 
         {/* HERO */}
         <section className="relative z-10 mx-auto max-w-[1400px] px-6 pb-12 pt-20 lg:px-10">
 
           <div className="hero-bounce max-w-3xl">
 
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">
+            <p className="text-xs -translate-y-18 -translate-x-2 font-semibold uppercase tracking-[0.25em] text-red-500">
               Portofolio
             </p>
 
-            <h1 className="mt-4 text-5xl font-bold leading-[1.25] tracking-tight text-white sm:text-6xl">
+            <h1 className="mt-2 text-2xl -translate-y-18 -translate-x-2 font-bold leading-[1.25] tracking-tight text-white sm:text-6xl">
 
               <span className="block">
                 Karya Kreatif
@@ -223,13 +291,13 @@ filteredPortfolios.sort((a, b) => {
               <span className="block">
                 Dari Ide Menjadi{" "}
                 <span className="text-red-500">
-                  Visual
+                  <br />Visual
                 </span>
               </span>
 
             </h1>
 
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-400 sm:text-base">
+            <p className="mt-1 -translate-y-17 -translate-x-2  max-w-2xl text-[11px] leading-5 text-white sm:text-base">
               Berbagai karya desain grafis, branding,
               konten visual, dan berbagai project kreatif
               yang telah saya kerjakan dari berbagai industri.
@@ -237,14 +305,17 @@ filteredPortfolios.sort((a, b) => {
 
           </div>
 
+          {/* Fade Hero ke Background */}
+          <div className="pointer-events-none absolute inset-x-0 -bottom-40 z-20 h-120 bg-gradient-to-b from-transparent via-[#07090f]/70 to-[#07090f]" />
+                   
         </section>
 
         {/* STATS */}
         <section className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
 
-          <div className="w-full max-w-[720px] py-5">
+          <div className="-translate-y-30 translate-x-5 w-full max-w-[720px] py-5">
 
-            <div className="grid grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
               {/* Projek */}
               <div className="flex items-center gap-3">
@@ -330,45 +401,93 @@ filteredPortfolios.sort((a, b) => {
 
       </div>
 
-      <div className="relative z-10 mx-6 h-[2px] bg-white/30" />
+      <div className="relative -translate-y-34 z-10 mx-6 h-[2px] bg-white/20" />
 
       {/* PORTFOLIO GRID */}
       <section className="relative z-10 mx-auto max-w-[1400px] px-6 pb-20 lg:px-10">
 
         {/* FILTER */}
-        <div className="mt-8 flex items-center justify-between gap-6">
+        <div className="mt-8 flex -translate-y-40 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
           {/* LEFT */}
-          <div className="flex min-w-0 items-center gap-2 overflow-x-auto">
 
-            {[
-              "Semua Karya",
-              "Desain Grafis",
-              "Branding & Identity",
-              "Konten Visual",
-              "Produk Lain",
-            ].map((category) => (
-
+          {/* MOBILE CATEGORY */}
+            <div className="relative w-full lg:hidden">
               <button
-                key={category}
-                onClick={() =>
-                  setActiveCategory(category)
-                }
-                className={
-                  activeCategory === category
+                type="button"
+                onClick={() => setShowCategoryMenu(!showCategoryMenu)}
+                className="flex h-9 w-full items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 text-[11px] font-medium text-zinc-300 transition hover:border-white/20 hover:text-white"
+                >
+                <span>{activeCategory}</span>
+
+                <ChevronDown
+                 size={15}
+                  className={`transition-transform duration-200 ${
+                  showCategoryMenu ? "rotate-180" : ""
+                  }`}
+                />
+             </button>
+
+              {showCategoryMenu && (
+                <div className="absolute left-0 top-11 z-50 w-full overflow-hidden rounded-xl border border-white/10 bg-[#111318] p-1 shadow-2xl">
+                  {[
+                    "Semua Karya",
+                    "Desain Grafis",
+                    "Branding & Identity",
+                    "Konten Visual",
+                    "Produk Lain",
+                  ].map((category) => (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => {
+                        setActiveCategory(category);
+                        setShowCategoryMenu(false);
+                      }}
+                      className={`w-full rounded-lg px-3 py-2.5 text-left text-xs transition ${
+                        activeCategory === category
+                        ? "bg-red-500 text-white"
+                        : "text-zinc-300 hover:bg-white/[0.06] hover:text-white"
+                      }`}
+                      >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+
+            {/* DESKTOP CATEGORY */}
+            <div className="hidden min-w-0 items-center gap-2 lg:flex">
+
+              {[
+                "Semua Karya",
+                "Desain Grafis",
+                "Branding & Identity",
+                "Konten Visual",
+                "Produk Lain",
+              ].map((category) => (
+
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                    className={
+                    activeCategory === category
                     ? "shrink-0 rounded-full bg-red-500 px-5 py-2.5 text-xs font-semibold text-white"
                     : "shrink-0 rounded-full px-5 py-2.5 text-xs font-medium text-zinc-400 transition hover:bg-white/[0.06] hover:text-white"
-                }
-              >
-                {category}
-              </button>
+                  }
+                  >
+                  {category}
+                </button>
 
-            ))}
+              ))}
 
-          </div>
+            </div>
 
           {/* RIGHT */}
-         <div className="flex shrink-0 items-center gap-6">
+         <div className="flex shrink-0 items-left gap-6">
 
          <div className="relative">
              <button
@@ -380,7 +499,7 @@ filteredPortfolios.sort((a, b) => {
              </button>
 
              {showSortMenu && (
-             <div className="absolute right-0 top-12 z-50 w-40 overflow-hidden rounded-xl border border-white/10 bg-[#111318] p-1 shadow-2xl">
+             <div className="absolute right-0 translate-x-10 top-12 z-50 w-40 overflow-hidden rounded-xl border border-white/10 bg-[#111318] p-1 shadow-2xl">
                  <button
                      onClick={() => {
                      setSortOrder("Terbaru");
@@ -442,7 +561,7 @@ filteredPortfolios.sort((a, b) => {
         {/* LOADING */}
         {loading && (
           <div className="flex min-h-[300px] items-center justify-center">
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm -translate-y-50 text-zinc-500">
               Memuat portfolio...
             </p>
           </div>
@@ -451,7 +570,7 @@ filteredPortfolios.sort((a, b) => {
         {/* ERROR */}
         {!loading && error && (
           <div className="mt-10 rounded-2xl border border-red-500/20 bg-red-500/[0.05] p-8 text-center">
-            <p className="text-sm text-red-400">
+            <p className="text-sm -translate-y-50 text-red-400">
               {error}
             </p>
           </div>
@@ -464,11 +583,11 @@ filteredPortfolios.sort((a, b) => {
             <div className="flex min-h-[300px] items-center justify-center">
               <div className="text-center">
 
-                <p className="text-lg font-semibold text-white">
+                <p className="text-lg -translate-y-50 font-semibold text-white">
                   Belum ada karya
                 </p>
 
-                <p className="mt-2 text-sm text-zinc-500">
+                <p className="mt-2 text-sm -translate-y-50 text-zinc-500">
                   Belum ada desain
                   pada kategori ini.
                 </p>

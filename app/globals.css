@@ -95,3 +95,14 @@ body {
 .landing-enter {
   will-change: transform, opacity;
 }
+
+.hero-background {
+  background-size: auto 75%;
+}
+
+@media (min-width: 1024px) {
+  .hero-background {
+    background-size: cover;
+  }
+}
+
