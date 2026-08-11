@@ -111,7 +111,7 @@ export default function DashboardPage() {
             </a>
 
             <a
-              href="/maintenance"
+              href="/web-partner"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               Web Partner
@@ -188,7 +188,7 @@ export default function DashboardPage() {
               </a>
 
               <a
-                href="/maintenance"
+                href="/web-partner"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
                 >

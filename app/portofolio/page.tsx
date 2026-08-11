@@ -158,7 +158,7 @@ filteredPortfolios.sort((a, b) => {
             </a>
 
             <a
-              href="/maintenance"
+              href="/web-partner"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               Web Partner
@@ -236,7 +236,7 @@ filteredPortfolios.sort((a, b) => {
                 </a>
 
                 <a
-                  href="/maintenance"
+                  href="/web-partner"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
                   >
@@ -257,7 +257,7 @@ filteredPortfolios.sort((a, b) => {
         {/* Akhir Mobile Navigation */}
       </header>
 
-      {/* AREA BACKGROUND */}
+      {/* sini AREA BACKGROUND */}
       <div className="relative overflow-hidden">
 
         {/* Background */}
@@ -407,7 +407,7 @@ filteredPortfolios.sort((a, b) => {
       <section className="relative z-10 mx-auto max-w-[1400px] px-6 pb-20 lg:px-10">
 
         {/* FILTER */}
-        <div className="mt-8 flex -translate-y-40 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="relative z-[100] mt-8 flex -translate-y-40 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
           {/* LEFT */}
 
@@ -429,7 +429,7 @@ filteredPortfolios.sort((a, b) => {
              </button>
 
               {showCategoryMenu && (
-                <div className="absolute left-0 top-11 z-50 w-full overflow-hidden rounded-xl border border-white/10 bg-[#111318] p-1 shadow-2xl">
+                <div className="absolute left-0 top-11 z-[200] w-full overflow-hidden rounded-xl border border-white/10 bg-[#111318] p-1 shadow-2xl">
                   {[
                     "Semua Karya",
                     "Desain Grafis",
@@ -556,7 +556,7 @@ filteredPortfolios.sort((a, b) => {
          </button>
 
           </div>
-        </div>
+        </div> 
 
         {/* LOADING */}
         {loading && (
@@ -604,8 +604,8 @@ filteredPortfolios.sort((a, b) => {
          <div
              className={
              viewMode === "grid"
-             ? "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-             : "mt-8 flex flex-col gap-5"
+             ? "-mt-30 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+             : "-mt-30 flex flex-col gap-5"
              }
              >
 
