@@ -314,6 +314,8 @@ export default function WebPartnerPage() {
       </h3>
 
       <p className="mt-1 text-xs leading-5 text-zinc-400">
+        KHUSUS UNTUK INSPECTOR PT BALAI LELANG MEGATAMA (OTOLINK)
+        <br />
         PT Balai Lelang Megatama Digital Vehicle Inspection System untuk proses
         appraisal kendaraan yang lebih cepat, akurat,
         dan terstandarisasi.
@@ -331,7 +333,7 @@ export default function WebPartnerPage() {
 
         {/* KUNJUNGI SITUS */}
         <a
-          href="/app-mobil"
+          href="/web-partner/otolink-app/digital-app"
           className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
           >
           Kunjungi Situs

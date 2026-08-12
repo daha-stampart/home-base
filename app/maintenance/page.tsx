@@ -1,20 +1,23 @@
 "use client";
 
 import { ArrowLeft, Wrench } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function MaintenancePage() {
+  const router = useRouter();
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#07090f] px-6 text-white">
 
       <div className="w-full max-w-lg text-center">
 
-        {/* Icon */}
+        {/* ================= ICON ================= */}
 
         <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-red-500/20 bg-red-500/10 text-red-500">
           <Wrench size={36} />
         </div>
 
-        {/* Title */}
+        {/* ================= TITLE ================= */}
 
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">
           Under Maintenance
@@ -29,19 +32,20 @@ export default function MaintenancePage() {
           Silakan kembali lagi nanti.
         </p>
 
-        {/* Back */}
+        {/* ================= BACK ================= */}
 
-        <a
-          href="/dashboard"
-          className="group mt-8 inline-flex items-center gap-3 rounded-xl bg-red-500 px-6 py-3.5 text-sm font-semibold transition hover:bg-red-400"
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="group mt-8 inline-flex items-center gap-3 rounded-xl bg-red-500 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-red-400 active:scale-[0.98]"
         >
           <ArrowLeft
             size={17}
             className="transition-transform group-hover:-translate-x-1"
           />
 
-          Kembali ke Dashboard
-        </a>
+          Kembali
+        </button>
 
       </div>
 

@@ -65,15 +65,16 @@ export default function OtolinkAppPage() {
 
         {/* DESCRIPTION */}
         <p className="dashboard-enter mt-3 max-w-md text-sm leading-6 text-zinc-400">
-          Platform PT Balai Lelang Megatama untuk melakukan inspeksi
+          KHUSUS UNTUK INSPECTOR PT BALAI LELANG MEGATAMA (OTOLINK)
+          <br />Platform PT Balai Lelang Megatama untuk melakukan inspeksi
           kendaraan yang akan di lelang.
         </p>
 
        {/* CTA atas */}
         <div className="mt-6">
           <a
-           href="/app-mobil"
-           className="dashboard-enter flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-red-600 text-sm font-semibold text-white transition hover:bg-red-500"
+           href="/web-partner/otolink-app/digital-app"
+           className="relative z-50 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-red-600 text-sm font-semibold text-white transition hover:bg-red-500"
            >
             Kunjungi Website
             <ExternalLink size={16} />
@@ -272,7 +273,7 @@ export default function OtolinkAppPage() {
         {/* CTA bawah */}
         <div className="mt-6">
           <a
-           href="/app-mobil"
+           href="/web-partner/otolink-app/digital-app"
            className="dashboard-enter flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-red-600 text-sm font-semibold text-white transition hover:bg-red-500"
            >
             Kunjungi Partner kami
