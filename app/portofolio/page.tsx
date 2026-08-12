@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   MessageCircle,
   BriefcaseBusiness,
@@ -610,15 +611,15 @@ filteredPortfolios.sort((a, b) => {
              >
 
               {filteredPortfolios.map((item) => (
-
-             <article
-                 key={item.id}
-                 className={
-                 viewMode === "grid"
-                 ? "group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.05]"
-                 : "group flex overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition duration-300 hover:border-red-500/30 hover:bg-white/[0.05]"
-                 }
-                 >
+             <Link
+                href={`/portofolio/${item.id}`}
+                key={item.id}
+                className={
+                viewMode === "grid"
+                ? "group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-red-500/30 hover:bg-white/[0.05]"
+                : "group flex overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition duration-300 hover:border-red-500/30 hover:bg-white/[0.05]"
+                }
+                >
 
                   {/* COVER */}
                  <div
@@ -646,7 +647,7 @@ filteredPortfolios.sort((a, b) => {
 
                      {/* CATEGORY */}
                      {item.kategori && (
-                     <div className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-md">
+                     <div className="absolute right-4 top-4 rounded-full bg-black/70 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-md">
                          {item.kategori}
                      </div>
                      )}
@@ -676,8 +677,7 @@ filteredPortfolios.sort((a, b) => {
                          </p>
                         )}
                   </div>
-
-                </article>
+              </Link>
 
               ))}
 

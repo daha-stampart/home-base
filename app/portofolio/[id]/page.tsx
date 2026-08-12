@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 
@@ -29,8 +29,10 @@ const getImageUrl = (fileId: string) => {
 export default function PortfolioDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
+
   const [portfolio, setPortfolio] =
     useState<Portfolio | null>(null);
 
@@ -47,9 +49,7 @@ export default function PortfolioDetailPage({
         setError("");
 
         const response = await fetch(
-          `${API_URL}?action=getPortfolio&id=${encodeURIComponent(
-            params.id
-          )}`,
+          `${API_URL}?action=getPortfolio&id=${encodeURIComponent(id)}`,
           {
             cache: "no-store",
           }
@@ -62,6 +62,8 @@ export default function PortfolioDetailPage({
         }
 
         const result = await response.json();
+
+        console.log("DETAIL PORTFOLIO:", result);
 
         if (!result.success || !result.data) {
           throw new Error(
@@ -86,7 +88,7 @@ export default function PortfolioDetailPage({
     };
 
     loadPortfolio();
-  }, [params.id]);
+  }, [id]);
 
   // =========================================
   // LOADING
@@ -112,6 +114,7 @@ export default function PortfolioDetailPage({
     return (
       <main className="min-h-screen bg-[#07090f] text-white">
         <section className="mx-auto max-w-4xl px-6 py-10">
+
           <Link
             href="/portofolio"
             className="mb-8 inline-flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
@@ -123,6 +126,7 @@ export default function PortfolioDetailPage({
           <div className="rounded-2xl border border-red-500/20 bg-red-500/[0.05] p-6 text-sm text-red-400">
             {error || "Portofolio tidak ditemukan."}
           </div>
+
         </section>
       </main>
     );
@@ -145,6 +149,7 @@ export default function PortfolioDetailPage({
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#07090f]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center px-6 py-5">
+
           <Link
             href="/portofolio"
             className="flex items-center gap-2 text-sm text-zinc-400 transition hover:text-white"
@@ -152,6 +157,7 @@ export default function PortfolioDetailPage({
             <ArrowLeft size={17} />
             Kembali
           </Link>
+
         </div>
       </header>
 
@@ -213,7 +219,7 @@ export default function PortfolioDetailPage({
                   alt={`${portfolio.judul} - ${index + 1}`}
                   referrerPolicy="no-referrer"
                   loading="lazy"
-                  className="aspect-square w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  className="h-auto w-full object-contain transition duration-500 group-hover:scale-[1.03]"
                 />
               </div>
             ))}

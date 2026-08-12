@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+const LANDING_URL = "/web-partner/otolink-app/digital-app";
+
 export default function DashboardPage() {
   const router = useRouter();
 
@@ -15,19 +17,86 @@ export default function DashboardPage() {
   const [selectedCard, setSelectedCard] = useState("");
 
   useEffect(() => {
-    const userData = sessionStorage.getItem("user");
+    // =====================================================
+    // CHECK SESSION
+    // =====================================================
 
-    if (!userData) {
-      router.replace("/");
-      return;
+    const checkSession = () => {
+      const userData = sessionStorage.getItem("user");
+
+      if (!userData) {
+        window.location.replace(LANDING_URL);
+        return false;
+      }
+
+      try {
+        const parsedUser = JSON.parse(userData);
+        setUser(parsedUser);
+        return true;
+      } catch (error) {
+        console.error("Session user tidak valid:", error);
+
+        sessionStorage.removeItem("user");
+        window.location.replace(LANDING_URL);
+
+        return false;
+      }
+    };
+
+    // Check pertama kali
+    const validSession = checkSession();
+
+    if (validSession) {
+      setShowCards(true);
     }
 
-    setUser(JSON.parse(userData));
-    setShowCards(true);
-  }, [router]);
+    // =====================================================
+    // PROTEKSI CHROME BACK / FORWARD / BFCache
+    // =====================================================
+
+    const handlePageShow = () => {
+      checkSession();
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+    };
+  }, []);
+
+  // =====================================================
+  // LOGOUT
+  // =====================================================
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+
+    // Efek loading
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    // Hapus session
+    sessionStorage.removeItem("user");
+
+    // Pastikan state user juga kosong
+    setUser(null);
+
+    // ===================================================
+    // HARD REDIRECT
+    // ===================================================
+    //
+    // replace() lebih kuat daripada router.replace()
+    // untuk kasus browser history / bfcache.
+    //
+    window.location.replace(LANDING_URL);
+  };
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden">
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
+
       <Image
         src="/images/login-bg.png"
         alt="Otolink Background"
@@ -36,11 +105,18 @@ export default function DashboardPage() {
         className="pointer-events-none object-cover"
       />
 
+      {/* Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-black/30" />
 
-      <div className="mx-auto flex min-h-screen w-full max-w-[420px] flex-col justify-center space-y-4 px-6 py-8">
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
 
-        {/* WELCOME */}
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[420px] flex-col justify-center space-y-4 px-6 py-8">
+        {/* =====================================================
+            WELCOME
+        ===================================================== */}
+
         <GlassCard
           className={`
             p-6
@@ -68,13 +144,18 @@ export default function DashboardPage() {
           </p>
         </GlassCard>
 
-        {/* APPRAISAL BARU */}
+        {/* =====================================================
+            APPRAISAL BARU
+        ===================================================== */}
+
         <GlassCard
           onClick={() => {
             setSelectedCard("appraisal");
 
             setTimeout(() => {
-              router.push("/web-partner/otolink-app/digital-app/appraisal");
+              router.push(
+                "/web-partner/otolink-app/digital-app/appraisal"
+              );
             }, 180);
           }}
           className={`
@@ -84,16 +165,19 @@ export default function DashboardPage() {
             duration-700
             ease-out
             delay-150
+
             ${
               showCards
                 ? "translate-y-0 opacity-100"
                 : "translate-y-8 opacity-0"
             }
+
             ${
               selectedCard === "appraisal"
                 ? "scale-[0.98] border-red-500 bg-red-600/20 shadow-[0_0_25px_rgba(220,38,38,.35)]"
                 : ""
             }
+
             hover:border-red-500/40
             hover:bg-red-600/10
           `}
@@ -113,7 +197,10 @@ export default function DashboardPage() {
           </div>
         </GlassCard>
 
-        {/* RIWAYAT */}
+        {/* =====================================================
+            RIWAYAT
+        ===================================================== */}
+
         <GlassCard
           onClick={() => {
             setSelectedCard("riwayat");
@@ -129,16 +216,19 @@ export default function DashboardPage() {
             duration-700
             ease-out
             delay-300
+
             ${
               showCards
                 ? "translate-y-0 opacity-100"
                 : "translate-y-8 opacity-0"
             }
+
             ${
               selectedCard === "riwayat"
                 ? "scale-[0.98] border-red-500 bg-red-600/20 shadow-[0_0_25px_rgba(220,38,38,.35)]"
                 : ""
             }
+
             hover:border-red-500/40
             hover:bg-red-600/10
           `}
@@ -158,19 +248,14 @@ export default function DashboardPage() {
           </div>
         </GlassCard>
 
-        {/* LOGOUT */}
+        {/* =====================================================
+            LOGOUT
+        ===================================================== */}
+
         <button
           type="button"
-          onClick={async () => {
-            setIsLoggingOut(true);
-
-            await new Promise((resolve) =>
-              setTimeout(resolve, 1500)
-            );
-
-            sessionStorage.removeItem("user");
-            router.replace("/web-partner/otolink-app/digital-app");
-          }}
+          disabled={isLoggingOut}
+          onClick={handleLogout}
           className={`
             w-full
             rounded-[24px]
@@ -184,13 +269,18 @@ export default function DashboardPage() {
             duration-700
             ease-out
             delay-[450ms]
+
             ${
               showCards
                 ? "translate-y-0 opacity-100"
                 : "translate-y-8 opacity-0"
             }
+
             active:scale-[0.98]
             active:bg-red-600/40
+
+            disabled:cursor-not-allowed
+            disabled:opacity-70
           `}
         >
           <div className="flex items-center gap-4">
@@ -208,21 +298,21 @@ export default function DashboardPage() {
           </div>
         </button>
 
-        {/* LOGOUT LOADING */}
+        {/* =====================================================
+            LOGOUT LOADING
+        ===================================================== */}
+
         {isLoggingOut && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
             <div className="flex flex-col items-center gap-4 rounded-2xl bg-white px-8 py-7 shadow-2xl">
-
               <div className="h-10 w-10 animate-spin rounded-full border-4 border-red-600 border-t-transparent" />
 
               <p className="text-lg font-semibold text-gray-800">
                 Mengakhiri sesi...
               </p>
-
             </div>
           </div>
         )}
-
       </div>
     </main>
   );

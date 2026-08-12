@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Download,
@@ -44,14 +44,71 @@ const services = [
   },
 ];
 
-const portfolio: {
-  title: string;
-  category: string;
-  image: string;
-}[] = [];
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbx3TAa2VbIuRzL_PYjEmcEx_mnD3MAVBo4uvHzRMyMTNxPJhBq1sWN0S_qHif_2FePf/exec";
+
+  type Portfolio = {
+  id: string;
+  judul: string;
+  client: string;
+  kategori: string;
+  deskripsi: string;
+  gallery: string;
+  cover: string;
+  dashboard: boolean;
+  tanggal: string;
+  folderId: string;
+};
 
 export default function DashboardPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [portfolio, setPortfolio] = useState<Portfolio[]>([]);
+  const [loadingPortfolio, setLoadingPortfolio] = useState(true);
+  useEffect(() => {
+    async function loadPortfolio() {
+    try {
+      const response = await fetch(
+        `${API_URL}?action=getPortfolio`,
+        {
+          cache: "no-store",
+        }
+      );
+
+      const result = await response.json();
+      console.log(
+      "DATA PORTFOLIO:",
+      JSON.stringify(result.data, null, 2)
+      );
+
+      console.log(
+      "COVER URL:",
+      `https://drive.google.com/thumbnail?id=${result.data?.[0]?.cover}&sz=w1200`
+      );
+
+      if (!result.success) {
+        throw new Error(
+          result.error || "Gagal mengambil data portfolio."
+        );
+      }
+
+      setPortfolio(
+      (result.data || []).filter(
+      (item: Portfolio) =>
+      item.dashboard === true ||
+      String(item.dashboard).toLowerCase() === "true"
+      )
+      );
+
+    } catch (error) {
+      console.error("Gagal memuat portfolio:", error);
+      setPortfolio([]);
+    } finally {
+      setLoadingPortfolio(false);
+    }
+    }
+
+    loadPortfolio();
+  }, []);
 
   return (
     <main className="dashboard-enter min-h-screen bg-[#07090f] text-white">
@@ -390,6 +447,7 @@ export default function DashboardPage() {
 
       </section>
 
+
      {/* =========================================================
           PORTOFOLIO
       ========================================================= */}
@@ -429,19 +487,26 @@ export default function DashboardPage() {
         ) : (
           portfolio.map((item) => (
             <a
-              href="/portofolio"
-              key={`${item.title}-${item.category}`}
+              href={`/portofolio/${item.id}`}
+              key={`${item.judul}-${item.kategori}`}
               className="group overflow-hidden rounded-xl border border-white/10 bg-white/[0.025] transition duration-300 hover:-translate-y-1 hover:border-red-500/30"
               >
               <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-zinc-800 via-zinc-900 to-black">
                 <img
-                  src={item.image}
-                  alt={item.title}
+                  src={`https://drive.google.com/thumbnail?id=${item.cover}&sz=w1200`}
+                  alt={item.judul}
+                  referrerPolicy="no-referrer"
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   onError={(event) => {
-                  event.currentTarget.style.display = "none";
+                  console.error("GAGAL LOAD GAMBAR:", item.cover);
                   }}
                 />
+
+                {item.kategori && (
+                  <span className="absolute right-3 top-3 rounded-full bg-black/70 px-3 py-1.5 text-[10px] font-medium text-white backdrop-blur-sm">
+                    {item.kategori}
+                  </span>
+                )}
 
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-red-500/20 via-transparent to-purple-500/20">
                   <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/30">
@@ -452,11 +517,11 @@ export default function DashboardPage() {
 
               <div className="p-4">
                 <h3 className="text-sm font-semibold">
-                  {item.title}
+                  {item.judul}
                 </h3>
 
                 <p className="mt-1 text-xs text-zinc-600">
-                  {item.category}
+                  feat. {item.client}
                 </p>
               </div>
             </a>

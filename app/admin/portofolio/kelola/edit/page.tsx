@@ -909,18 +909,6 @@ export function EditPage() {
 
         </div>
 
-        {/* ERROR */}
-
-        {error && (
-
-          <div className="mb-6 rounded-2xl border border-red-500/20 bg-red-500/[0.05] p-5 text-sm text-red-400">
-
-            {error}
-
-          </div>
-
-        )}
-
         <div className="space-y-6">
 
           {/* =================================
@@ -1386,6 +1374,18 @@ export function EditPage() {
             </div>
 
           )}
+
+          {/* ERROR */}
+
+        {error && (
+
+          <div className="mb-6 rounded-2xl border border-red-500/20 bg-red-500/[0.05] p-5 text-sm text-red-400">
+
+            {error}
+
+          </div>
+
+        )}
 
           {/* =================================
               SAVE
