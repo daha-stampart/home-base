@@ -407,6 +407,9 @@ export default function DashboardPage() {
       ========================================================= */}
 
      <section className="relative z-20 mx-auto -mt-10 max-w-[1400px] px-6 translate-y-12 lg:px-10">
+       <h2 className="mt-8 mb-5 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          ORDER <span className="text-red-500">NOW</span>
+       </h2>
        <div className="grid overflow-hidden rounded-2xl border border-white/20 bg-black/[0.7] md:grid-cols-2 lg:grid-cols-4">
          {services.map((service, index) => {
            const Icon = service.icon;
@@ -414,7 +417,7 @@ export default function DashboardPage() {
            return (
              <a
                key={service.title}
-               href="/maintenance"
+               href={service.title === "Web Partner" ? "/web-partner" : "/maintenance"}
                className={`group p-7 transition hover:bg-white/[0.04] ${
                  index !== services.length - 1
                  ? "border-b border-white/10 lg:border-b-0 lg:border-r"

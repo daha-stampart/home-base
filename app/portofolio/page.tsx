@@ -625,9 +625,9 @@ filteredPortfolios.sort((a, b) => {
                  <div
                      className={
                      viewMode === "grid"
-                     ? "relative aspect-[4/3] overflow-hidden bg-black/30"
-                     : "relative h-40 w-64 shrink-0 overflow-hidden bg-black/30"
-                     }
+                      ? "relative aspect-[4/3] overflow-hidden bg-black/30"
+                      : "relative aspect-[4/3] w-full overflow-hidden bg-black/30"
+                      }
                      >
 
                      {item.cover ? (
@@ -658,7 +658,7 @@ filteredPortfolios.sort((a, b) => {
                      className={
                      viewMode === "grid"
                      ? "p-5"
-                     : "flex flex-1 flex-col justify-center p-6"
+                     : "w-full p-5"
                      }
                      >
 
@@ -672,7 +672,7 @@ filteredPortfolios.sort((a, b) => {
                         </p>
                         )}
                      {viewMode === "list" && item.deskripsi && (
-                         <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+                         <p className="mt-2 truncate text-sm text-zinc-400">
                              {item.deskripsi}
                          </p>
                         )}
