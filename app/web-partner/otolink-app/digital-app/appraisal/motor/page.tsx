@@ -41,7 +41,9 @@ export default function MotorPage() {
       setVendors(data);
     } catch (error) {
       console.error("Gagal mengambil vendor motor:", error);
+
       setVendors([]);
+
       setVendorError(
         "Gagal memuat data vendor. Silakan coba lagi."
       );
@@ -91,6 +93,24 @@ export default function MotorPage() {
   };
 
   // =====================================================
+  // LANJUT KE FORM MOTOR
+  // =====================================================
+
+  const handleNext = () => {
+    if (!selectedVendor) return;
+
+    // Bersihkan appraisal sebelumnya
+    clearAppraisal();
+
+    // Kirim vendor yang dipilih ke halaman form
+    router.push(
+      `/web-partner/otolink-app/digital-app/appraisal/motor/form?vendor=${encodeURIComponent(
+        selectedVendor
+      )}`
+    );
+  };
+
+  // =====================================================
   // RENDER
   // =====================================================
 
@@ -109,7 +129,10 @@ export default function MotorPage() {
         className="pointer-events-none object-cover"
       />
 
-      {/* Overlay jangan terlalu gelap */}
+      {/* =================================================
+          OVERLAY
+      ================================================= */}
+
       <div className="pointer-events-none absolute inset-0 bg-black/20" />
 
       {/* =================================================
@@ -218,11 +241,7 @@ export default function MotorPage() {
         <button
           type="button"
           disabled={!selectedVendor}
-          onClick={() => {
-            clearAppraisal();
-
-            router.push("/maintenance");
-          }}
+          onClick={handleNext}
           className={`
             mt-5
             w-full
@@ -257,7 +276,7 @@ export default function MotorPage() {
             BACK
         ================================================= */}
 
-        <BackButton href="/web-partner/otolink-app/digital-app/appraisal" />
+        <BackButton href="/web-partner/otolink-app/digital-app/appraisal"/>
 
       </div>
 
@@ -270,12 +289,24 @@ export default function MotorPage() {
         title="Pilih Vendor"
         onClose={() => setOpenVendorModal(false)}
       >
+
         {/* ================= LOADING ================= */}
 
         {loadingVendors && (
           <div className="flex flex-col items-center justify-center py-8 text-center">
 
-            <div className="mb-4 h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-red-500" />
+            <div
+              className="
+                mb-4
+                h-8
+                w-8
+                animate-spin
+                rounded-full
+                border-2
+                border-white/20
+                border-t-red-500
+              "
+            />
 
             <p className="text-sm text-white/70">
               Memuat daftar vendor...
@@ -314,7 +345,6 @@ export default function MotorPage() {
               "
             >
               <RefreshCw size={16} />
-
               Coba Lagi
             </button>
 
@@ -353,7 +383,6 @@ export default function MotorPage() {
                 "
               >
                 <RefreshCw size={16} />
-
                 Muat Ulang
               </button>
 
@@ -417,7 +446,6 @@ export default function MotorPage() {
           )}
 
       </Modal>
-
     </main>
   );
 }

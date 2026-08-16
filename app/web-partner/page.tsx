@@ -290,19 +290,20 @@ export default function WebPartnerPage() {
 
   </div>
 
+{/* =====================================================
+  PARTNER 1 — OTOLINK APP
+===================================================== */}
 
   {/* PARTNER CARD */}
   <article className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
 
     {/* BANNER */}
-    <div className="relative h-[190px] w-full overflow-hidden bg-zinc-900">
-
+    <div className="w-full bg-zinc-900">
       <img
         src="/images/otolink-app/otolink-app-1.png"
         alt="Otolink Digital Appraisal"
-        className="h-full w-full scale-100 object-cover"
+        className="block h-auto w-full"
       />
-
     </div>
 
 
@@ -313,9 +314,11 @@ export default function WebPartnerPage() {
         Otolink Digital Appraisal
       </h3>
 
-      <p className="mt-1 text-xs leading-5 text-zinc-400">
+      <p className="mt-1 text-xs leading-5 text-red-400">
         KHUSUS UNTUK INSPECTOR PT BALAI LELANG MEGATAMA (OTOLINK)
-        <br />
+      </p>
+
+      <p className="mt-1 text-xs leading-5 text-zinc-400">
         PT Balai Lelang Megatama Digital Vehicle Inspection System untuk proses
         appraisal kendaraan yang lebih cepat, akurat,
         dan terstandarisasi.
@@ -344,6 +347,67 @@ export default function WebPartnerPage() {
     </div>
 
   </article>
+
+{/* =====================================================
+  PARTNER 2 — WEB OTOLINK
+===================================================== */}
+
+<article className="mt-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+
+  {/* BANNER */}
+  <div className="w-full overflow-hidden bg-zinc-900">
+
+    <img
+      src="/images/web-otolink/web-otolink-1.png"
+      alt="Website Otolink"
+      className="block w-full h-auto"
+    />
+
+  </div>
+
+
+  {/* PARTNER INFO */}
+  <div className="px-5 py-4">
+
+    <h3 className="text-lg font-semibold text-white">
+      Website Otolink
+    </h3>
+
+    <p className="mt-1 text-xs leading-5 text-zinc-400">
+      WEBSITE RESMI PT BALAI LELANG MEGATAMA (OTOLINK)
+      <br />
+      Website resmi Otolink untuk mendapatkan informasi
+      mengenai layanan dan kegiatan lelang kendaraan
+      roda dua dan roda empat
+    </p>
+
+
+    <div className="mt-4 flex gap-2">
+
+      {/* LIHAT PREVIEW */}
+      <a
+        href="/web-partner/web-otolink"
+        className="flex flex-1 items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-[10px] font-semibold text-red-400 transition hover:bg-red-500/20"
+      >
+        Lihat Preview
+      </a>
+
+
+      {/* KUNJUNGI SITUS */}
+      <a
+        href="https://lelang.otolink.co.id"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
+      >
+        Kunjungi Situs
+      </a>
+
+    </div>
+
+  </div>
+
+</article>
 
 </section>
 
