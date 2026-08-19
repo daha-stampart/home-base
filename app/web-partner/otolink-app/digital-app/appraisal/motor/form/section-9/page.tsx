@@ -10,7 +10,7 @@ import {
 } from "../../../../lib/appraisal-storage";
 import Image from "next/image";
 
-export default function MotorSection4Page() {
+export default function MotorSection9Page() {
   const [showCards, setShowCards] = useState(false);
   const [showValidation, setShowValidation] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,20 +21,26 @@ export default function MotorSection4Page() {
   const [appraisalId, setAppraisalId] = useState("");
 
   // =====================================================
-  // ABSORBER
+  // STNK
   // =====================================================
 
-  const [shockBelakang, setShockBelakang] = useState("");
-  const [shockBelakangCatatan, setShockBelakangCatatan] =
-    useState("");
+  const [stnk, setStnk] = useState("");
+  const [stnkCatatan, setStnkCatatan] = useState("");
 
-  const [muffler, setMuffler] = useState("");
-  const [mufflerCatatan, setMufflerCatatan] =
-    useState("");
+  // =====================================================
+  // NOTA PAJAK
+  // =====================================================
 
-  const [innerTubeCompDepan, setInnerTubeCompDepan] =
-    useState("");
-  const [innerTubeCompDepanCatatan, setInnerTubeCompDepanCatatan] =
+  const [notaPajak, setNotaPajak] = useState("");
+  const [tanggalPajak, setTanggalPajak] = useState("");
+  const [notaPajakCatatan, setNotaPajakCatatan] = useState("");
+
+  // =====================================================
+  // KUNCI KONTAK
+  // =====================================================
+
+  const [kunciKontak, setKunciKontak] = useState("");
+  const [kunciKontakCatatan, setKunciKontakCatatan] =
     useState("");
 
   const router = useRouter();
@@ -52,21 +58,16 @@ export default function MotorSection4Page() {
       setVendor(saved.vendor ?? "Belum dipilih");
       setAppraisalId(saved.appraisalId ?? "");
 
-      setShockBelakang(saved.shockBelakang ?? "");
-      setShockBelakangCatatan(
-        saved.shockBelakangCatatan ?? ""
-      );
+      setStnk(saved.stnk ?? "");
+      setStnkCatatan(saved.stnkCatatan ?? "");
 
-      setMuffler(saved.muffler ?? "");
-      setMufflerCatatan(
-        saved.mufflerCatatan ?? ""
-      );
+      setNotaPajak(saved.notaPajak ?? "");
+      setTanggalPajak(saved.tanggalPajak ?? "");
+      setNotaPajakCatatan(saved.notaPajakCatatan ?? "");
 
-      setInnerTubeCompDepan(
-        saved.innerTubeCompDepan ?? ""
-      );
-      setInnerTubeCompDepanCatatan(
-        saved.innerTubeCompDepanCatatan ?? ""
+      setKunciKontak(saved.kunciKontak ?? "");
+      setKunciKontakCatatan(
+        saved.kunciKontakCatatan ?? ""
       );
     }
 
@@ -113,27 +114,29 @@ export default function MotorSection4Page() {
 
       appraisalId,
 
-      shockBelakang,
-      shockBelakangCatatan,
+      stnk,
+      stnkCatatan,
 
-      muffler,
-      mufflerCatatan,
+      notaPajak,
+      tanggalPajak,
+      notaPajakCatatan,
 
-      innerTubeCompDepan,
-      innerTubeCompDepanCatatan,
+      kunciKontak,
+      kunciKontakCatatan,
     });
   }, [
     isLoaded,
     appraisalId,
 
-    shockBelakang,
-    shockBelakangCatatan,
+    stnk,
+    stnkCatatan,
 
-    muffler,
-    mufflerCatatan,
+    notaPajak,
+    tanggalPajak,
+    notaPajakCatatan,
 
-    innerTubeCompDepan,
-    innerTubeCompDepanCatatan,
+    kunciKontak,
+    kunciKontakCatatan,
   ]);
 
   // =====================================================
@@ -156,6 +159,74 @@ export default function MotorSection4Page() {
     transition
     focus:border-red-500
   `;
+
+  // =====================================================
+  // DATE INPUT CLASS
+  // =====================================================
+
+  const dateInputClass = `
+    w-full
+    rounded-xl
+    border
+    border-white/20
+    bg-white/10
+    px-4
+    py-3
+    text-white
+    outline-none
+    transition
+    focus:border-red-500
+  `;
+
+  // =====================================================
+  // RENDER OPTIONS
+  // =====================================================
+
+  const renderOptions = (
+    name: string,
+    value: string,
+    options: string[],
+    setValue: (value: string) => void
+  ) => {
+    return (
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 pt-1">
+
+        {options.map((option) => (
+          <label
+            key={option}
+            className="flex items-center gap-2 text-white"
+          >
+            <input
+              type="radio"
+              name={name}
+              value={option}
+              checked={value === option}
+              onChange={(e) =>
+                setValue(e.target.value)
+              }
+              className="h-4 w-4 accent-red-500"
+            />
+
+            {option}
+          </label>
+        ))}
+
+      </div>
+    );
+  };
+
+  // =====================================================
+  // VALIDATION
+  // =====================================================
+
+  const notaPajakComplete =
+    notaPajak === "TIDAK" ||
+    (notaPajak === "ADA" && tanggalPajak);
+
+  const isComplete =
+    stnk &&
+    notaPajakComplete &&
+    kunciKontak;
 
   // =====================================================
   // RENDER
@@ -300,11 +371,11 @@ export default function MotorSection4Page() {
           <div className="flex items-center justify-between">
 
             <p className="text-sm text-white/60">
-              Bagian 4 dari 10
+              Bagian 9 dari 10
             </p>
 
             <span className="text-sm font-semibold text-red-400">
-              40%
+              90%
             </span>
 
           </div>
@@ -314,7 +385,7 @@ export default function MotorSection4Page() {
             <div
               className="
                 h-full
-                w-[40%]
+                w-[90%]
                 rounded-full
                 bg-gradient-to-r
                 from-red-500
@@ -327,7 +398,7 @@ export default function MotorSection4Page() {
           </div>
 
           <h2 className="mt-1 text-2xl font-bold text-blue-300">
-            Eksterior
+            Dokumen dan Kunci
           </h2>
 
         </GlassCard>
@@ -357,81 +428,38 @@ export default function MotorSection4Page() {
           </h2>
 
           <p className="text-2xl font-semibold text-blue-300">
-            ABSORBER
+            STNK DAN KUNCI KONTAK
           </p>
 
           <div className="mt-3 h-px bg-white/15" />
 
           {/* =================================================
-              1. SHOCK BELAKANG
+              STNK
           ================================================= */}
 
           <div className="mt-6 space-y-3 text-center">
 
-            <label className="text-lg font-bold text-white">
-              SHOCK BELAKANG
+            <label className="block text-lg font-bold text-white">
+              STNK
             </label>
 
-            <p className="italic text-white/70">
-              Satu Pasang
-            </p>
+            {renderOptions(
+              "stnk",
+              stnk,
+              ["ADA", "TIDAK"],
+              setStnk
+            )}
 
-            <div className="flex justify-center gap-10 pt-1">
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="shockBelakang"
-                  value="BAIK"
-                  checked={shockBelakang === "BAIK"}
-                  onChange={(e) =>
-                    setShockBelakang(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                BAIK
-              </label>
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="shockBelakang"
-                  value="CUKUP"
-                  checked={shockBelakang === "CUKUP"}
-                  onChange={(e) =>
-                    setShockBelakang(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                CUKUP
-              </label>
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="shockBelakang"
-                  value="RUSAK"
-                  checked={shockBelakang === "RUSAK"}
-                  onChange={(e) =>
-                    setShockBelakang(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                RUSAK
-              </label>
-
-            </div>
-
-            {showValidation && !shockBelakang && (
+            {showValidation && !stnk && (
               <p className="text-left text-sm font-medium text-red-400">
-                ⚠ SHOCK BELAKANG BELUM DIPILIH
+                ⚠ STNK BELUM DIPILIH
               </p>
             )}
 
             <textarea
-              value={shockBelakangCatatan}
+              value={stnkCatatan}
               onChange={(e) =>
-                setShockBelakangCatatan(e.target.value)
+                setStnkCatatan(e.target.value)
               }
               placeholder="tambahkan catatan khusus"
               className={textareaClass}
@@ -442,75 +470,57 @@ export default function MotorSection4Page() {
           <div className="mt-5 h-px bg-white/15" />
 
           {/* =================================================
-              2. MUFFLER
+              NOTA PAJAK
           ================================================= */}
 
           <div className="mt-6 space-y-3 text-center">
 
-            <label className="text-lg font-bold text-white">
-              MUFFLER
+            <label className="block text-lg font-bold text-white">
+              NOTA PAJAK
             </label>
 
-            <p className="italic text-white/70">
-              Knalpot
-            </p>
+            {renderOptions(
+              "nota-pajak",
+              notaPajak,
+              ["ADA", "TIDAK"],
+              setNotaPajak
+            )}
 
-            <div className="flex justify-center gap-10 pt-1">
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="muffler"
-                  value="BAIK"
-                  checked={muffler === "BAIK"}
-                  onChange={(e) =>
-                    setMuffler(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                BAIK
-              </label>
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="muffler"
-                  value="CUKUP"
-                  checked={muffler === "CUKUP"}
-                  onChange={(e) =>
-                    setMuffler(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                CUKUP
-              </label>
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="muffler"
-                  value="RUSAK"
-                  checked={muffler === "RUSAK"}
-                  onChange={(e) =>
-                    setMuffler(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                RUSAK
-              </label>
-
-            </div>
-
-            {showValidation && !muffler && (
+            {showValidation && !notaPajak && (
               <p className="text-left text-sm font-medium text-red-400">
-                ⚠ MUFFLER BELUM DIPILIH
+                ⚠ NOTA PAJAK BELUM DIPILIH
               </p>
             )}
 
+            {notaPajak === "ADA" && (
+              <div className="pt-2 text-left">
+
+                <label className="mb-2 block text-sm font-medium text-white/70">
+                  TANGGAL PAJAK
+                </label>
+
+                <input
+                  type="date"
+                  value={tanggalPajak}
+                  onChange={(e) =>
+                    setTanggalPajak(e.target.value)
+                  }
+                  className={dateInputClass}
+                />
+
+                {showValidation && !tanggalPajak && (
+                  <p className="mt-2 text-sm font-medium text-red-400">
+                    ⚠ TANGGAL PAJAK WAJIB DIISI
+                  </p>
+                )}
+
+              </div>
+            )}
+
             <textarea
-              value={mufflerCatatan}
+              value={notaPajakCatatan}
               onChange={(e) =>
-                setMufflerCatatan(e.target.value)
+                setNotaPajakCatatan(e.target.value)
               }
               placeholder="tambahkan catatan khusus"
               className={textareaClass}
@@ -521,75 +531,32 @@ export default function MotorSection4Page() {
           <div className="mt-5 h-px bg-white/15" />
 
           {/* =================================================
-              3. INNER TUBE COMP DEPAN
+              KUNCI KONTAK
           ================================================= */}
 
           <div className="mt-6 space-y-3 text-center">
 
-            <label className="text-lg font-bold text-white">
-              INNER TUBE COMP DEPAN
+            <label className="block text-lg font-bold text-white">
+              KUNCI KONTAK
             </label>
 
-            <p className="italic text-white/70">
-              Tube shock depan, sepasang
-            </p>
+            {renderOptions(
+              "kunci-kontak",
+              kunciKontak,
+              ["KUNCI", "REMOTE", "TIDAK ADA"],
+              setKunciKontak
+            )}
 
-            <div className="flex justify-center gap-10 pt-1">
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="innerTubeCompDepan"
-                  value="BAIK"
-                  checked={innerTubeCompDepan === "BAIK"}
-                  onChange={(e) =>
-                    setInnerTubeCompDepan(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                BAIK
-              </label>
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="innerTubeCompDepan"
-                  value="CUKUP"
-                  checked={innerTubeCompDepan === "CUKUP"}
-                  onChange={(e) =>
-                    setInnerTubeCompDepan(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                CUKUP
-              </label>
-
-              <label className="flex items-center gap-2 text-white">
-                <input
-                  type="radio"
-                  name="innerTubeCompDepan"
-                  value="RUSAK"
-                  checked={innerTubeCompDepan === "RUSAK"}
-                  onChange={(e) =>
-                    setInnerTubeCompDepan(e.target.value)
-                  }
-                  className="h-4 w-4 accent-red-500"
-                />
-                RUSAK
-              </label>
-
-            </div>
-
-            {showValidation && !innerTubeCompDepan && (
+            {showValidation && !kunciKontak && (
               <p className="text-left text-sm font-medium text-red-400">
-                ⚠ INNER TUBE COMP DEPAN BELUM DIPILIH
+                ⚠ KUNCI KONTAK BELUM DIPILIH
               </p>
             )}
 
             <textarea
-              value={innerTubeCompDepanCatatan}
+              value={kunciKontakCatatan}
               onChange={(e) =>
-                setInnerTubeCompDepanCatatan(e.target.value)
+                setKunciKontakCatatan(e.target.value)
               }
               placeholder="tambahkan catatan khusus"
               className={textareaClass}
@@ -603,23 +570,15 @@ export default function MotorSection4Page() {
 
           <div className="mt-16">
 
-            {showValidation &&
-              (!shockBelakang ||
-                !muffler ||
-                !innerTubeCompDepan) && (
-                <p className="mb-3 text-center text-xl font-semibold text-red-500">
-                  ⚠ INSPEKSI BELUM LENGKAP
-                </p>
-              )}
+            {showValidation && !isComplete && (
+              <p className="mb-3 text-center text-xl font-semibold text-red-500">
+                ⚠ INSPEKSI BELUM LENGKAP
+              </p>
+            )}
 
             <button
               type="button"
               onClick={() => {
-                const isComplete =
-                  shockBelakang &&
-                  muffler &&
-                  innerTubeCompDepan;
-
                 if (!isComplete) {
                   setShowValidation(true);
                   return;
@@ -628,7 +587,7 @@ export default function MotorSection4Page() {
                 setShowValidation(false);
 
                 router.push(
-                  "/web-partner/otolink-app/digital-app/appraisal/motor/form/section-5"
+                  "/web-partner/otolink-app/digital-app/appraisal/motor/form/section-10"
                 );
               }}
               className="
@@ -645,7 +604,7 @@ export default function MotorSection4Page() {
                 active:scale-[0.98]
               "
             >
-              Lanjut ke Bagian 5 ➜
+              Lanjut ke Bagian 10 ➜
             </button>
 
           </div>
@@ -657,7 +616,7 @@ export default function MotorSection4Page() {
         ================================================= */}
 
         <BackButton
-          href="/web-partner/otolink-app/digital-app/appraisal/motor/form/section-3"
+          href="/web-partner/otolink-app/digital-app/appraisal/motor/form/section-8"
         />
 
       </div>

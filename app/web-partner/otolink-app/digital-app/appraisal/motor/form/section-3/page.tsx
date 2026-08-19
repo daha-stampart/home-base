@@ -20,28 +20,33 @@ export default function MotorSection3Page() {
   const [vendor, setVendor] = useState("Belum dipilih");
   const [appraisalId, setAppraisalId] = useState("");
 
+  // =====================================================
+  // PERTANYAAN
+  // =====================================================
+
+  const [kepala, setKepala] = useState("");
+  const [kepalaCatatan, setKepalaCatatan] = useState("");
+
+  const [sayapDalam, setSayapDalam] = useState("");
+  const [sayapDalamCatatan, setSayapDalamCatatan] = useState("");
+
+  const [sayapLuar, setSayapLuar] = useState("");
+  const [sayapLuarCatatan, setSayapLuarCatatan] = useState("");
+
+  const [rangkaTengah, setRangkaTengah] = useState("");
+  const [rangkaTengahCatatan, setRangkaTengahCatatan] = useState("");
+
+  const [bodyBelakang, setBodyBelakang] = useState("");
+  const [bodyBelakangCatatan, setBodyBelakangCatatan] = useState("");
+
+  const [spackboardDepan, setSpackboardDepan] = useState("");
+  const [spackboardDepanCatatan, setSpackboardDepanCatatan] = useState("");
+
+  const [spackboardBelakang, setSpackboardBelakang] = useState("");
+  const [spackboardBelakangCatatan, setSpackboardBelakangCatatan] =
+    useState("");
+
   const router = useRouter();
-    const [kepala, setKepala] = useState("");
-    const [kepalaCatatan, setKepalaCatatan] = useState("");
-    const [kepalaAdaCatatan, setKepalaAdaCatatan] = useState("");
-    const [sayapDalam, setSayapDalam] = useState("");
-    const [sayapDalamAdaCatatan, setSayapDalamAdaCatatan] = useState("");
-    const [sayapDalamCatatan, setSayapDalamCatatan] = useState("");
-    const [sayapLuar, setSayapLuar] = useState("");
-    const [sayapLuarAdaCatatan, setSayapLuarAdaCatatan] = useState("");
-    const [sayapLuarCatatan, setSayapLuarCatatan] = useState("");
-    const [rangkaTengah, setRangkaTengah] = useState("");
-    const [rangkaTengahAdaCatatan, setRangkaTengahAdaCatatan] = useState("");
-    const [rangkaTengahCatatan, setRangkaTengahCatatan] = useState("");
-    const [bodyBelakang, setBodyBelakang] = useState("");
-    const [bodyBelakangAdaCatatan, setBodyBelakangAdaCatatan] = useState("");
-    const [bodyBelakangCatatan, setBodyBelakangCatatan] = useState("");
-    const [spackboardDepan, setSpackboardDepan] = useState("");
-    const [spackboardDepanAdaCatatan, setSpackboardDepanAdaCatatan] = useState("");
-    const [spackboardDepanCatatan, setSpackboardDepanCatatan] = useState("");
-    const [spackboardBelakang, setSpackboardBelakang] = useState("");
-    const [spackboardBelakangAdaCatatan, setSpackboardBelakangAdaCatatan] = useState("");
-    const [spackboardBelakangCatatan, setSpackboardBelakangCatatan] = useState("");
 
   // =====================================================
   // INITIAL LOAD
@@ -55,27 +60,29 @@ export default function MotorSection3Page() {
     if (saved) {
       setVendor(saved.vendor ?? "Belum dipilih");
       setAppraisalId(saved.appraisalId ?? "");
-        setKepala(saved.kepala ?? "");
-        setKepalaAdaCatatan(saved.kepalaAdaCatatan ?? "");
-        setKepalaCatatan(saved.kepalaCatatan ?? "");
-        setSayapDalam(saved.sayapDalam ?? "");
-        setSayapDalamAdaCatatan(saved.sayapDalamAdaCatatan ?? "");
-        setSayapDalamCatatan(saved.sayapDalamCatatan ?? "");
-        setSayapLuar(saved.sayapLuar ?? "");
-        setSayapLuarAdaCatatan(saved.sayapLuarAdaCatatan ?? "");
-        setSayapLuarCatatan(saved.sayapLuarCatatan ?? "");
-        setRangkaTengah(saved.rangkaTengah ?? "");
-        setRangkaTengahAdaCatatan(saved.rangkaTengahAdaCatatan ?? "");
-        setRangkaTengahCatatan(saved.rangkaTengahCatatan ?? "");
-        setBodyBelakang(saved.bodyBelakang ?? "");
-        setBodyBelakangAdaCatatan(saved.bodyBelakangAdaCatatan ?? "");
-        setBodyBelakangCatatan(saved.bodyBelakangCatatan ?? "");
-        setSpackboardDepan(saved.spackboardDepan ?? "");
-        setSpackboardDepanAdaCatatan(saved.spackboardDepanAdaCatatan ?? "");
-        setSpackboardDepanCatatan(saved.spackboardDepanCatatan ?? "");
-        setSpackboardBelakang(saved.spackboardBelakang ?? "");
-        setSpackboardBelakangAdaCatatan(saved.spackboardBelakangAdaCatatan ?? "");
-        setSpackboardBelakangCatatan(saved.spackboardBelakangCatatan ?? "");
+
+      setKepala(saved.kepala ?? "");
+      setKepalaCatatan(saved.kepalaCatatan ?? "");
+
+      setSayapDalam(saved.sayapDalam ?? "");
+      setSayapDalamCatatan(saved.sayapDalamCatatan ?? "");
+
+      setSayapLuar(saved.sayapLuar ?? "");
+      setSayapLuarCatatan(saved.sayapLuarCatatan ?? "");
+
+      setRangkaTengah(saved.rangkaTengah ?? "");
+      setRangkaTengahCatatan(saved.rangkaTengahCatatan ?? "");
+
+      setBodyBelakang(saved.bodyBelakang ?? "");
+      setBodyBelakangCatatan(saved.bodyBelakangCatatan ?? "");
+
+      setSpackboardDepan(saved.spackboardDepan ?? "");
+      setSpackboardDepanCatatan(saved.spackboardDepanCatatan ?? "");
+
+      setSpackboardBelakang(saved.spackboardBelakang ?? "");
+      setSpackboardBelakangCatatan(
+        saved.spackboardBelakangCatatan ?? ""
+      );
     }
 
     // ===================================================
@@ -87,7 +94,6 @@ export default function MotorSection3Page() {
     if (user) {
       try {
         const userData = JSON.parse(user);
-
         setInspector(userData.nama ?? "");
       } catch (error) {
         console.error("Gagal membaca data user:", error);
@@ -117,55 +123,56 @@ export default function MotorSection3Page() {
     if (!isLoaded) return;
 
     saveAppraisal({
-        ...loadAppraisal(),
-        appraisalId,
-        kepala,
-        kepalaAdaCatatan,
-        kepalaCatatan,
-        sayapDalam,
-        sayapDalamAdaCatatan,
-        sayapDalamCatatan,
-        sayapLuar,
-        sayapLuarAdaCatatan,
-        sayapLuarCatatan,
-        rangkaTengah,
-        rangkaTengahAdaCatatan,
-        rangkaTengahCatatan,
-        bodyBelakang,
-        bodyBelakangAdaCatatan,
-        bodyBelakangCatatan,
-        spackboardDepan,
-        spackboardDepanAdaCatatan,
-        spackboardDepanCatatan,
-        spackboardBelakang,
-        spackboardBelakangAdaCatatan,
-        spackboardBelakangCatatan,
+      ...loadAppraisal(),
+
+      appraisalId,
+
+      kepala,
+      kepalaCatatan,
+
+      sayapDalam,
+      sayapDalamCatatan,
+
+      sayapLuar,
+      sayapLuarCatatan,
+
+      rangkaTengah,
+      rangkaTengahCatatan,
+
+      bodyBelakang,
+      bodyBelakangCatatan,
+
+      spackboardDepan,
+      spackboardDepanCatatan,
+
+      spackboardBelakang,
+      spackboardBelakangCatatan,
     });
   }, [
-    isLoaded, 
+    isLoaded,
     appraisalId,
+
     kepala,
-    kepalaAdaCatatan,
     kepalaCatatan,
+
     sayapDalam,
-    sayapDalamAdaCatatan,
     sayapDalamCatatan,
+
     sayapLuar,
-    sayapLuarAdaCatatan,
     sayapLuarCatatan,
+
     rangkaTengah,
-    rangkaTengahAdaCatatan,
     rangkaTengahCatatan,
+
     bodyBelakang,
-    bodyBelakangAdaCatatan,
     bodyBelakangCatatan,
+
     spackboardDepan,
-    spackboardDepanAdaCatatan,
     spackboardDepanCatatan,
+
     spackboardBelakang,
-    spackboardBelakangAdaCatatan,
     spackboardBelakangCatatan,
-    ]);
+  ]);
 
   // =====================================================
   // INPUT CLASS
@@ -187,6 +194,27 @@ export default function MotorSection3Page() {
         ? "border-red-500"
         : "border-white/20"
     }
+  `;
+
+  // =====================================================
+  // TEXTAREA CLASS
+  // =====================================================
+
+  const getTextareaClass = `
+    min-h-[90px]
+    w-full
+    resize-none
+    rounded-xl
+    border
+    border-white/20
+    bg-white/10
+    px-4
+    py-3
+    text-white
+    placeholder:text-white/40
+    outline-none
+    transition
+    focus:border-red-500
   `;
 
   // =====================================================
@@ -387,1161 +415,502 @@ export default function MotorSection3Page() {
           <h2 className="text-base font-semibold text-white/70">
             GRUP SPARE PART
           </h2>
-          <p className="text-2xl font-semibold text-blue-300"> 
+
+          <p className="text-2xl font-semibold text-blue-300">
             COVER
           </p>
 
           <div className="mt-3 h-px bg-white/15" />
 
-            {/* =================================================
-             PERTANYAAN 1 - KEPALA
-            ================================================= */}
+          {/* =================================================
+              PERTANYAAN 1 - KEPALA
+          ================================================= */}
 
-            <div className="mt-6 space-y-3 text-center">
+          <div className="mt-6 space-y-3 text-center">
 
-                <label className="text-lg font-bold text-white">
-                    Kepala
-                </label>
+            <label className="text-lg font-bold text-white">
+              KEPALA
+            </label>
 
-                <div className="flex justify-center gap-10 pt-1">
+            <div className="flex justify-center gap-10 pt-1">
 
-                    <label className="flex items-center gap-2 text-white">
-                        <input
-                            type="radio"
-                            name="kepala"
-                            value="Baik"
-                            checked={kepala === "Baik"}
-                            onChange={(e) => setKepala(e.target.value)}
-                            className="h-4 w-4 accent-red-500"
-                        />
-                        Baik
-                    </label>
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="kepala"
+                  value="Baik"
+                  checked={kepala === "Baik"}
+                  onChange={(e) => setKepala(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
 
-                    <label className="flex items-center gap-2 text-white">
-                        <input
-                            type="radio"
-                            name="kepala"
-                            value="Cukup"
-                            checked={kepala === "Cukup"}
-                            onChange={(e) => setKepala(e.target.value)}
-                            className="h-4 w-4 accent-red-500"
-                        />
-                        Cukup
-                    </label>
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="kepala"
+                  value="Cukup"
+                  checked={kepala === "Cukup"}
+                  onChange={(e) => setKepala(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
 
-                    <label className="flex items-center gap-2 text-white">
-                        <input
-                            type="radio"
-                            name="kepala"
-                            value="Rusak"
-                            checked={kepala === "Rusak"}
-                            onChange={(e) => setKepala(e.target.value)}
-                            className="h-4 w-4 accent-red-500"
-                        />
-                        Rusak
-                    </label>
-
-                </div>
-
-                {/* WARNING */}
-
-                {showValidation && !kepala && (
-                    <p className="text-left text-sm font-medium text-red-400">
-                        ⚠ Kepala belum dipilih
-                    </p>
-                )}
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="kepala"
+                  value="Rusak"
+                  checked={kepala === "Rusak"}
+                  onChange={(e) => setKepala(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
 
             </div>
 
-            {/* =================================================
-                CATATAN TAMBAHAN - KEPALA
-            ================================================= */}
-
-            <div className="mt-5 space-y-3 text-center">
-
-                <label className="text-lg font-bold italic text-white/60">
-                    Catatan Tambahan?
-                </label>
-
-                <div className="flex justify-center gap-16 pt-1">
-
-                    <label className="flex items-center gap-2 italic text-white/60">
-                        <input
-                            type="radio"
-                            name="kepalaCatatan"
-                            value="Ya"
-                            checked={kepalaAdaCatatan === "Ya"}
-                            onChange={(e) =>
-                            setKepalaAdaCatatan(e.target.value)
-                            }
-                            className="h-4 w-4 accent-red-500"
-                        />
-                        Ya
-                    </label>
-
-                    <label className="flex items-center gap-2 italic text-white/60">
-                        <input
-                            type="radio"
-                            name="kepalaCatatan"
-                            value="Tidak"
-                            checked={kepalaAdaCatatan === "Tidak"}
-                            onChange={(e) => {
-                            setKepalaAdaCatatan(e.target.value);
-                            setKepalaCatatan("");
-                            }}
-                            className="h-4 w-4 accent-red-500"
-                        />
-                        Tidak
-                    </label>
-
-                </div>
-
-                {/* WARNING CATATAN */}
-
-                {showValidation && !kepalaAdaCatatan && (
-                    <p className="text-left text-sm font-medium text-red-400">
-                        ⚠ Catatan Tambahan belum dipilih
-                    </p>
-                )}
-
-            </div>
-
-            {/* =================================================
-                TEXTAREA CATATAN
-            ================================================= */}
-
-            {kepalaAdaCatatan === "Ya" && (
-                <div className="mt-4 space-y-2">
-
-                    <textarea
-                        value={kepalaCatatan}
-                        onChange={(e) =>
-                        setKepalaCatatan(e.target.value)
-                        }
-                        placeholder="Tulis catatan tambahan..."
-                        className={`
-                        min-h-[100px]
-                        w-full
-                        resize-none
-                        rounded-xl
-                        border
-                        bg-white/10
-                        px-4
-                        py-3
-                        text-white
-                        placeholder:text-white/40
-                        outline-none
-                        focus:border-red-500
-                        ${
-                        showValidation &&
-                        kepalaAdaCatatan === "Ya" &&
-                        !kepalaCatatan.trim()
-                        ? "border-red-500"
-                        : "border-white/20"
-                        }
-                        `}
-                    />
-
-                    {showValidation &&
-                        kepalaAdaCatatan === "Ya" &&
-                        !kepalaCatatan.trim() && (
-                        <p className="text-left text-sm font-medium text-red-400">
-                            ⚠ Catatan tambahan belum diisi
-                        </p>
-                    )}
-
-                </div>
+            {showValidation && !kepala && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ KEPALA BELUM DIPILIH
+              </p>
             )}
 
-            <div className="mt-3 h-px bg-white/15" />
-
-            {/* =================================================
-    PERTANYAAN 2 - SAYAP DALAM
-================================================= */}
-
-<div className="mt-6 space-y-3 text-center">
-
-  <label className="text-lg font-bold text-white">
-    Sayap Dalam
-  </label>
-  <p className="italic text-center text-white/70"> 
-    satu pasang
-  </p>
-
-  <div className="flex justify-center gap-10 pt-1">
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="sayapDalam"
-        value="Baik"
-        checked={sayapDalam === "Baik"}
-        onChange={(e) => setSayapDalam(e.target.value)}
-        className="h-4 w-4 accent-red-500"
-      />
-      Baik
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="sayapDalam"
-        value="Cukup"
-        checked={sayapDalam === "Cukup"}
-        onChange={(e) => setSayapDalam(e.target.value)}
-        className="h-4 w-4 accent-red-500"
-      />
-      Cukup
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="sayapDalam"
-        value="Rusak"
-        checked={sayapDalam === "Rusak"}
-        onChange={(e) => setSayapDalam(e.target.value)}
-        className="h-4 w-4 accent-red-500"
-      />
-      Rusak
-    </label>
-
-  </div>
-
-  {showValidation && !sayapDalam && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Sayap Dalam (satu pasang) belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    CATATAN TAMBAHAN - SAYAP DALAM
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold italic text-white/60">
-    Catatan Tambahan?
-  </label>
-
-  <div className="flex justify-center gap-16 pt-1">
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="sayapDalamCatatan"
-        value="Ya"
-        checked={sayapDalamAdaCatatan === "Ya"}
-        onChange={(e) =>
-          setSayapDalamAdaCatatan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Ya
-    </label>
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="sayapDalamCatatan"
-        value="Tidak"
-        checked={sayapDalamAdaCatatan === "Tidak"}
-        onChange={(e) => {
-          setSayapDalamAdaCatatan(e.target.value);
-          setSayapDalamCatatan("");
-        }}
-        className="h-4 w-4 accent-red-500"
-      />
-      Tidak
-    </label>
-
-  </div>
-
-  {showValidation && !sayapDalamAdaCatatan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Catatan Tambahan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    TEXTAREA CATATAN
-================================================= */}
-
-{sayapDalamAdaCatatan === "Ya" && (
-  <div className="mt-4 space-y-2">
-
-    <textarea
-      value={sayapDalamCatatan}
-      onChange={(e) =>
-        setSayapDalamCatatan(e.target.value)
-      }
-      placeholder="Tulis catatan tambahan..."
-      className={`
-        min-h-[100px]
-        w-full
-        resize-none
-        rounded-xl
-        border
-        bg-white/10
-        px-4
-        py-3
-        text-white
-        placeholder:text-white/40
-        outline-none
-        focus:border-red-500
-        ${
-          showValidation &&
-          sayapDalamAdaCatatan === "Ya" &&
-          !sayapDalamCatatan.trim()
-            ? "border-red-500"
-            : "border-white/20"
-        }
-      `}
-    />
-
-    {showValidation &&
-      sayapDalamAdaCatatan === "Ya" &&
-      !sayapDalamCatatan.trim() && (
-        <p className="text-left text-sm font-medium text-red-400">
-          ⚠ Catatan tambahan belum diisi
-        </p>
-      )}
-
-  </div>
-)}
-
-<div className="mt-3 h-px bg-white/15" />
-
-{/* =================================================
-    PERTANYAAN 3 - SAYAP LUAR
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold text-white">
-    Sayap Luar
-  </label>
-
-  <p className="italic text-center text-white/70"> 
-    satu pasang
-  </p>
-
-  <div className="flex justify-center gap-10 pt-1">
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="sayapLuar"
-        value="Baik"
-        checked={sayapLuar === "Baik"}
-        onChange={(e) =>
-          setSayapLuar(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Baik
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="sayapLuar"
-        value="Cukup"
-        checked={sayapLuar === "Cukup"}
-        onChange={(e) =>
-          setSayapLuar(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Cukup
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="sayapLuar"
-        value="Rusak"
-        checked={sayapLuar === "Rusak"}
-        onChange={(e) =>
-          setSayapLuar(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Rusak
-    </label>
-
-  </div>
-
-  {showValidation && !sayapLuar && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Sayap Luar (satu pasang) belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    CATATAN TAMBAHAN - SAYAP LUAR
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold italic text-white/60">
-    Catatan Tambahan?
-  </label>
-
-  <div className="flex justify-center gap-16 pt-1">
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="sayapLuarCatatan"
-        value="Ya"
-        checked={sayapLuarAdaCatatan === "Ya"}
-        onChange={(e) =>
-          setSayapLuarAdaCatatan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Ya
-    </label>
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="sayapLuarCatatan"
-        value="Tidak"
-        checked={sayapLuarAdaCatatan === "Tidak"}
-        onChange={(e) => {
-          setSayapLuarAdaCatatan(e.target.value);
-          setSayapLuarCatatan("");
-        }}
-        className="h-4 w-4 accent-red-500"
-      />
-      Tidak
-    </label>
-
-  </div>
-
-  {showValidation && !sayapLuarAdaCatatan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Catatan Tambahan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    TEXTAREA CATATAN
-================================================= */}
-
-{sayapLuarAdaCatatan === "Ya" && (
-  <div className="mt-4 space-y-2">
-
-    <textarea
-      value={sayapLuarCatatan}
-      onChange={(e) =>
-        setSayapLuarCatatan(e.target.value)
-      }
-      placeholder="Tulis catatan tambahan..."
-      className={`
-        min-h-[100px]
-        w-full
-        resize-none
-        rounded-xl
-        border
-        bg-white/10
-        px-4
-        py-3
-        text-white
-        placeholder:text-white/40
-        outline-none
-        focus:border-red-500
-        ${
-          showValidation &&
-          sayapLuarAdaCatatan === "Ya" &&
-          !sayapLuarCatatan.trim()
-            ? "border-red-500"
-            : "border-white/20"
-        }
-      `}
-    />
-
-    {showValidation &&
-      sayapLuarAdaCatatan === "Ya" &&
-      !sayapLuarCatatan.trim() && (
-        <p className="text-left text-sm font-medium text-red-400">
-          ⚠ Catatan tambahan belum diisi
-        </p>
-      )}
-
-  </div>
-)}
-
-<div className="mt-3 h-px bg-white/15" />
-
-{/* =================================================
-    PERTANYAAN 4 - RANGKA TENGAH
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold text-white">
-    Rangka Tengah
-  </label>
-
-  <div className="flex justify-center gap-10 pt-1">
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="rangkaTengah"
-        value="Baik"
-        checked={rangkaTengah === "Baik"}
-        onChange={(e) =>
-          setRangkaTengah(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Baik
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="rangkaTengah"
-        value="Cukup"
-        checked={rangkaTengah === "Cukup"}
-        onChange={(e) =>
-          setRangkaTengah(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Cukup
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="rangkaTengah"
-        value="Rusak"
-        checked={rangkaTengah === "Rusak"}
-        onChange={(e) =>
-          setRangkaTengah(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Rusak
-    </label>
-
-  </div>
-
-  {showValidation && !rangkaTengah && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Rangka Tengah belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    CATATAN TAMBAHAN - RANGKA TENGAH
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold italic text-white/60">
-    Catatan Tambahan?
-  </label>
-
-  <div className="flex justify-center gap-16 pt-1">
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="rangkaTengahCatatan"
-        value="Ya"
-        checked={rangkaTengahAdaCatatan === "Ya"}
-        onChange={(e) =>
-          setRangkaTengahAdaCatatan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Ya
-    </label>
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="rangkaTengahCatatan"
-        value="Tidak"
-        checked={rangkaTengahAdaCatatan === "Tidak"}
-        onChange={(e) => {
-          setRangkaTengahAdaCatatan(e.target.value);
-          setRangkaTengahCatatan("");
-        }}
-        className="h-4 w-4 accent-red-500"
-      />
-      Tidak
-    </label>
-
-  </div>
-
-  {showValidation && !rangkaTengahAdaCatatan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Catatan Tambahan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    TEXTAREA CATATAN
-================================================= */}
-
-{rangkaTengahAdaCatatan === "Ya" && (
-  <div className="mt-4 space-y-2">
-
-    <textarea
-      value={rangkaTengahCatatan}
-      onChange={(e) =>
-        setRangkaTengahCatatan(e.target.value)
-      }
-      placeholder="Tulis catatan tambahan..."
-      className={`
-        min-h-[100px]
-        w-full
-        resize-none
-        rounded-xl
-        border
-        bg-white/10
-        px-4
-        py-3
-        text-white
-        placeholder:text-white/40
-        outline-none
-        focus:border-red-500
-        ${
-          showValidation &&
-          rangkaTengahAdaCatatan === "Ya" &&
-          !rangkaTengahCatatan.trim()
-            ? "border-red-500"
-            : "border-white/20"
-        }
-      `}
-    />
-
-    {showValidation &&
-      rangkaTengahAdaCatatan === "Ya" &&
-      !rangkaTengahCatatan.trim() && (
-        <p className="text-left text-sm font-medium text-red-400">
-          ⚠ Catatan tambahan belum diisi
-        </p>
-      )}
-
-  </div>
-)}
-
-<div className="mt-3 h-px bg-white/15" />
-
-{/* =================================================
-    PERTANYAAN 5 - BODY BELAKANG
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold text-white">
-    Body Belakang
-  </label>
-
-  <div className="flex justify-center gap-10 pt-1">
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="bodyBelakang"
-        value="Baik"
-        checked={bodyBelakang === "Baik"}
-        onChange={(e) =>
-          setBodyBelakang(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Baik
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="bodyBelakang"
-        value="Cukup"
-        checked={bodyBelakang === "Cukup"}
-        onChange={(e) =>
-          setBodyBelakang(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Cukup
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="bodyBelakang"
-        value="Rusak"
-        checked={bodyBelakang === "Rusak"}
-        onChange={(e) =>
-          setBodyBelakang(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Rusak
-    </label>
-
-  </div>
-
-  {showValidation && !bodyBelakang && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Body Belakang belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    CATATAN TAMBAHAN - BODY BELAKANG
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold italic text-white/60">
-    Catatan Tambahan?
-  </label>
-
-  <div className="flex justify-center gap-16 pt-1">
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="bodyBelakangCatatan"
-        value="Ya"
-        checked={bodyBelakangAdaCatatan === "Ya"}
-        onChange={(e) =>
-          setBodyBelakangAdaCatatan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Ya
-    </label>
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="bodyBelakangCatatan"
-        value="Tidak"
-        checked={bodyBelakangAdaCatatan === "Tidak"}
-        onChange={(e) => {
-          setBodyBelakangAdaCatatan(e.target.value);
-          setBodyBelakangCatatan("");
-        }}
-        className="h-4 w-4 accent-red-500"
-      />
-      Tidak
-    </label>
-
-  </div>
-
-  {showValidation && !bodyBelakangAdaCatatan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Catatan Tambahan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    TEXTAREA CATATAN
-================================================= */}
-
-{bodyBelakangAdaCatatan === "Ya" && (
-  <div className="mt-4 space-y-2">
-
-    <textarea
-      value={bodyBelakangCatatan}
-      onChange={(e) =>
-        setBodyBelakangCatatan(e.target.value)
-      }
-      placeholder="Tulis catatan tambahan..."
-      className={`
-        min-h-[100px]
-        w-full
-        resize-none
-        rounded-xl
-        border
-        bg-white/10
-        px-4
-        py-3
-        text-white
-        placeholder:text-white/40
-        outline-none
-        focus:border-red-500
-        ${
-          showValidation &&
-          bodyBelakangAdaCatatan === "Ya" &&
-          !bodyBelakangCatatan.trim()
-            ? "border-red-500"
-            : "border-white/20"
-        }
-      `}
-    />
-
-    {showValidation &&
-      bodyBelakangAdaCatatan === "Ya" &&
-      !bodyBelakangCatatan.trim() && (
-        <p className="text-left text-sm font-medium text-red-400">
-          ⚠ Catatan tambahan belum diisi
-        </p>
-      )}
-
-  </div>
-)}
-
-<div className="mt-3 h-px bg-white/15" />
-
-{/* =================================================
-    PERTANYAAN 6 - SPACKBOARD DEPAN
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold text-white">
-    Spakboard Depan
-  </label>
-
-  <div className="flex justify-center gap-10 pt-1">
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="spackboardDepan"
-        value="Baik"
-        checked={spackboardDepan === "Baik"}
-        onChange={(e) =>
-          setSpackboardDepan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Baik
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="spackboardDepan"
-        value="Cukup"
-        checked={spackboardDepan === "Cukup"}
-        onChange={(e) =>
-          setSpackboardDepan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Cukup
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="spackboardDepan"
-        value="Rusak"
-        checked={spackboardDepan === "Rusak"}
-        onChange={(e) =>
-          setSpackboardDepan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Rusak
-    </label>
-
-  </div>
-
-  {showValidation && !spackboardDepan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Spakboard Depan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    CATATAN TAMBAHAN - SPACKBOARD DEPAN
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold italic text-white/60">
-    Catatan Tambahan?
-  </label>
-
-  <div className="flex justify-center gap-16 pt-1">
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="spackboardDepanCatatan"
-        value="Ya"
-        checked={spackboardDepanAdaCatatan === "Ya"}
-        onChange={(e) =>
-          setSpackboardDepanAdaCatatan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Ya
-    </label>
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="spackboardDepanCatatan"
-        value="Tidak"
-        checked={spackboardDepanAdaCatatan === "Tidak"}
-        onChange={(e) => {
-          setSpackboardDepanAdaCatatan(e.target.value);
-          setSpackboardDepanCatatan("");
-        }}
-        className="h-4 w-4 accent-red-500"
-      />
-      Tidak
-    </label>
-
-  </div>
-
-  {showValidation && !spackboardDepanAdaCatatan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Catatan Tambahan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    TEXTAREA CATATAN
-================================================= */}
-
-{spackboardDepanAdaCatatan === "Ya" && (
-  <div className="mt-4 space-y-2">
-
-    <textarea
-      value={spackboardDepanCatatan}
-      onChange={(e) =>
-        setSpackboardDepanCatatan(e.target.value)
-      }
-      placeholder="Tulis catatan tambahan..."
-      className={`
-        min-h-[100px]
-        w-full
-        resize-none
-        rounded-xl
-        border
-        bg-white/10
-        px-4
-        py-3
-        text-white
-        placeholder:text-white/40
-        outline-none
-        focus:border-red-500
-        ${
-          showValidation &&
-          spackboardDepanAdaCatatan === "Ya" &&
-          !spackboardDepanCatatan.trim()
-            ? "border-red-500"
-            : "border-white/20"
-        }
-      `}
-    />
-
-    {showValidation &&
-      spackboardDepanAdaCatatan === "Ya" &&
-      !spackboardDepanCatatan.trim() && (
-        <p className="text-left text-sm font-medium text-red-400">
-          ⚠ Catatan tambahan belum diisi
-        </p>
-      )}
-
-  </div>
-)}
-
-<div className="mt-3 h-px bg-white/15" />
-
-{/* =================================================
-    PERTANYAAN 7 - SPACKBOARD BELAKANG
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold text-white">
-    Spackboard Belakang
-  </label>
-
-  <div className="flex justify-center gap-10 pt-1">
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="spackboardBelakang"
-        value="Baik"
-        checked={spackboardBelakang === "Baik"}
-        onChange={(e) =>
-          setSpackboardBelakang(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Baik
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="spackboardBelakang"
-        value="Cukup"
-        checked={spackboardBelakang === "Cukup"}
-        onChange={(e) =>
-          setSpackboardBelakang(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Cukup
-    </label>
-
-    <label className="flex items-center gap-2 text-white">
-      <input
-        type="radio"
-        name="spackboardBelakang"
-        value="Rusak"
-        checked={spackboardBelakang === "Rusak"}
-        onChange={(e) =>
-          setSpackboardBelakang(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Rusak
-    </label>
-
-  </div>
-
-  {showValidation && !spackboardBelakang && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Spackboard Belakang belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    CATATAN TAMBAHAN - SPACKBOARD BELAKANG
-================================================= */}
-
-<div className="mt-5 space-y-3 text-center">
-
-  <label className="text-lg font-bold italic text-white/60">
-    Catatan Tambahan?
-  </label>
-
-  <div className="flex justify-center gap-16 pt-1">
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="spackboardBelakangCatatan"
-        value="Ya"
-        checked={spackboardBelakangAdaCatatan === "Ya"}
-        onChange={(e) =>
-          setSpackboardBelakangAdaCatatan(e.target.value)
-        }
-        className="h-4 w-4 accent-red-500"
-      />
-      Ya
-    </label>
-
-    <label className="flex items-center gap-2 italic text-white/60">
-      <input
-        type="radio"
-        name="spackboardBelakangCatatan"
-        value="Tidak"
-        checked={spackboardBelakangAdaCatatan === "Tidak"}
-        onChange={(e) => {
-          setSpackboardBelakangAdaCatatan(e.target.value);
-          setSpackboardBelakangCatatan("");
-        }}
-        className="h-4 w-4 accent-red-500"
-      />
-      Tidak
-    </label>
-
-  </div>
-
-  {showValidation && !spackboardBelakangAdaCatatan && (
-    <p className="text-left text-sm font-medium text-red-400">
-      ⚠ Catatan Tambahan belum dipilih
-    </p>
-  )}
-
-</div>
-
-{/* =================================================
-    TEXTAREA CATATAN
-================================================= */}
-
-{spackboardBelakangAdaCatatan === "Ya" && (
-  <div className="mt-4 space-y-2">
-
-    <textarea
-      value={spackboardBelakangCatatan}
-      onChange={(e) =>
-        setSpackboardBelakangCatatan(e.target.value)
-      }
-      placeholder="Tulis catatan tambahan..."
-      className={`
-        min-h-[100px]
-        w-full
-        resize-none
-        rounded-xl
-        border
-        bg-white/10
-        px-4
-        py-3
-        text-white
-        placeholder:text-white/40
-        outline-none
-        focus:border-red-500
-        ${
-          showValidation &&
-          spackboardBelakangAdaCatatan === "Ya" &&
-          !spackboardBelakangCatatan.trim()
-            ? "border-red-500"
-            : "border-white/20"
-        }
-      `}
-    />
-
-    {showValidation &&
-      spackboardBelakangAdaCatatan === "Ya" &&
-      !spackboardBelakangCatatan.trim() && (
-        <p className="text-left text-sm font-medium text-red-400">
-          ⚠ Catatan tambahan belum diisi
-        </p>
-      )}
-
-  </div>
-)}
-
-{/* =================================================
-    AKHIR PERTANYAAN
-================================================= */}
-         
+            <textarea
+              value={kepalaCatatan}
+              onChange={(e) => setKepalaCatatan(e.target.value)}
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          <div className="mt-5 h-px bg-white/15" />
+
+          {/* =================================================
+              PERTANYAAN 2 - SAYAP DALAM
+          ================================================= */}
+
+          <div className="mt-6 space-y-3 text-center">
+
+            <label className="text-lg font-bold text-white">
+              SAYAP DALAM
+            </label>
+
+            <p className="italic text-center text-white/70">
+              Satu pasang
+            </p>
+
+            <div className="flex justify-center gap-10 pt-1">
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="sayapDalam"
+                  value="Baik"
+                  checked={sayapDalam === "Baik"}
+                  onChange={(e) => setSayapDalam(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="sayapDalam"
+                  value="Cukup"
+                  checked={sayapDalam === "Cukup"}
+                  onChange={(e) => setSayapDalam(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="sayapDalam"
+                  value="Rusak"
+                  checked={sayapDalam === "Rusak"}
+                  onChange={(e) => setSayapDalam(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
+
+            </div>
+
+            {showValidation && !sayapDalam && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ SAYAP DALAM BELUM DIPILIH
+              </p>
+            )}
+
+            <textarea
+              value={sayapDalamCatatan}
+              onChange={(e) => setSayapDalamCatatan(e.target.value)}
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          <div className="mt-5 h-px bg-white/15" />
+
+          {/* =================================================
+              PERTANYAAN 3 - SAYAP LUAR
+          ================================================= */}
+
+          <div className="mt-6 space-y-3 text-center">
+
+            <label className="text-lg font-bold text-white">
+              SAYAP LUAR
+            </label>
+
+            <p className="italic text-center text-white/70">
+              Satu pasang
+            </p>
+
+            <div className="flex justify-center gap-10 pt-1">
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="sayapLuar"
+                  value="Baik"
+                  checked={sayapLuar === "Baik"}
+                  onChange={(e) => setSayapLuar(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="sayapLuar"
+                  value="Cukup"
+                  checked={sayapLuar === "Cukup"}
+                  onChange={(e) => setSayapLuar(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="sayapLuar"
+                  value="Rusak"
+                  checked={sayapLuar === "Rusak"}
+                  onChange={(e) => setSayapLuar(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
+
+            </div>
+
+            {showValidation && !sayapLuar && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ SAYAP LUAR BELUM DIPILIH
+              </p>
+            )}
+
+            <textarea
+              value={sayapLuarCatatan}
+              onChange={(e) => setSayapLuarCatatan(e.target.value)}
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          <div className="mt-5 h-px bg-white/15" />
+
+          {/* =================================================
+              PERTANYAAN 4 - RANGKA TENGAH
+          ================================================= */}
+
+          <div className="mt-6 space-y-3 text-center">
+
+            <label className="text-lg font-bold text-white">
+              RANGKA TENGAH
+            </label>
+
+            <div className="flex justify-center gap-10 pt-1">
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="rangkaTengah"
+                  value="Baik"
+                  checked={rangkaTengah === "Baik"}
+                  onChange={(e) => setRangkaTengah(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="rangkaTengah"
+                  value="Cukup"
+                  checked={rangkaTengah === "Cukup"}
+                  onChange={(e) => setRangkaTengah(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="rangkaTengah"
+                  value="Rusak"
+                  checked={rangkaTengah === "Rusak"}
+                  onChange={(e) => setRangkaTengah(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
+
+            </div>
+
+            {showValidation && !rangkaTengah && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ RANGKA TENGAH BELUM DIPILIH
+              </p>
+            )}
+
+            <textarea
+              value={rangkaTengahCatatan}
+              onChange={(e) => setRangkaTengahCatatan(e.target.value)}
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          <div className="mt-5 h-px bg-white/15" />
+
+          {/* =================================================
+              PERTANYAAN 5 - BODY BELAKANG
+          ================================================= */}
+
+          <div className="mt-6 space-y-3 text-center">
+
+            <label className="text-lg font-bold text-white">
+              BODY BELAKANG
+            </label>
+
+            <div className="flex justify-center gap-10 pt-1">
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="bodyBelakang"
+                  value="Baik"
+                  checked={bodyBelakang === "Baik"}
+                  onChange={(e) => setBodyBelakang(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="bodyBelakang"
+                  value="Cukup"
+                  checked={bodyBelakang === "Cukup"}
+                  onChange={(e) => setBodyBelakang(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="bodyBelakang"
+                  value="Rusak"
+                  checked={bodyBelakang === "Rusak"}
+                  onChange={(e) => setBodyBelakang(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
+
+            </div>
+
+            {showValidation && !bodyBelakang && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ BODY BELAKANG BELUM DIPILIH
+              </p>
+            )}
+
+            <textarea
+              value={bodyBelakangCatatan}
+              onChange={(e) => setBodyBelakangCatatan(e.target.value)}
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          <div className="mt-5 h-px bg-white/15" />
+
+          {/* =================================================
+              PERTANYAAN 6 - SPACKBOARD DEPAN
+          ================================================= */}
+
+          <div className="mt-6 space-y-3 text-center">
+
+            <label className="text-lg font-bold text-white">
+              SPAKBOARD DEPAN
+            </label>
+
+            <div className="flex justify-center gap-10 pt-1">
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="spackboardDepan"
+                  value="Baik"
+                  checked={spackboardDepan === "Baik"}
+                  onChange={(e) => setSpackboardDepan(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="spackboardDepan"
+                  value="Cukup"
+                  checked={spackboardDepan === "Cukup"}
+                  onChange={(e) => setSpackboardDepan(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="spackboardDepan"
+                  value="Rusak"
+                  checked={spackboardDepan === "Rusak"}
+                  onChange={(e) => setSpackboardDepan(e.target.value)}
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
+
+            </div>
+
+            {showValidation && !spackboardDepan && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ SPACKBOARD DEPAN BELUM DIPILIH
+              </p>
+            )}
+
+            <textarea
+              value={spackboardDepanCatatan}
+              onChange={(e) =>
+                setSpackboardDepanCatatan(e.target.value)
+              }
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          <div className="mt-5 h-px bg-white/15" />
+
+          {/* =================================================
+              PERTANYAAN 7 - SPACKBOARD BELAKANG
+          ================================================= */}
+
+          <div className="mt-6 space-y-3 text-center">
+
+            <label className="text-lg font-bold text-white">
+              SPAKBOARD BELAKANG
+            </label>
+
+            <div className="flex justify-center gap-10 pt-1">
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="spackboardBelakang"
+                  value="Baik"
+                  checked={spackboardBelakang === "Baik"}
+                  onChange={(e) =>
+                    setSpackboardBelakang(e.target.value)
+                  }
+                  className="h-4 w-4 accent-red-500"
+                />
+                BAIK
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="spackboardBelakang"
+                  value="Cukup"
+                  checked={spackboardBelakang === "Cukup"}
+                  onChange={(e) =>
+                    setSpackboardBelakang(e.target.value)
+                  }
+                  className="h-4 w-4 accent-red-500"
+                />
+                CUKUP
+              </label>
+
+              <label className="flex items-center gap-2 text-white">
+                <input
+                  type="radio"
+                  name="spackboardBelakang"
+                  value="Rusak"
+                  checked={spackboardBelakang === "Rusak"}
+                  onChange={(e) =>
+                    setSpackboardBelakang(e.target.value)
+                  }
+                  className="h-4 w-4 accent-red-500"
+                />
+                RUSAK
+              </label>
+
+            </div>
+
+            {showValidation && !spackboardBelakang && (
+              <p className="text-left text-sm font-medium text-red-400">
+                ⚠ SPACKBOARD BELAKANG BELUM DIPILIH
+              </p>
+            )}
+
+            <textarea
+              value={spackboardBelakangCatatan}
+              onChange={(e) =>
+                setSpackboardBelakangCatatan(e.target.value)
+              }
+              placeholder="tambahkan catatan khusus"
+              className={getTextareaClass}
+            />
+
+          </div>
+
+          {/* =================================================
+              AKHIR PERTANYAAN
+          ================================================= */}
+
           <div className="mt-6" />
 
           {/* =================================================
@@ -1560,45 +929,25 @@ export default function MotorSection3Page() {
               type="button"
               onClick={() => {
                 const isComplete =
-                kepala &&
-                kepalaAdaCatatan &&
-                (kepalaAdaCatatan === "Tidak" || kepalaCatatan.trim() !== "") &&
-
-                sayapDalam &&
-                sayapDalamAdaCatatan &&
-                (sayapDalamAdaCatatan === "Tidak" || sayapDalamCatatan.trim() !== "") &&
-
-                sayapLuar &&
-                sayapLuarAdaCatatan &&
-                (sayapLuarAdaCatatan === "Tidak" || sayapLuarCatatan.trim() !== "") &&
-
-                rangkaTengah &&
-                rangkaTengahAdaCatatan &&
-                (rangkaTengahAdaCatatan === "Tidak" || rangkaTengahCatatan.trim() !== "") &&
-
-                bodyBelakang &&
-                bodyBelakangAdaCatatan &&
-                (bodyBelakangAdaCatatan === "Tidak" || bodyBelakangCatatan.trim() !== "") &&
-
-                spackboardDepan &&
-                spackboardDepanAdaCatatan &&
-                (spackboardDepanAdaCatatan === "Tidak" || spackboardDepanCatatan.trim() !== "") &&
-
-                spackboardBelakang &&
-                spackboardBelakangAdaCatatan &&
-                (spackboardBelakangAdaCatatan === "Tidak" || spackboardBelakangCatatan.trim() !== "");
+                  kepala &&
+                  sayapDalam &&
+                  sayapLuar &&
+                  rangkaTengah &&
+                  bodyBelakang &&
+                  spackboardDepan &&
+                  spackboardBelakang;
 
                 if (!isComplete) {
-                setShowValidation(true);
-                return;
+                  setShowValidation(true);
+                  return;
                 }
 
                 setShowValidation(false);
 
                 router.push(
-                "/web-partner/otolink-app/digital-app/appraisal/motor/form/section-4"
+                  "/web-partner/otolink-app/digital-app/appraisal/motor/form/section-4"
                 );
-                }}
+              }}
               className="
                 w-full
                 rounded-xl
@@ -1612,7 +961,7 @@ export default function MotorSection3Page() {
                 hover:bg-red-700
                 active:scale-[0.98]
               "
-             >
+            >
               Lanjut ke Bagian 4 ➜
             </button>
 

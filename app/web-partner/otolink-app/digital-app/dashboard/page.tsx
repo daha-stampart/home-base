@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const LANDING_URL = "/web-partner/otolink-app/digital-app";
+const DASHBOARD_URL = "/web-partner/otolink-app/digital-app/dashboard";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -60,8 +61,43 @@ export default function DashboardPage() {
 
     window.addEventListener("pageshow", handlePageShow);
 
+    // =====================================================
+    // DASHBOARD SETELAH SUBMIT
+    //
+    // Jika halaman Dashboard dikembalikan oleh Chrome melalui
+    // BFCache/history setelah submit, langsung pastikan URL
+    // dan dokumen aktif kembali ke Dashboard.
+    //
+    // Tidak memakai history.go(-9) atau angka manual.
+    // =====================================================
+
+    const handlePageShowAfterSubmit = (event: PageTransitionEvent) => {
+      const submitted =
+        sessionStorage.getItem("appraisalSubmitted");
+
+      if (
+        submitted === "true" &&
+        event.persisted
+      ) {
+        window.location.replace(DASHBOARD_URL);
+      }
+    };
+
+    window.addEventListener(
+      "pageshow",
+      handlePageShowAfterSubmit
+    );
+
     return () => {
-      window.removeEventListener("pageshow", handlePageShow);
+      window.removeEventListener(
+        "pageshow",
+        handlePageShow
+      );
+
+      window.removeEventListener(
+        "pageshow",
+        handlePageShowAfterSubmit
+      );
     };
   }, []);
 
@@ -77,6 +113,8 @@ export default function DashboardPage() {
 
     // Hapus session
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("appraisalSubmitted");
+    sessionStorage.removeItem("appraisalActive");
 
     // Pastikan state user juga kosong
     setUser(null);
@@ -84,10 +122,7 @@ export default function DashboardPage() {
     // ===================================================
     // HARD REDIRECT
     // ===================================================
-    //
-    // replace() lebih kuat daripada router.replace()
-    // untuk kasus browser history / bfcache.
-    //
+
     window.location.replace(LANDING_URL);
   };
 
@@ -151,6 +186,10 @@ export default function DashboardPage() {
         <GlassCard
           onClick={() => {
             setSelectedCard("appraisal");
+
+            // Appraisal baru = hapus lock submit sebelumnya.
+            sessionStorage.removeItem("appraisalSubmitted");
+            sessionStorage.setItem("appraisalActive", "true");
 
             setTimeout(() => {
               router.push(

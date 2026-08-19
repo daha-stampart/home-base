@@ -17,6 +17,39 @@ export default function AppraisalPage() {
     setShowCards(true);
   }, []);
 
+  // =====================================================
+  // MULAI SESI APPRAISAL
+  // =====================================================
+  //
+  // Kita simpan posisi history saat user memilih
+  // jenis kendaraan. Page 10 nantinya bisa memakai
+  // marker ini untuk menentukan batas sesi appraisal.
+  //
+  const startAppraisalSession = (
+    vehicleType: "mobil" | "motor"
+  ) => {
+    sessionStorage.setItem(
+      "appraisalActive",
+      "true"
+    );
+
+    sessionStorage.setItem(
+      "appraisalVehicleType",
+      vehicleType
+    );
+
+    sessionStorage.setItem(
+      "appraisalHistoryStart",
+      String(window.history.length)
+    );
+
+    // Pastikan flag submit dari appraisal sebelumnya
+    // tidak terbawa ke sesi appraisal baru.
+    sessionStorage.removeItem(
+      "appraisalSubmitted"
+    );
+  };
+
   return (
     <main className="relative min-h-screen w-full overflow-hidden">
 
@@ -33,11 +66,9 @@ export default function AppraisalPage() {
       {/* Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-black/30" />
 
-
       {/* ================= CONTENT ================= */}
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-6 px-6 py-8">
-
 
         {/* ================= HEADER ================= */}
 
@@ -64,15 +95,18 @@ export default function AppraisalPage() {
           </p>
         </GlassCard>
 
-
         {/* ================= MOBIL ================= */}
 
         <GlassCard
           onClick={() => {
             setSelectedCard("mobil");
 
+            startAppraisalSession("mobil");
+
             setTimeout(() => {
-              router.push("/web-partner/otolink-app/digital-app/appraisal/mobil");
+              router.push(
+                "/web-partner/otolink-app/digital-app/appraisal/mobil"
+              );
             }, 180);
           }}
           className={`
@@ -119,15 +153,18 @@ export default function AppraisalPage() {
           </div>
         </GlassCard>
 
-
         {/* ================= MOTOR ================= */}
 
         <GlassCard
           onClick={() => {
             setSelectedCard("motor");
 
+            startAppraisalSession("motor");
+
             setTimeout(() => {
-              router.push("/web-partner/otolink-app/digital-app/appraisal/motor");
+              router.push(
+                "/web-partner/otolink-app/digital-app/appraisal/motor"
+              );
             }, 180);
           }}
           className={`
@@ -174,12 +211,24 @@ export default function AppraisalPage() {
           </div>
         </GlassCard>
 
-
         {/* ================= UNIT LAIN ================= */}
 
         <GlassCard
           onClick={() => {
             setSelectedCard("unit");
+
+            // Unit lain belum masuk flow appraisal final.
+            sessionStorage.removeItem(
+              "appraisalActive"
+            );
+
+            sessionStorage.removeItem(
+              "appraisalHistoryStart"
+            );
+
+            sessionStorage.removeItem(
+              "appraisalVehicleType"
+            );
 
             setTimeout(() => {
               router.push("/maintenance");
@@ -231,7 +280,9 @@ export default function AppraisalPage() {
 
         {/* ================= BACK BUTTON ================= */}
 
-        <BackButton href="/web-partner/otolink-app/digital-app/dashboard"/>
+        <BackButton
+          href="/web-partner/otolink-app/digital-app/dashboard"
+        />
 
       </div>
     </main>
