@@ -245,7 +245,7 @@ export default function DashboardPage() {
             setSelectedCard("riwayat");
 
             setTimeout(() => {
-              router.push("/maintenance");
+              router.push("/web-partner/otolink-app/digital-app/riwayat");
             }, 180);
           }}
           className={`
