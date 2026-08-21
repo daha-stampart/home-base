@@ -8,7 +8,7 @@ import {
 
 export default function WebPartnerPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] =
-    useState(false);
+  useState(false);
 
   return (
     <main className="min-h-screen bg-[#07090f] text-white">
@@ -16,7 +16,6 @@ export default function WebPartnerPage() {
       {/* =====================================================
           NAVBAR
       ===================================================== */}
-
       <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07090f]/80 backdrop-blur-xl">
 
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 lg:px-10">
@@ -200,216 +199,274 @@ export default function WebPartnerPage() {
 
       </header>
 
-        {/* =====================================================
-    HERO WEB PARTNER
-===================================================== */}
+      {/* =====================================================
+        HERO WEB PARTNER
+      ===================================================== */}
 
-    <section className="dashboard-enter px-4 pt-5">
+     <section className="dashboard-enter px-4 pt-5">
 
-  <div className="relative h-[260px] overflow-hidden rounded-2xl">
+        <div className="relative h-[260px] overflow-hidden rounded-2xl">
+          {/* BACKGROUND IMAGE */}
+          <img
+            src="/images/header-web-partner.png"
+            alt="Web Partner Daha.Stampart"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
 
-    {/* BACKGROUND IMAGE */}
-    <img
-      src="/images/header-web-partner.png"
-      alt="Web Partner Daha.Stampart"
-      className="absolute inset-0 h-full w-full object-cover object-center"
-    />
+          {/* DARK OVERLAY */}
+          <div className="absolute inset-0 bg-black/35" />
 
-    {/* DARK OVERLAY */}
-    <div className="absolute inset-0 bg-black/35" />
+          {/* LEFT GRADIENT */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
 
-    {/* LEFT GRADIENT */}
-    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          {/* HERO CONTENT */}
+          <div className="relative z-10 flex h-full w-[75%] flex-col justify-center px-5">
 
-    {/* HERO CONTENT */}
-    <div className="relative z-10 flex h-full w-[75%] flex-col justify-center px-5">
+            {/* LABEL */}
+            <span className="mb-2 w-fit rounded-full bg-black/50 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur-sm">
+              Web Partner
+            </span>
 
-      {/* LABEL */}
-      <span className="mb-2 w-fit rounded-full bg-black/50 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur-sm">
-        Web Partner
-      </span>
+            {/* TITLE */}
+            <h1 className="text-[22px] font-bold leading-[1.1] text-white">
+              Bergabung Menjadi
+              <br />
+              Partner{" "}
+              <span className="text-red-500">
+                Daha.Stampart
+              </span>
+            </h1>
 
-      {/* TITLE */}
-      <h1 className="text-[22px] font-bold leading-[1.1] text-white">
-        Bergabung Menjadi
+            {/* DESCRIPTION */}
+            <p className="mt-2 max-w-[210px] text-[10px] leading-[1.5] text-zinc-200">
+              Jadilah bagian dari jaringan partner resmi
+              Daha.Stampart dan dapatkan berbagai
+              keuntungan menarik untuk mengembangkan
+              bisnis Anda.
+            </p>
+
+            {/* BUTTONS */}
+            <div className="mt-3 flex items-center gap-2">
+
+              <a
+                href="/maintenance"
+                className="rounded-lg bg-red-600 px-3 py-2 text-[9px] font-semibold text-white transition hover:bg-red-500"
+              >
+                Daftar Sekarang →
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+        PARTNER AKTIF
+      ===================================================== */}
+
+      <section
+      id="partner"
+      className="dashboard-enter px-4 pb-12 pt-8"
+      >
+
+      {/* SECTION TITLE */}
+      <div className="mb-5">
+
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-500">
+        Partner Kami
+      </p>
+
+      <h2 className="mt-1 text-2xl font-bold leading-tight text-white">
+        Beberapa Partner Aktif
         <br />
-        Partner{" "}
-        <span className="text-red-500">
-          Daha.Stampart
-        </span>
-      </h1>
-
-      {/* DESCRIPTION */}
-      <p className="mt-2 max-w-[210px] text-[10px] leading-[1.5] text-zinc-200">
-        Jadilah bagian dari jaringan partner resmi
-        Daha.Stampart dan dapatkan berbagai
-        keuntungan menarik untuk mengembangkan
-        bisnis Anda.
-      </p>
-
-      {/* BUTTONS */}
-      <div className="mt-3 flex items-center gap-2">
-
-        <a
-          href="/maintenance"
-          className="rounded-lg bg-red-600 px-3 py-2 text-[9px] font-semibold text-white transition hover:bg-red-500"
-        >
-          Daftar Sekarang →
-        </a>
+        <span className="text-red-500">Daha.</span>Stampart
+      </h2>
 
       </div>
 
-    </div>
+      {/* =====================================================
+        PARTNER 1 — OTOLINK APP
+      ===================================================== */}
 
-  </div>
+      {/* PARTNER CARD */}
+      <article className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
 
-</section>
-
-
-{/* =====================================================
-    PARTNER AKTIF
-===================================================== */}
-
-<section
-  id="partner"
-  className="dashboard-enter px-4 pb-12 pt-8"
->
-
-  {/* SECTION TITLE */}
-  <div className="mb-5">
-
-    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-red-500">
-      Partner Kami
-    </p>
-
-    <h2 className="mt-1 text-2xl font-bold leading-tight text-white">
-      Beberapa Partner Aktif
-      <br />
-      <span className="text-red-500">Daha.</span>Stampart
-    </h2>
-
-  </div>
-
-{/* =====================================================
-  PARTNER 1 — OTOLINK APP
-===================================================== */}
-
-  {/* PARTNER CARD */}
-  <article className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-
-    {/* BANNER */}
-    <div className="w-full bg-zinc-900">
-      <img
-        src="/images/otolink-app/otolink-app-1.png"
-        alt="Otolink Digital Appraisal"
-        className="block h-auto w-full"
-      />
-    </div>
+        {/* BANNER */}
+        <div className="w-full bg-zinc-900">
+          <img
+            src="/images/otolink-app/otolink-app-1.png"
+            alt="Otolink Digital Appraisal"
+            className="block h-auto w-full"
+          />
+        </div>
 
 
-    {/* PARTNER INFO */}
-    <div className="px-5 py-4">
+        {/* PARTNER INFO */}
+        <div className="px-5 py-4">
 
-      <h3 className="text-lg font-semibold text-white">
-        Otolink Digital Appraisal
-      </h3>
+          <h3 className="text-lg font-semibold text-white">
+            Otolink Digital Appraisal
+          </h3>
 
-      <p className="mt-1 text-xs leading-5 text-red-400">
-        KHUSUS UNTUK INSPECTOR PT BALAI LELANG MEGATAMA (OTOLINK)
-      </p>
+          <p className="mt-1 text-xs leading-5 text-red-400">
+            KHUSUS UNTUK INSPECTOR PT BALAI LELANG MEGATAMA (OTOLINK)
+          </p>
 
-      <p className="mt-1 text-xs leading-5 text-zinc-400">
-        PT Balai Lelang Megatama Digital Vehicle Inspection System untuk proses
-        appraisal kendaraan yang lebih cepat, akurat,
-        dan terstandarisasi.
-      </p>
+          <p className="mt-1 text-xs leading-5 text-zinc-400">
+            PT Balai Lelang Megatama Digital Vehicle Inspection System untuk proses
+            appraisal kendaraan yang lebih cepat, akurat,
+            dan terstandarisasi.
+          </p>
 
-      <div className="mt-4 flex gap-2">
+          <div className="mt-4 flex gap-2">
 
-        {/* LIHAT PREVIEW */}
-        <a
-          href="/web-partner/otolink-app"
-          className="flex flex-1 items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-[10px] font-semibold text-red-400 transition hover:bg-red-500/20"
-          >
-          Lihat Preview
-        </a>
+            {/* LIHAT PREVIEW */}
+            <a
+              href="/web-partner/otolink-app"
+              className="flex flex-1 items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-[10px] font-semibold text-red-400 transition hover:bg-red-500/20"
+              >
+              Lihat Preview
+            </a>
 
-        {/* KUNJUNGI SITUS */}
-        <a
-          href="/web-partner/otolink-app/digital-app"
-          className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
-          >
-          Kunjungi Situs
-        </a>
+            {/* KUNJUNGI SITUS */}
+            <a
+              href="/web-partner/otolink-app/digital-app"
+              className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
+              >
+              Kunjungi Situs
+            </a>
 
-      </div>
+          </div>
 
-    </div>
+        </div>
 
-  </article>
+      </article>
 
-{/* =====================================================
-  PARTNER 2 — WEB OTOLINK
-===================================================== */}
+      {/* =====================================================
+        PARTNER 2 — WEB OTOLINK
+      ===================================================== */}
 
-<article className="mt-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+      <article className="mt-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
 
-  {/* BANNER */}
-  <div className="w-full overflow-hidden bg-zinc-900">
+        {/* BANNER */}
+        <div className="w-full overflow-hidden bg-zinc-900">
 
-    <img
-      src="/images/web-otolink/web-otolink-1.png"
-      alt="Website Otolink"
-      className="block w-full h-auto"
-    />
+          <img
+            src="/images/web-otolink/web-otolink-1.png"
+            alt="Website Otolink"
+            className="block w-full h-auto"
+          />
 
-  </div>
-
-
-  {/* PARTNER INFO */}
-  <div className="px-5 py-4">
-
-    <h3 className="text-lg font-semibold text-white">
-      Website Otolink
-    </h3>
-
-    <p className="mt-1 text-xs leading-5 text-zinc-400">
-      WEBSITE RESMI PT BALAI LELANG MEGATAMA (OTOLINK)
-      <br />
-      Website resmi Otolink untuk mendapatkan informasi
-      mengenai layanan dan kegiatan lelang kendaraan
-      roda dua dan roda empat
-    </p>
+        </div>
 
 
-    <div className="mt-4 flex gap-2">
+        {/* PARTNER INFO */}
+        <div className="px-5 py-4">
 
-      {/* LIHAT PREVIEW */}
-      <a
-        href="/web-partner/web-otolink"
-        className="flex flex-1 items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-[10px] font-semibold text-red-400 transition hover:bg-red-500/20"
-      >
-        Lihat Preview
-      </a>
+          <h3 className="text-lg font-semibold text-white">
+            Website Otolink
+          </h3>
+
+          <p className="mt-1 text-xs leading-5 text-zinc-400">
+            WEBSITE RESMI PT BALAI LELANG MEGATAMA (OTOLINK)
+            <br />
+            Website resmi Otolink untuk mendapatkan informasi
+            mengenai layanan dan kegiatan lelang kendaraan
+            roda dua dan roda empat
+          </p>
 
 
-      {/* KUNJUNGI SITUS */}
-      <a
-        href="https://lelang.otolink.co.id"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
-      >
-        Kunjungi Situs
-      </a>
+          <div className="mt-4 flex gap-2">
 
-    </div>
+            {/* LIHAT PREVIEW */}
+            <a
+              href="/web-partner/web-otolink"
+              className="flex flex-1 items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-[10px] font-semibold text-red-400 transition hover:bg-red-500/20"
+            >
+              Lihat Preview
+            </a>
 
-  </div>
 
-</article>
+            {/* KUNJUNGI SITUS */}
+            <a
+              href="https://lelang.otolink.co.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
+            >
+              Kunjungi Situs
+            </a>
 
-</section>
+          </div>
+
+        </div>
+
+      </article>
+
+      {/* =====================================================
+        PARTNER 3 — LMS
+      ===================================================== */}
+
+      <article className="mt-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+
+        {/* BANNER */}
+        <div className="w-full overflow-hidden bg-zinc-900">
+
+          <img
+            src="/images/lms/lms-1.png"
+            alt="Library Management System"
+            className="block w-full h-auto"
+          />
+
+        </div>
+
+
+        {/* PARTNER INFO */}
+        <div className="px-5 py-4">
+
+          <h3 className="text-lg font-semibold text-white">
+            LMS Perpustakaan Digital
+          </h3>
+
+          <p className="mt-1 text-xs leading-5 text-zinc-400">
+            WEBSITE PERUSTAKAAN DIGITAL
+            <br />
+            Website publik dan admin untuk melihat serta mengelola perpustakaan digital 
+          </p>
+
+
+          <div className="mt-4 flex gap-2">
+
+            {/* LIHAT PREVIEW */}
+            <a
+              href="/web-partner/lms/preview"
+              className="flex flex-1 items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-[10px] font-semibold text-red-400 transition hover:bg-red-500/20"
+            >
+              Lihat Preview
+            </a>
+
+
+            {/* KUNJUNGI SITUS */}
+            <a
+              href="/web-partner/lms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center rounded-lg bg-red-600 px-3 py-2.5 text-[10px] font-semibold text-white transition hover:bg-red-500"
+            >
+              Kunjungi Situs
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      </section>
 
     </main>
   );
