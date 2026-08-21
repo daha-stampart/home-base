@@ -2,14 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { BookOpen, Boxes, Grid2X2, Home, Info,LockKeyhole, Search } from "lucide-react";
+import { BookOpen, Boxes, Grid2X2, Home, Info, LockKeyhole, Search } from "lucide-react";
 
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxaG8a_E3R5iFHmzK0C2jCA-j22JlQvqd_8AKkYiXksJ41K-D3bMpN3r4v3O5WL17I-/exec";
 
 export default function LMSPage() {
     const [books, setBooks] = useState<any[]>([]);
-    const router = useRouter();  
+    const router = useRouter();
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -127,8 +127,8 @@ export default function LMSPage() {
                 </div>
             )}
     
-            <main className="h-screen overflow-hidden bg-white pb-16">
-                <div className="mx-auto h-screen w-full max-w-md overflow-hidden bg-white">
+            <main className="min-h-screen bg-white pb-24">
+                <div className="mx-auto w-full max-w-md bg-white">
                     
                     {/* HERO */}
                     <section className="relative h-[240px] overflow-visible bg-gradient-to-br from-blue-700 via-blue-600 to-blue-400">
@@ -147,7 +147,7 @@ export default function LMSPage() {
                             {/* Book Icon */}
                             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white shadow-sm">
                                 <BookOpen
-                                    size={24}
+                                    size={20}
                                     strokeWidth={2.5}
                                     className="text-blue-600"
                                 />
@@ -155,7 +155,7 @@ export default function LMSPage() {
 
                             {/* Logo Text */}
                             <div className="leading-none text-white">
-                                <div className="text-[20px] font-extrabold tracking-[3px]]">
+                                <div className="text-[16px] font-extrabold tracking-[3px]]">
                                     LIBRARY
                                 </div>
 
@@ -179,23 +179,23 @@ export default function LMSPage() {
                         </button>
 
                         {/* Welcome Card */}
-                        <div className="absolute bottom-0 left-0 right-0 z-20 h-[115px] rounded-t-[18px] bg-none px-4 pt-5 pb-4">
-                            <p className="text-[18px] font-medium leading-none text-slate-500">
+                        <div className="absolute bottom-0 left-0 right-0 z-20 h-[125px] rounded-t-[18px] bg-none px-4 pt-5 pb-4">
+                            <p className="text-[12px] font-medium leading-none text-slate-500">
                                 Selamat datang di
                             </p>
 
-                            <h1 className="mt-1 text-[23px] font-bold leading-tight text-slate-900">
+                            <h1 className="mt-1 text-[18px] font-bold leading-tight text-slate-900">
                                 Perpustakaan Digital
                             </h1>
 
-                            <p className="mt-1 text-[15px] font-medium leading-tight text-slate-500">
+                            <p className="mt-1 text-[11px] font-medium leading-tight text-slate-500">
                                 Temukan buku favoritmu di sini.
                             </p>
                         </div>
 
                         {/* Search Box */}
-                        <div className="absolute bottom-[-45px] left-3 right-3 z-30">
-                            <div className="flex h-14 w-full items-center rounded-xl border border-slate-200 bg-white px-3 shadow-[0_3px_12px_rgba(15,23,42,0.08)]">
+                        <div className="absolute bottom-[-20px] left-3 right-3 z-30">
+                            <div className="flex h-12 w-full items-center rounded-xl border border-slate-200 bg-white px-3 shadow-[0_3px_12px_rgba(15,23,42,0.08)]">
 
                                 {/* Search Icon */}
                                 <Search
@@ -209,16 +209,25 @@ export default function LMSPage() {
                                     type="text"
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    placeholder="Cari judul, penulis, atau kategori..."
-                                    className="min-w-0 flex-1 bg-transparent px-2 text-[9px] text-slate-700 outline-none placeholder:text-slate-400"
+                                    placeholder="Cari judul, atau penulis buku..."
+                                    className="min-w-0 flex-1 bg-transparent px-2 text-[11px] text-slate-700 outline-none placeholder:text-slate-400"
                                 />
 
                                 {/* Cari Button */}
                                 <button
                                     type="button"
-                                    className="flex h-7 items-center rounded-lg bg-blue-600 px-3 text-[9px] font-semibold text-white transition active:scale-95"
+                                    onClick={() => {
+                                        if (!search.trim()) return;
+
+                                        router.push(
+                                            `/web-partner/lms/pencarian?q=${encodeURIComponent(
+                                                search.trim()
+                                            )}`
+                                        );
+                                    }}
+                                    className="flex h-7 items-center rounded-lg bg-blue-600 px-3 text-[11px] font-semibold text-white transition active:scale-95"
                                 >
-                                    Cari
+                                    Cari buku
                                 </button>
 
                             </div>
@@ -228,7 +237,7 @@ export default function LMSPage() {
                     </section>
 
                     {/* DASHBOARD CONTENT */}
-                    <section className="bg-white px-3 pb-3 pt-[70px]">
+                    <section className="bg-white px-3 pb-3 pt-[32px]">
 
                         {/* STATISTICS */}
                         <div className="grid grid-cols-2 gap-2">
@@ -244,7 +253,7 @@ export default function LMSPage() {
                                 </div>
 
                                 <div className="min-w-0">
-                                    <p className="text-[8px] font-semibold text-slate-600">
+                                    <p className="text-[10px] font-semibold text-slate-600">
                                         Total Buku
                                     </p>
 
@@ -252,8 +261,8 @@ export default function LMSPage() {
                                         {totalBooks.toLocaleString("id-ID")}
                                     </p>
 
-                                    <p className="mt-1 text-[7px] text-slate-400">
-                                        Jumlah buku yang disemua kategori
+                                    <p className="mt-1 text-[8px] text-slate-400">
+                                        Jumlah buku disemua kategori
                                     </p>
                                 </div>
 
@@ -270,7 +279,7 @@ export default function LMSPage() {
                                 </div>
 
                                 <div className="min-w-0">
-                                    <p className="text-[8px] font-semibold text-slate-600">
+                                    <p className="text-[10px] font-semibold text-slate-600">
                                         Kategori Buku
                                     </p>
 
@@ -278,7 +287,7 @@ export default function LMSPage() {
                                         {totalCategories.toLocaleString("id-ID")}
                                     </p>
 
-                                    <p className="mt-1 text-[7px] text-slate-400">
+                                    <p className="mt-1 text-[8px] text-slate-400">
                                         Kategori tersedia
                                     </p>
                                 </div>
@@ -290,27 +299,30 @@ export default function LMSPage() {
                     </section>
 
                     {/* MOST POPULAR BOOKS */}
-                    <section className="mt-1 px-6 pt-[30px]">
+                    <section className="mt-1 px-6 pt-[12px]">
 
                         {/* Header */}
                         <div className="flex items-center justify-between">
 
-                            <div className="flex items-center gap-1.5">
-                                <span className="text-[13px]">
+                            <div className="flex items-center gap-3">
+                                <span className="text-[16px]">
                                     ⭐
                                 </span>
 
-                                <h2 className="text-[13px] font-bold text-slate-900">
+                                <h2 className="text-[16px] font-bold text-slate-900">
                                     Most Popular Books
                                 </h2>
                             </div>
 
                             <button
                                 type="button"
-                                className="flex items-center gap-1 text-[8px] font-semibold text-blue-600"
+                                onClick={() =>
+                                    router.push("/web-partner/lms/katalog")
+                                }
+                                className="flex items-center gap-1 text-[11px] font-semibold text-blue-600"
                             >
-                                Lihat semua
-                                <span className="text-[12px] leading-none">
+                                Lihat semua buku
+                                <span className="text-[16px] leading-none">
                                     ›
                                 </span>
                             </button>
@@ -335,7 +347,7 @@ export default function LMSPage() {
                                     >
 
                                         {/* Ranking */}
-                                        <div className="absolute left-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-md bg-amber-400 text-[8px] font-bold text-white shadow-sm">
+                                        <div className="absolute left-2 top-2 z-10 flex h-5 w-5 items-center justify-center rounded-md bg-amber-400 text-[8px] font-bold text-white shadow">
                                             {index + 1}
                                         </div>
 
@@ -376,11 +388,11 @@ export default function LMSPage() {
                                         {/* Info */}
                                         <div className="p-2">
 
-                                            <h3 className="line-clamp-2 min-h-[22px] text-[9px] font-bold leading-tight text-slate-800">
+                                            <h3 className="line-clamp-2 min-h-[22px] text-[11px] font-bold leading-tight text-slate-800">
                                                 {book.judul}
                                             </h3>
 
-                                            <p className="mt-1 truncate text-[7px] text-slate-500">
+                                            <p className="mt-1 truncate text-[8px] text-slate-500">
                                                 {book.penulis}
                                             </p>
 
@@ -389,7 +401,7 @@ export default function LMSPage() {
                                             <div className="mt-2">
 
                                                 <span
-                                                    className={`inline-flex rounded-full px-2 py-0.5 text-[7px] font-semibold ${
+                                                    className={`inline-flex rounded-full px-2 py-0.5 text-[8px] font-semibold ${
                                                         book.isReady
                                                             ? "bg-green-50 text-green-600"
                                                             : "bg-red-50 text-red-500"
@@ -411,29 +423,32 @@ export default function LMSPage() {
                     </section>
 
                     {/* JELAJAHI KATEGORI */}
-                    <section className="mt-5 pt-[30px]">
+                    <section className="mt-5 pt-[5px] -mb-8">
 
                         {/* Header */}
                         <div className="flex items-center justify-between px-6">
 
-                            <div className="flex items-center gap-1.5">
+                            <div className="flex items-center gap-3">
                                 <Boxes
-                                    size={14}
+                                    size={16}
                                     strokeWidth={2.5}
                                     className="text-blue-600"
                                 />
 
-                                <h2 className="text-[13px] font-bold text-slate-900">
+                                <h2 className="text-[16px] font-bold text-slate-900">
                                     Jelajahi Kategori
                                 </h2>
                             </div>
 
                             <button
                                 type="button"
-                                className="flex items-center gap-1 text-[8px] font-semibold text-blue-600"
+                                onClick={() =>
+                                    router.push("/web-partner/lms/kategori")
+                                }
+                                className="flex items-center gap-1 text-[11px] font-semibold text-blue-600"
                             >
-                                Lihat semua
-                                <span className="text-[12px] leading-none">
+                                Lihat semua kategori
+                                <span className="text-[16px] leading-none">
                                     ›
                                 </span>
                             </button>
@@ -441,7 +456,7 @@ export default function LMSPage() {
                         </div>
 
                         {/* Category Cards */}
-                        <div className="mt-3 grid grid-cols-5 gap-2 px-5">
+                        <div className="mt-6 grid grid-cols-5 gap-2 px-5">
 
                             {categoryStats.map((category, index) => {
 
@@ -474,7 +489,14 @@ export default function LMSPage() {
                                     <button
                                         key={category.name}
                                         type="button"
-                                        className={`flex h-[70px] min-w-[70px] shrink-0 flex-col items-center justify-center rounded-xl ${style.bg} px-1.5 text-center transition active:scale-95`}
+                                        onClick={() =>
+                                            router.push(
+                                                `/web-partner/lms/kategori?nama=${encodeURIComponent(
+                                                    category.name
+                                                )}`
+                                            )
+                                        }
+                                        className={`flex h-[60px] min-w-[60px] shrink-0 flex-col items-center justify-center rounded-xl ${style.bg} px-1.5 text-center shadow transition active:scale-95`}
                                     >
 
                                         {/* Icon */}
@@ -488,7 +510,7 @@ export default function LMSPage() {
                                         </div>
 
                                         {/* Category */}
-                                        <p className="mt-1 truncate max-w-[62px] text-[7px] font-bold text-slate-700">
+                                        <p className="mt-1 truncate max-w-[62px] text-[11px] font-bold text-slate-700">
                                             {category.name}
                                         </p>
 
@@ -501,9 +523,9 @@ export default function LMSPage() {
                     </section>
 
                     {/* BOTTOM NAVIGATION */}
-                    <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 border-t border-slate-200 bg-white/95 px-4 pb-2 pt-1.5 backdrop-blur-md">
+                    <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 border-t border-slate-200 bg-white/95 px-4 pb-1 pt-1 backdrop-blur-md">
+                        
                         <div className="grid grid-cols-4">
-
                             {/* BERANDA */}
                             <button
                                 type="button"
@@ -513,7 +535,7 @@ export default function LMSPage() {
                                     size={18}
                                     strokeWidth={2.5}
                                 />
-                                <span className="text-[7px] font-semibold">
+                                <span className="text-[11px] font-semibold">
                                     Beranda
                                 </span>
                             </button>
@@ -521,13 +543,16 @@ export default function LMSPage() {
                             {/* KATALOG */}
                             <button
                                 type="button"
+                                onClick={() =>
+                                    router.push("/web-partner/lms/katalog")
+                                }
                                 className="flex flex-col items-center justify-center gap-0.5 text-slate-400"
                             >
                                 <Grid2X2
-                                    size={17}
+                                    size={18}
                                     strokeWidth={2}
                                 />
-                                <span className="text-[7px] font-medium">
+                                <span className="text-[11px] font-medium">
                                     Katalog
                                 </span>
                             </button>
@@ -535,13 +560,16 @@ export default function LMSPage() {
                             {/* KATEGORI */}
                             <button
                                 type="button"
+                                onClick={() =>
+                                    router.push("/web-partner/lms/kategori")
+                                }
                                 className="flex flex-col items-center justify-center gap-0.5 text-slate-400"
                             >
                                 <Boxes
-                                    size={17}
+                                    size={18}
                                     strokeWidth={2}
                                 />
-                                <span className="text-[7px] font-medium">
+                                <span className="text-[11px] font-medium">
                                     Kategori
                                 </span>
                             </button>
@@ -549,13 +577,16 @@ export default function LMSPage() {
                             {/* TENTANG */}
                             <button
                                 type="button"
+                                onClick={() =>
+                                    router.push("/web-partner/lms/tentang")
+                                }
                                 className="flex flex-col items-center justify-center gap-0.5 text-slate-400"
                             >
                                 <Info
-                                    size={17}
+                                    size={18}
                                     strokeWidth={2}
                                 />
-                                <span className="text-[7px] font-medium">
+                                <span className="text-[11px] font-medium">
                                     Tentang
                                 </span>
                             </button>
