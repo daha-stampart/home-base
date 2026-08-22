@@ -214,14 +214,10 @@ export default function BookPreviewPage() {
                     <div className="mt-7">
                         <button
                             type="button"
-                            disabled={
-                                books.filter(
-                                    (item: any) =>
-                                        String(item.judul).trim() ===
-                                            String(book.judul).trim() &&
-                                        String(item.status).trim().toLowerCase() ===
-                                            "ready"
-                                ).length === 0
+                            onClick={() =>
+                                router.push(
+                                    `/web-partner/lms/peminjaman?id=${book.idBuku}`
+                                )
                             }
                             className="flex h-11 w-full items-center justify-center rounded-xl bg-blue-600 text-[18px] font-semibold text-white shadow-[0_5px_15px_rgba(37,99,235,0.20)] transition hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
                         >
