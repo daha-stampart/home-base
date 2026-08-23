@@ -59,7 +59,7 @@ function PeminjamanSuksesContent() {
                         <ArrowLeft size={19} />
                     </button>
 
-                    <h1 className="text-[14px] font-bold text-slate-900">
+                    <h1 className="text-[18px] font-bold text-slate-900">
                         Peminjaman Buku
                     </h1>
 
@@ -67,10 +67,9 @@ function PeminjamanSuksesContent() {
 
                 {/* CONTENT */}
 
-                <section className="flex min-h-[calc(100vh-56px)] flex-col px-5 pb-10 pt-10">
+                <section className="flex min-h-[calc(100vh-56px)] flex-col px-5 pb-10 pt-5">
 
                     {/* SUCCESS ICON */}
-
                     <div className="flex justify-center">
 
                         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-50">
@@ -93,7 +92,7 @@ function PeminjamanSuksesContent() {
                             Peminjaman Berhasil
                         </h2>
 
-                        <p className="mt-2 text-[10px] leading-relaxed text-slate-500">
+                        <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
                             Peminjaman buku berhasil
                             diajukan.
                         </p>
@@ -108,13 +107,13 @@ function PeminjamanSuksesContent() {
 
                         <div>
 
-                            <p className="text-[9px] font-semibold text-slate-500">
+                            <p className="text-[12px] font-semibold text-slate-500">
                                 Kode Peminjaman
                             </p>
 
                             <div className="mt-2 flex items-center justify-between rounded-xl bg-blue-50 px-3 py-3">
 
-                                <p className="text-[15px] font-bold tracking-wide text-blue-600">
+                                <p className="text-[16px] font-bold tracking-wide text-blue-600">
                                     {kodePeminjaman ||
                                         "-"}
                                 </p>
@@ -141,11 +140,11 @@ function PeminjamanSuksesContent() {
 
                         <div className="mt-5 border-t border-slate-100 pt-4">
 
-                            <p className="text-[9px] font-semibold text-slate-500">
+                            <p className="text-[12px] font-semibold text-slate-500">
                                 Judul Buku
                             </p>
 
-                            <p className="mt-1 text-[12px] font-bold text-slate-900">
+                            <p className="mt-1 text-[16px] font-bold text-slate-900">
                                 {judulBuku || "-"}
                             </p>
 
@@ -155,11 +154,11 @@ function PeminjamanSuksesContent() {
 
                         <div className="mt-4 border-t border-slate-100 pt-4">
 
-                            <p className="text-[9px] font-semibold text-slate-500">
+                            <p className="text-[12px] font-semibold text-slate-500">
                                 ID Buku
                             </p>
 
-                            <p className="mt-1 text-[11px] font-bold text-slate-700">
+                            <p className="mt-1 text-[16px] font-bold text-slate-700">
                                 {idBuku || "-"}
                             </p>
 
@@ -169,9 +168,9 @@ function PeminjamanSuksesContent() {
 
                     {/* INFO */}
 
-                    <div className="mt-5 rounded-xl bg-amber-50 px-4 py-4">
+                    <div className="mt-5 rounded-xl bg-green-50 px-4 py-4">
 
-                        <p className="text-center text-[10px] font-semibold leading-relaxed text-amber-700">
+                        <p className="text-center text-[12px] font-bold leading-relaxed text-green-600">
                             Tunjukkan kode peminjaman
                             ini kepada bagian administrasi
                             perpustakaan untuk pengambilan
@@ -189,7 +188,7 @@ function PeminjamanSuksesContent() {
                                 "/web-partner/lms"
                             )
                         }
-                        className="mt-7 h-11 w-full rounded-xl bg-blue-600 text-[11px] font-bold text-white shadow-md transition active:scale-[0.98]"
+                        className="mt-7 h-11 w-full rounded-xl bg-blue-600 text-[16px] font-bold text-white shadow-md transition active:scale-[0.98]"
                     >
                         Kembali ke Beranda
                     </button>

@@ -209,7 +209,7 @@ function PeminjamanContent() {
                         <ArrowLeft size={19} />
                     </button>
 
-                    <h1 className="text-[14px] font-bold text-slate-900">
+                    <h1 className="text-[18px] font-bold text-slate-900">
                         Peminjaman Buku
                     </h1>
 
@@ -257,19 +257,19 @@ function PeminjamanContent() {
 
                             <div className="min-w-0 flex-1">
 
-                                <p className="text-[9px] font-semibold text-blue-600">
+                                <p className="text-[11px] font-semibold text-blue-600">
                                     {
                                         book.kategori
                                     }
                                 </p>
 
-                                <h2 className="mt-1 text-[15px] font-bold leading-tight text-slate-900">
+                                <h2 className="mt-1 text-[16px] font-bold leading-tight text-slate-900">
                                     {
                                         book.judul
                                     }
                                 </h2>
 
-                                <p className="mt-1 text-[10px] text-slate-500">
+                                <p className="mt-1 text-[11px] text-slate-500">
                                     {
                                         book.penulis
                                     }
@@ -279,18 +279,18 @@ function PeminjamanContent() {
 
                                 <div className="mt-5">
 
-                                    <p className="text-[9px] font-semibold text-slate-600">
+                                    <p className="text-[11px] font-semibold text-slate-600">
                                         ID Buku
                                     </p>
 
                                     {readyBookId ? (
-                                        <span className="mt-2 inline-flex rounded-lg bg-green-50 px-3 py-1.5 text-[9px] font-bold text-green-600">
+                                        <span className="mt-1 inline-flex rounded-lg bg-green-50 px-3 py-1.5 text-[16px] font-bold text-green-600">
                                             {
                                                 readyBookId
                                             }
                                         </span>
                                     ) : (
-                                        <p className="mt-2 text-[9px] font-semibold text-red-500">
+                                        <p className="mt-2 text-[11px] font-semibold text-red-500">
                                             Tidak ada buku
                                             yang tersedia
                                         </p>
@@ -310,11 +310,11 @@ function PeminjamanContent() {
 
                     <div className="mt-7">
 
-                        <h2 className="text-[13px] font-bold text-slate-900">
+                        <h2 className="text-[16px] font-bold text-slate-900">
                             Data Peminjam
                         </h2>
 
-                        <p className="mt-1 text-[9px] text-slate-400">
+                        <p className="mt-1 text-[11px] text-slate-400">
                             Masukkan data peminjam
                             dengan lengkap.
                         </p>
@@ -323,7 +323,7 @@ function PeminjamanContent() {
 
                             {/* NAMA */}
                             <div>
-                                <label className="text-[9px] font-semibold text-slate-700">
+                                <label className="text-[16px] font-semibold text-slate-700">
                                     Nama
                                 </label>
 
@@ -337,13 +337,13 @@ function PeminjamanContent() {
                                         )
                                     }
                                     placeholder="Masukkan nama lengkap"
-                                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-[10px] text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+                                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-[13px] text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
                                 />
                             </div>
 
                             {/* ALAMAT */}
                             <div>
-                                <label className="text-[9px] font-semibold text-slate-700">
+                                <label className="text-[16px] font-semibold text-slate-700">
                                     Alamat
                                 </label>
 
@@ -357,13 +357,13 @@ function PeminjamanContent() {
                                     }
                                     placeholder="Masukkan alamat lengkap"
                                     rows={3}
-                                    className="mt-1.5 w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-3 text-[10px] text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+                                    className="mt-1.5 w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-3 text-[13px] text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
                                 />
                             </div>
 
                             {/* NO HP */}
                             <div>
-                                <label className="text-[9px] font-semibold text-slate-700">
+                                <label className="text-[16px] font-semibold text-slate-700">
                                     No. HP
                                 </label>
 
@@ -377,7 +377,7 @@ function PeminjamanContent() {
                                         )
                                     }
                                     placeholder="Contoh: 08123456789"
-                                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-[10px] text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+                                    className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-[13px] text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
                                 />
                             </div>
 
@@ -465,7 +465,7 @@ function PeminjamanContent() {
                                 );
                             }
                         }}
-                        className="mt-7 h-11 w-full rounded-xl bg-blue-600 text-[11px] font-bold text-white shadow-md transition active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
+                        className="mt-7 h-11 w-full rounded-xl bg-blue-600 text-[16px] font-bold text-white shadow-md transition active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
                     >
                         Ajukan Peminjaman
                     </button>

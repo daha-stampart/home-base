@@ -23,7 +23,7 @@ export default function PeminjamanAdminPage() {
                         type="button"
                         onClick={() =>
                             router.push(
-                                "/web-partner/lms/admin"
+                                "/web-partner/lms/admin/dashboard-admin"
                             )
                         }
                         className="absolute left-4 flex h-9 w-9 items-center justify-center rounded-full text-slate-600 active:bg-slate-100"
@@ -32,12 +32,12 @@ export default function PeminjamanAdminPage() {
                     </button>
 
                     <div className="text-center">
-                        <h1 className="text-[14px] font-bold text-slate-900">
+                        <h1 className="text-[18px] font-bold text-slate-900">
                             Peminjaman Buku
                         </h1>
 
-                        <p className="text-[7px] text-slate-400">
-                            Admin Perpustakaan Digital
+                        <p className="text-[11px] text-slate-400">
+                            Admin Azhar Library
                         </p>
                     </div>
 
@@ -57,11 +57,11 @@ export default function PeminjamanAdminPage() {
                         </div>
 
                         <div>
-                            <h2 className="text-[13px] font-bold text-slate-900">
+                            <h2 className="text-[16px] font-bold text-blue-600">
                                 Kelola Peminjaman
                             </h2>
 
-                            <p className="text-[8px] text-slate-400">
+                            <p className="text-[11px] text-slate-400">
                                 Kelola pengajuan peminjaman buku.
                             </p>
                         </div>
@@ -90,11 +90,11 @@ export default function PeminjamanAdminPage() {
                             </div>
 
                             <div className="min-w-0 flex-1">
-                                <p className="text-[11px] font-bold text-slate-800">
+                                <p className="text-[16px] font-bold text-slate-800">
                                     Semua Peminjaman
                                 </p>
 
-                                <p className="mt-0.5 text-[8px] text-slate-400">
+                                <p className="mt-0.5 text-[11px] text-slate-400">
                                     Melihat seluruh data peminjaman buku.
                                 </p>
                             </div>
@@ -108,6 +108,11 @@ export default function PeminjamanAdminPage() {
                         {/* PENGAJUAN PEMINJAMAN */}
                         <button
                             type="button"
+                            onClick={() =>
+                                router.push(
+                                    "/web-partner/lms/admin/dashboard-admin/peminjaman-admin/pengajuan-peminjaman"
+                                )
+                            }
                             className="flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left shadow-[0_2px_8px_rgba(15,23,42,0.05)] transition active:scale-[0.98]"
                             >
                             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50">
@@ -119,41 +124,12 @@ export default function PeminjamanAdminPage() {
                             </div>
 
                             <div className="min-w-0 flex-1">
-                                <p className="text-[11px] font-bold text-slate-800">
+                                <p className="text-[16px] font-bold text-slate-800">
                                     Pengajuan Peminjaman
                                 </p>
 
-                                <p className="mt-0.5 text-[8px] text-slate-400">
+                                <p className="mt-0.5 text-[11px] text-slate-400">
                                     Melihat pengajuan peminjaman yang masuk.
-                                </p>
-                            </div>
-
-                            <span className="text-[16px] text-slate-300">
-                                ›
-                            </span>
-                        </button>
-
-
-                        {/* MENUNGGU PENGEMBALIAN */}
-                        <button
-                            type="button"
-                            className="flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left shadow-[0_2px_8px_rgba(15,23,42,0.05)] transition active:scale-[0.98]"
-                            >
-                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-50">
-                                <Clock3
-                                    size={18}
-                                    strokeWidth={2}
-                                    className="text-green-600"
-                                />
-                            </div>
-
-                            <div className="min-w-0 flex-1">
-                                <p className="text-[11px] font-bold text-slate-800">
-                                    Menunggu Pengembalian
-                                </p>
-
-                                <p className="mt-0.5 text-[8px] text-slate-400">
-                                    Melihat buku yang sedang dipinjam.
                                 </p>
                             </div>
 

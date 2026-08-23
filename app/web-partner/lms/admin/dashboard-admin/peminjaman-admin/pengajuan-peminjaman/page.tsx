@@ -6,34 +6,26 @@ import {
     RefreshCw,
     Search,
 } from "lucide-react";
-import {
-    useRouter,
-} from "next/navigation";
-import {
-    useEffect,
-    useMemo,
-    useState,
-} from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo,  useState } from "react";
 
 const API_URL =
-    "https://script.google.com/macros/s/AKfycbxaG8a_E3R5iFHmzK0C2jCA-j22JlQvqd_8AKkYiXksJ41K-D3bMpN3r4v3O5WL17I-/exec";
+"https://script.google.com/macros/s/AKfycbxaG8a_E3R5iFHmzK0C2jCA-j22JlQvqd_8AKkYiXksJ41K-D3bMpN3r4v3O5WL17I-/exec";
 
-type Peminjaman = {
+type Pengajuan = {
     idBuku: string;
     judulBuku: string;
     kodePeminjaman: string;
     peminjam: string;
     alamat: string;
     noHp: string;
-    tanggalPinjam: string;
-    jatuhTempo: string;
 };
 
-export default function SemuaPeminjamanPage() {
+export default function PengajuanPeminjamanPage() {
     const router = useRouter();
 
     const [data, setData] =
-    useState<Peminjaman[]>([]);
+    useState<Pengajuan[]>([]);
 
     const [loading, setLoading] =
     useState(true);
@@ -50,7 +42,7 @@ export default function SemuaPeminjamanPage() {
             setError("");
 
             const response = await fetch(
-                `${API_URL}?action=getPeminjamanDipinjam`,
+                `${API_URL}?action=getPengajuanPeminjaman`,
                 {
                     cache: "no-store",
                 }
@@ -62,12 +54,12 @@ export default function SemuaPeminjamanPage() {
             if (!result.success) {
                 throw new Error(
                     result.message ||
-                        "Gagal mengambil data."
+                        "Gagal mengambil data pengajuan."
                 );
             }
 
             setData(
-                result.peminjaman || []
+                result.pengajuan || []
             );
 
         } catch (error) {
@@ -76,7 +68,7 @@ export default function SemuaPeminjamanPage() {
             setError(
                 error instanceof Error
                     ? error.message
-                    : "Gagal mengambil data peminjaman."
+                    : "Gagal mengambil data pengajuan."
             );
         } finally {
             setLoading(false);
@@ -88,32 +80,32 @@ export default function SemuaPeminjamanPage() {
     }, []);
 
     const filteredData =
-    useMemo(() => {
-        const keyword =
+        useMemo(() => {
+            const keyword =
             search
-                .toLowerCase()
-                .trim();
+            .toLowerCase()
+            .trim();
 
-        if (!keyword) {
-            return data;
-        }
+            if (!keyword) {
+                return data;
+            }
 
-        return data.filter(
-            (item) =>
+            return data.filter(
+                (item) =>
                 item.idBuku
-                    .toLowerCase()
-                    .includes(keyword) ||
+                .toLowerCase()
+                .includes(keyword) ||
                 item.judulBuku
-                    .toLowerCase()
-                    .includes(keyword) ||
+                .toLowerCase()
+                .includes(keyword) ||
                 item.kodePeminjaman
-                    .toLowerCase()
-                    .includes(keyword) ||
+                .toLowerCase()
+                .includes(keyword) ||
                 item.peminjam
-                    .toLowerCase()
-                    .includes(keyword)
-        );
-    }, [data, search]);
+                .toLowerCase()
+                .includes(keyword)
+            );
+        }, [data, search]);
 
     return (
         <main className="min-h-screen bg-slate-50">
@@ -130,17 +122,17 @@ export default function SemuaPeminjamanPage() {
                             )
                         }
                         className="absolute left-4 flex h-9 w-9 items-center justify-center rounded-full text-slate-600 active:bg-slate-100"
-                    >
+                        >
                         <ArrowLeft size={19} />
                     </button>
 
                     <div className="text-center">
-                        <h1 className="text-[16px] font-bold text-slate-900">
-                            Semua Peminjaman
+                        <h1 className="text-[18px] font-bold text-slate-900">
+                            Pengajuan Peminjaman
                         </h1>
 
                         <p className="text-[11px] text-slate-400">
-                            Buku yang sedang dipinjam
+                            Daftar pengajuan yang masuk
                         </p>
                     </div>
 
@@ -148,13 +140,13 @@ export default function SemuaPeminjamanPage() {
                         type="button"
                         onClick={loadData}
                         className="absolute right-4 flex h-9 w-9 items-center justify-center rounded-full text-slate-500 active:bg-slate-100"
-                    >
+                        >
                         <RefreshCw
                             size={16}
                             className={
                                 loading
-                                    ? "animate-spin"
-                                    : ""
+                                ? "animate-spin"
+                                : ""
                             }
                         />
                     </button>
@@ -162,8 +154,8 @@ export default function SemuaPeminjamanPage() {
                 </header>
 
                 {/* CONTENT */}
-                <section className="px-4 pb-10 pt-7">
-
+                <section className="px-4 pb-10 pt-8">
+                    
                     {/* SEARCH */}
                     <div className="relative mb-4">
 
@@ -183,23 +175,24 @@ export default function SemuaPeminjamanPage() {
                         />
 
                     </div>
-                    
+
                     {/* SUMMARY */}
                     <div className="mb-5 flex items-center justify-between">
 
                         <div>
-                            <h2 className="text-[16px] font-bold text-slate-900">
-                                Daftar Peminjaman
+                            <h2 className="text-[16px] font-bold text-blue-600">
+                                Pengajuan Masuk
                             </h2>
 
                             <p className="mt-0.5 text-[11px] text-slate-400">
-                                Daftar buku yang sedang dipinjam
+                                Semua pengajuan peminjaman
+                                buku.
                             </p>
                         </div>
 
-                        <div className="rounded-full bg-blue-50 px-3 py-1.5">
-                            <span className="text-[16px] font-bold text-blue-600">
-                                {filteredData.length} buku
+                        <div className="rounded-full bg-orange-50 px-3 py-1.5">
+                            <span className="text-[11px] font-bold text-orange-600">
+                                {filteredData.length} pengajuan
                             </span>
                         </div>
 
@@ -211,8 +204,8 @@ export default function SemuaPeminjamanPage() {
 
                             <div className="h-8 w-8 animate-spin rounded-full border-[3px] border-slate-200 border-t-blue-600" />
 
-                            <p className="mt-3 text-[10px] text-slate-400">
-                                Memuat data peminjaman...
+                            <p className="mt-3 text-[11px] text-slate-400">
+                                Memuat pengajuan...
                             </p>
 
                         </div>
@@ -256,32 +249,40 @@ export default function SemuaPeminjamanPage() {
                                 </div>
 
                                 <h3 className="mt-4 text-[16px] font-bold text-slate-700">
-                                    Belum ada peminjaman
+                                    Belum ada pengajuan
                                 </h3>
 
-                                <p className="mt-1 max-w-[220px] text-[9px] leading-relaxed text-slate-400">
-                                    Belum ada buku yang
-                                    dipinjam.
+                                <p className="mt-1 max-w-[220px] text-[11px] leading-relaxed text-slate-400">
+                                    Belum ada peminjaman
+                                    yang diajukan.
                                 </p>
 
                             </div>
-                        )}
+                        )
+                    }
 
                     {/* LIST */}
                     {!loading &&
                         !error &&
                         filteredData.length > 0 && (
-                            <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-5">
 
                                 {filteredData.map(
                                     (item, index) => (
                                         <div
                                             key={`${item.kodePeminjaman}-${item.idBuku}-${index}`}
-                                            className="rounded-xl border border-slate-200 bg-white p-4 shadow-[0_2px_8px_rgba(15,23,42,0.05)]"
-                                        >
+                                            onClick={() => {
+                                                const targetUrl =
+                                                    `/web-partner/lms/admin/dashboard-admin/peminjaman-admin/pengajuan-peminjaman/${encodeURIComponent(
+                                                        item.kodePeminjaman
+                                                    )}`;
 
-                                            {/* BOOK TITLE */}
+                                                window.location.href = targetUrl;
+                                            }}
+                                            className="cursor-pointer rounded-xl border border-slate-200 bg-white p-4 shadow-[0_2px_8px_rgba(15,23,42,0.05)]"
+                                            >
 
+                                            {/* JUDUL BUKU */}
                                             <div className="flex items-start gap-3">
 
                                                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50">
@@ -293,15 +294,15 @@ export default function SemuaPeminjamanPage() {
 
                                                 <div className="min-w-0 flex-1">
 
-                                                    <p className="text-[12px] font-bold leading-tight text-slate-900">
+                                                    <p className="text-[16px] font-bold leading-tight text-slate-900">
                                                         {
                                                             item.judulBuku
                                                         }
                                                     </p>
 
                                                     <p className="mt-1 text-[11px] text-slate-400">
-                                                        ID Buku :{" "}
-                                                        <span className="font-semibold text-slate-600">
+                                                        ID Buku:{" "}
+                                                        <span className="font-semibold text-blue-600">
                                                             {
                                                                 item.idBuku
                                                             }
@@ -310,44 +311,16 @@ export default function SemuaPeminjamanPage() {
 
                                                 </div>
 
-                                                <div className="flex shrink-0 flex-col items-end gap-2">
-
-                                                    {/* STATUS */}
-                                                    <span className="rounded-full bg-red-50 px-2.5 py-1 text-[8px] font-bold text-red-600">
-                                                        Dipinjam
-                                                    </span>
-
-                                                    {/* WA PEMINJAM */}
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => {
-                                                            const nomor = String(item.noHp || "")
-                                                                .replace(/\D/g, "")
-                                                                .replace(/^0/, "62");
-                                                            const pesan = `Hi Reader... 👋\n\nKami dari LMS - Azhar Library, ingin mengingatkan bahwa hari ini adalah tanggal jatuh tempo pengembalian buku yang sedang kamu pinjam.\n\n- Judul Buku : ${item.judulBuku}\n- Tanggal Pinjam : ${item.tanggalPinjam}\n- Jatuh Tempo : ${item.jatuhTempo}
-
-                                                                Mohon untuk mengembalikan buku tersebut ke bagian administrasi perpustakaan hari ini sebelum jam 17:00 ya. 😊
-
-                                                                Terima kasih sudah menjadi bagian dari LMS - Azhar Library.
-                                                                Happy Reading! 📖✨`;
-
-                                                                window.open(
-                                                                    `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`,
-                                                                    "_blank"
-                                                                );
-                                                            }}
-                                                        className="rounded-lg bg-blue-600 px-3 py-2 text-[8px] font-bold text-white"
-                                                        >
-                                                        Hubungi Peminjam
-                                                    </button>
-                                                </div>
+                                                <span className="shrink-0 rounded-full bg-orange-50 px-2.5 py-1 text-[11px] font-bold text-orange-600">
+                                                    Pengajuan
+                                                </span>
 
                                             </div>
 
-                                            {/* DETAIL */}
+                                            {/* DETAIL BUKU*/}
                                             <div className="mt-4 border-t border-slate-100 pt-3">
 
-                                                <div className="grid grid-cols-[100px_10px_1fr] gap-y-2 text-[11px]">
+                                                <div className="grid grid-cols-[105px_10px_1fr] gap-y-2 text-[11px]">
 
                                                     <span className="text-slate-400">
                                                         Kode Peminjaman
@@ -357,7 +330,7 @@ export default function SemuaPeminjamanPage() {
                                                         :
                                                     </span>
 
-                                                    <span className="font-semibold text-blue-700">
+                                                    <span className="font-semibold text-blue-600">
                                                         {
                                                             item.kodePeminjaman
                                                         }
@@ -405,30 +378,6 @@ export default function SemuaPeminjamanPage() {
                                                         }
                                                     </span>
 
-                                                    <span className="text-slate-400">
-                                                        Tanggal Pinjam
-                                                    </span>
-
-                                                    <span className="text-slate-300">
-                                                        :
-                                                    </span>
-
-                                                    <span className="font-semibold text-slate-700">
-                                                        {item.tanggalPinjam || "-"}
-                                                    </span>
-
-                                                    <span className="text-slate-400">
-                                                        Jatuh Tempo
-                                                    </span>
-
-                                                    <span className="text-slate-300">
-                                                        :
-                                                    </span>
-
-                                                    <span className="font-semibold text-red-600">
-                                                        {item.jatuhTempo || "-"}
-                                                    </span>
-
                                                 </div>
 
                                             </div>
@@ -438,7 +387,8 @@ export default function SemuaPeminjamanPage() {
                                 )}
 
                             </div>
-                        )}
+                        )
+                    }
 
                 </section>
 

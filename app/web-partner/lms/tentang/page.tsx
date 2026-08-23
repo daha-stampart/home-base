@@ -34,10 +34,10 @@ export default function TentangPage() {
                         </div>
 
                         <h2 className="mt-4 text-[18px] font-bold text-slate-900">
-                            Perpustakaan Digital
+                            Azhar Library
                         </h2>
 
-                        <p className="mt-1 text-[10px] font-medium text-blue-600">
+                        <p className="mt-1 text-[11px] font-medium text-blue-600">
                             Library Management System
                         </p>
 
@@ -46,12 +46,12 @@ export default function TentangPage() {
                     {/* ABOUT */}
                     <div className="mt-6">
 
-                        <h3 className="text-[13px] font-bold text-slate-900">
-                            Tentang Perpustakaan Digital
+                        <h3 className="text-[16px] font-bold text-slate-900">
+                            Tentang Azhar Library
                         </h3>
 
-                        <p className="mt-2 text-[10px] leading-relaxed text-slate-600">
-                            Perpustakaan Digital merupakan
+                        <p className="mt-2 text-[11px] leading-relaxed text-slate-600">
+                            Azhar Library merupakan
                             bagian dari Library Management
                             System (LMS) yang dirancang untuk
                             memberikan kemudahan dalam
@@ -60,7 +60,7 @@ export default function TentangPage() {
                             digital.
                         </p>
 
-                        <p className="mt-3 text-[10px] leading-relaxed text-slate-600">
+                        <p className="mt-3 text-[11px] leading-relaxed text-slate-600">
                             Melalui platform ini, pengguna
                             dapat menjelajahi berbagai
                             koleksi buku, mencari berdasarkan
@@ -76,7 +76,7 @@ export default function TentangPage() {
                     {/* FEATURES */}
                     <div className="mt-6">
 
-                        <h3 className="text-[13px] font-bold text-slate-900">
+                        <h3 className="text-[16px] font-bold text-slate-900">
                             Fitur Utama
                         </h3>
 
@@ -93,11 +93,11 @@ export default function TentangPage() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] font-bold text-slate-800">
+                                    <p className="text-[16px] font-bold text-slate-800">
                                         Pencarian Buku
                                     </p>
 
-                                    <p className="mt-0.5 text-[8px] leading-relaxed text-slate-500">
+                                    <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500">
                                         Cari buku berdasarkan
                                         judul, penulis, atau
                                         kategori.
@@ -117,11 +117,11 @@ export default function TentangPage() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] font-bold text-slate-800">
+                                    <p className="text-[16px] font-bold text-slate-800">
                                         Katalog Buku
                                     </p>
 
-                                    <p className="mt-0.5 text-[8px] leading-relaxed text-slate-500">
+                                    <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500">
                                         Jelajahi seluruh
                                         koleksi buku yang
                                         tersedia.
@@ -141,11 +141,11 @@ export default function TentangPage() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] font-bold text-slate-800">
+                                    <p className="text-[16px] font-bold text-slate-800">
                                         Kategori Buku
                                     </p>
 
-                                    <p className="mt-0.5 text-[8px] leading-relaxed text-slate-500">
+                                    <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500">
                                         Temukan koleksi
                                         berdasarkan kategori.
                                     </p>
@@ -164,14 +164,14 @@ export default function TentangPage() {
                                 </div>
 
                                 <div>
-                                    <p className="text-[10px] font-bold text-slate-800">
+                                    <p className="text-[16px] font-bold text-slate-800">
                                         Detail & Ketersediaan
                                     </p>
 
-                                    <p className="mt-0.5 text-[8px] leading-relaxed text-slate-500">
+                                    <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500">
                                         Lihat detail buku,
-                                        sinopsis, Ready, dan
-                                        Dipinjam.
+                                        sinopsis, dan buku yang
+                                        tersedia untuk dipinjam.
                                     </p>
                                 </div>
 
@@ -185,11 +185,11 @@ export default function TentangPage() {
                     <div className="mt-3 text-center">
 
                         <BookOpen
-                            size={18}
+                            size={24}
                             className="mx-auto text-blue-600"
                         />
 
-                        <p className="mt-2 text-[11px] font-semibold italic leading-relaxed text-slate-600">
+                        <p className="mt-2 text-[16px] font-semibold italic leading-relaxed text-slate-600">
                             “Temukan buku favorit Anda dan
                             nikmati pengalaman membaca yang
                             lebih mudah.”
@@ -198,10 +198,10 @@ export default function TentangPage() {
                     </div>
 
                     {/* FOOTER */}
-                    <div className="mt-3 mb-6 text-center">
+                    <div className="mt-3 mb-8 text-center">
 
-                        <p className="text-[11px] font-semibold text-blue-600">
-                            by Muhammad Azhar Amin
+                        <p className="text-[12px] font-semibold text-blue-600">
+                            Muhammad Azhar Amin
                         </p>
 
                     </div>
@@ -231,6 +231,9 @@ export default function TentangPage() {
                         {/* KATALOG */}
                         <button
                             type="button"
+                            onClick={() =>
+                                router.push("/web-partner/lms/katalog")
+                            }
                             className="flex flex-col items-center justify-center gap-0.5 text-slate-400"
                         >
                             <Grid2X2

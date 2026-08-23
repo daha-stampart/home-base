@@ -429,13 +429,13 @@ export default function WebPartnerPage() {
         <div className="px-5 py-4">
 
           <h3 className="text-lg font-semibold text-white">
-            LMS Perpustakaan Digital
+            LMS Azhar Library
           </h3>
 
           <p className="mt-1 text-xs leading-5 text-zinc-400">
-            WEBSITE PERUSTAKAAN DIGITAL
+            WEBSITE UNTUK MENGELOLA PERPUSTAKAAN
             <br />
-            Website publik dan admin untuk melihat serta mengelola perpustakaan digital 
+            Website publik dan admin untuk melihat serta mengelola perpustakaan 
           </p>
 
 

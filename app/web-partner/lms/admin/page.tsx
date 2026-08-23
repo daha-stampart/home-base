@@ -92,7 +92,7 @@ export default function LMSAdminPage() {
             <button
                     type="button"
                     onClick={() => router.push("/web-partner/lms")}
-                    className="absolute left-4 top-5 z-10 flex h-10 items-center gap-1.5 rounded-full bg-white px-3 text-[9px] font-semibold text-slate-600 shadow-sm transition active:scale-95"
+                    className="absolute left-4 top-5 z-10 flex h-10 items-center gap-1.5 rounded-full bg-white px-3 text-[11px] font-semibold text-slate-600 shadow-sm transition active:scale-95"
                 >
                 ← Kembali
             </button>
@@ -118,8 +118,8 @@ export default function LMSAdminPage() {
                             Admin Login
                         </h1>
 
-                        <p className="mt-1 text-[11px] text-slate-500">
-                            Masuk untuk mengelola Perpustakaan Digital
+                        <p className="mt-1 text-[16px] text-slate-500">
+                            Masuk untuk mengelola Azhar Library
                         </p>
                     </div>
 
@@ -131,7 +131,7 @@ export default function LMSAdminPage() {
 
                         {/* USER ID */}
                         <div>
-                            <label className="text-[10px] font-semibold text-slate-700">
+                            <label className="text-[16px] px-2 font-semibold text-slate-700">
                                 User ID
                             </label>
 
@@ -143,13 +143,13 @@ export default function LMSAdminPage() {
                                 }
                                 placeholder="Masukkan User ID"
                                 autoComplete="username"
-                                className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                                className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[16px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                             />
                         </div>
 
                         {/* PASSWORD */}
                         <div className="mt-4">
-                            <label className="text-[10px] font-semibold text-slate-700">
+                            <label className="text-[16px] px-2 font-semibold text-slate-700">
                                 Password
                             </label>
 
@@ -166,7 +166,7 @@ export default function LMSAdminPage() {
                                     }
                                     placeholder="Masukkan password"
                                     autoComplete="current-password"
-                                    className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 pr-10 text-[11px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                                    className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 pr-10 text-[16px] text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                                 />
 
                                 <button
@@ -189,7 +189,7 @@ export default function LMSAdminPage() {
                         {/* ERROR */}
                         {error && (
                             <div className="mt-4 rounded-lg bg-red-50 px-3 py-2">
-                                <p className="text-[9px] font-medium text-red-600">
+                                <p className="text-[11px] font-medium text-red-600">
                                     {error}
                                 </p>
                             </div>
@@ -199,7 +199,7 @@ export default function LMSAdminPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="mt-6 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-[11px] font-semibold text-white shadow-[0_5px_15px_rgba(37,99,235,0.2)] transition hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60">
+                            className="mt-6 flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-[16px] font-semibold text-white shadow-[0_5px_15px_rgba(37,99,235,0.2)] transition hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60">
                             <LogIn
                                 size={15}
                                 strokeWidth={2.5}
@@ -213,8 +213,12 @@ export default function LMSAdminPage() {
                     </form>
 
                     {/* FOOTER */}
-                    <p className="mt-5 text-center text-[8px] text-slate-400">
+                    <p className="mt-5 text-center text-[16px] text-slate-400">
                         Library Management System
+                    </p>
+
+                    <p className="mt-1 text-center text-[14px] text-bold text-blue-700">
+                        by Muhammad Azhar Amin
                     </p>
 
                 </div>

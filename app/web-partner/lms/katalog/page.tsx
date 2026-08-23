@@ -212,7 +212,7 @@ export default function KatalogPage() {
                     </div>
 
                     {!loading && (
-                        <p className="mt-3 text-[10px] text-slate-500">
+                        <p className="mt-8 text-[12px] text-blue-600">
                             {filteredBooks.length} buku
                         </p>
                     )}
@@ -258,7 +258,7 @@ export default function KatalogPage() {
                 {/* BOOK LIST */}
                 {!loading &&
                     filteredBooks.length > 0 && (
-                        <section className="px-4 pb-8 pt-4">
+                        <section className="px-4 pb-20 pt-2">
 
                             <div className="flex flex-col gap-2.5">
 
@@ -283,10 +283,10 @@ export default function KatalogPage() {
                                                 )
                                             }
                                             className="relative flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-2.5 text-left shadow-[0_2px_10px_rgba(15,23,42,0.05)] transition active:scale-[0.99]"
-                                        >
+                                            >
                                             {popularNumber >= 1 &&
                                                 popularNumber <= 3 && (
-                                                <div className="absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-md bg-amber-400 text-[9px] font-bold text-white shadow-sm">
+                                                <div className="absolute left-2 top-2 z-10 flex h-6 w-6 items-center justify-center rounded-md bg-amber-400 text-[11px] font-bold text-white shadow-sm">
                                                     {popularNumber}
                                                 </div>
                                             )}
@@ -316,25 +316,25 @@ export default function KatalogPage() {
                                             {/* INFO */}
                                             <div className="min-w-0 flex-1">
 
-                                                <p className="text-[8px] font-semibold text-blue-600">
+                                                <p className="text-[11px] font-semibold text-blue-600">
                                                     {book.kategori}
                                                 </p>
 
-                                                <h2 className="mt-1 line-clamp-2 text-[12px] font-bold leading-tight text-slate-900">
+                                                <h2 className="mt-1 line-clamp-2 text-[16px] font-bold leading-tight text-slate-900">
                                                     {book.judul}
                                                 </h2>
 
-                                                <p className="mt-1 line-clamp-1 text-[9px] text-slate-500">
+                                                <p className="mt-1 line-clamp-1 text-[11px] text-slate-500">
                                                     {book.penulis}
                                                 </p>
 
                                                 <div className="mt-2 flex flex-wrap gap-1">
 
-                                                    <span className="rounded-full bg-green-50 px-2 py-0.5 text-[7px] font-semibold text-green-600">
+                                                    <span className="rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-600">
                                                         Ready : {ready}
                                                     </span>
 
-                                                    <span className="rounded-full bg-red-50 px-2 py-0.5 text-[7px] font-semibold text-red-500">
+                                                    <span className="rounded-full bg-red-50 px-2 py-0.5 text-[11px] font-semibold text-red-500">
                                                         Dipinjam : {borrowed}
                                                     </span>
 

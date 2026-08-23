@@ -171,11 +171,11 @@ export default function TambahBukuPage() {
                     </button>
 
                     <div className="text-center">
-                        <h1 className="text-[15px] font-bold text-slate-900">
+                        <h1 className="text-[16px] font-bold text-slate-900">
                             Tambah Buku
                         </h1>
 
-                        <p className="text-[8px] text-slate-400">
+                        <p className="text-[11px] text-slate-400">
                             Library Management System
                         </p>
                     </div>
@@ -197,11 +197,11 @@ export default function TambahBukuPage() {
                         </div>
 
                         <div>
-                            <p className="text-[11px] font-bold text-slate-800">
+                            <p className="text-[16px] font-bold text-slate-800">
                                 Tambahkan Buku
                             </p>
 
-                            <p className="mt-0.5 text-[8px] text-slate-500">
+                            <p className="mt-0.5 text-[11px] text-slate-500">
                                 Isi informasi buku yang akan ditambahkan.
                             </p>
                         </div>
@@ -212,7 +212,7 @@ export default function TambahBukuPage() {
                     {/* JUDUL BUKU */}
                     <div className="mt-5">
 
-                        <label className="text-[10px] font-semibold text-slate-700">
+                        <label className="text-[16px] font-semibold text-slate-700">
                             Judul Buku
                         </label>
 
@@ -223,7 +223,7 @@ export default function TambahBukuPage() {
                                 setJudul(e.target.value)
                             }
                             placeholder="Masukkan judul buku"
-                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[10px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                         />
 
                     </div>
@@ -232,7 +232,7 @@ export default function TambahBukuPage() {
                     {/* PENULIS */}
                     <div className="mt-4">
 
-                        <label className="text-[10px] font-semibold text-slate-700">
+                        <label className="text-[16px] font-semibold text-slate-700">
                             Penulis
                         </label>
 
@@ -243,7 +243,7 @@ export default function TambahBukuPage() {
                                 setPenulis(e.target.value)
                             }
                             placeholder="Masukkan nama penulis"
-                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[10px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                         />
 
                     </div>
@@ -252,7 +252,7 @@ export default function TambahBukuPage() {
                     {/* KATEGORI */}
                     <div className="mt-4">
 
-                        <label className="text-[10px] font-semibold text-slate-700">
+                        <label className="text-[16px] font-semibold text-slate-700">
                             Kategori
                         </label>
 
@@ -262,12 +262,12 @@ export default function TambahBukuPage() {
                             onChange={(e) =>
                                 setKategori(e.target.value)
                             }
-                            placeholder="Contoh: Fantasi"
-                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[10px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                            placeholder="Contoh : Fantasi"
+                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                         />
 
-                        <p className="mt-1 text-[7px] text-slate-400">
-                            Kategori diisi manual oleh Admin.
+                        <p className="mt-1 text-[10px] text-blue-400">
+                            Hanya isi 1 kategori / genre utama
                         </p>
 
                     </div>
@@ -276,7 +276,7 @@ export default function TambahBukuPage() {
                     {/* SINOPSIS */}
                     <div className="mt-4">
 
-                        <label className="text-[10px] font-semibold text-slate-700">
+                        <label className="text-[16px] font-semibold text-slate-700">
                             Sinopsis Buku
                         </label>
 
@@ -287,7 +287,7 @@ export default function TambahBukuPage() {
                             }
                             placeholder="Masukkan sinopsis buku"
                             rows={5}
-                            className="mt-1.5 w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-[10px] leading-relaxed text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                            className="mt-1.5 w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-[11px] leading-relaxed text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                         />
 
                     </div>
@@ -312,12 +312,12 @@ export default function TambahBukuPage() {
                                         className="text-slate-400"
                                     />
 
-                                    <span className="mt-2 text-[9px] font-medium text-slate-500">
+                                    <span className="mt-2 text-[16px] font-medium text-slate-500">
                                         Upload gambar buku
                                     </span>
 
-                                    <span className="mt-0.5 text-[7px] text-slate-400">
-                                        JPG / PNG / WEBP
+                                    <span className="mt-0.5 text-[11px] text-slate-400">
+                                        JPG / JPEG / PNG / WEBP
                                     </span>
                                 </>
                             )}
@@ -343,7 +343,7 @@ export default function TambahBukuPage() {
                     {/* MOST POPULAR */}
                     <div className="mt-4">
 
-                        <label className="text-[10px] font-semibold text-slate-700">
+                        <label className="text-[16px] font-semibold text-slate-700">
                             Most Popular
                         </label>
 
@@ -352,7 +352,7 @@ export default function TambahBukuPage() {
                             onChange={(e) =>
                                 setMostPopular(e.target.value)
                             }
-                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[10px] text-slate-800 outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] text-slate-800 outline-none focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                         >
                             <option value="">
                                 Tidak masuk Most Popular
@@ -377,7 +377,7 @@ export default function TambahBukuPage() {
                     {/* JUMLAH COPY */}
                     <div className="mt-4">
 
-                        <label className="text-[10px] font-semibold text-slate-700">
+                        <label className="text-[16px] font-semibold text-slate-700">
                             Jumlah Copy
                         </label>
 
@@ -389,10 +389,10 @@ export default function TambahBukuPage() {
                                 setJumlahCopy(e.target.value)
                             }
                             placeholder="Contoh: 2"
-                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[10px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                            className="mt-1.5 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] text-slate-800 outline-none placeholder:text-slate-400 focus:border-blue-400 focus:bg-white focus:ring-2 focus:ring-blue-100"
                         />
 
-                        <p className="mt-1 text-[7px] text-slate-400">
+                        <p className="mt-1 text-[10px] text-blue-400">
                             Setiap copy akan mendapatkan ID Buku yang berbeda.
                         </p>
 
@@ -401,7 +401,7 @@ export default function TambahBukuPage() {
                     {/* PESAN HASIL SUBMIT */}
                     {error && (
                         <div className="mt-4 rounded-xl bg-red-50 px-3 py-2.5">
-                            <p className="text-[9px] font-medium text-red-600">
+                            <p className="text-[11px] font-medium text-red-600">
                                 {error}
                             </p>
                         </div>
@@ -409,7 +409,7 @@ export default function TambahBukuPage() {
 
                     {message && (
                         <div className="mt-4 rounded-xl bg-green-50 px-3 py-2.5">
-                            <p className="text-[9px] font-medium text-green-600">
+                            <p className="text-[11px] font-medium text-green-600">
                                 {message}
                             </p>
                         </div>
@@ -421,7 +421,7 @@ export default function TambahBukuPage() {
                         type="button"
                         onClick={handleSubmit}
                         disabled={loading}
-                        className="mt-6 flex h-11 w-full items-center justify-center rounded-xl bg-blue-600 text-[10px] font-semibold text-white shadow-[0_5px_15px_rgba(37,99,235,0.2)] transition hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+                        className="mt-6 flex h-11 w-full items-center justify-center rounded-xl bg-blue-600 text-[16px] font-semibold text-white shadow-[0_5px_15px_rgba(37,99,235,0.2)] transition hover:bg-blue-700 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {loading ? "Menyimpan..." : "Tambah Buku"}
                     </button>

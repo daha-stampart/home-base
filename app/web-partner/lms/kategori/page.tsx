@@ -152,11 +152,11 @@ function KategoriContent() {
                 <section className="px-4 pb-8 pt-5">
 
                     <div className="mb-4">
-                        <h2 className="text-[15px] font-bold text-slate-900">
+                        <h2 className="text-[16px] font-bold text-blue-600">
                             Jelajahi Kategori
                         </h2>
 
-                        <p className="mt-1 text-[9px] text-slate-400">
+                        <p className="mt-1 text-[11px] text-slate-400">
                             Temukan buku berdasarkan
                             kategori.
                         </p>
@@ -178,7 +178,7 @@ function KategoriContent() {
                     {/* CATEGORY LIST */}
                     {!loading &&
                         categories.length > 0 && (
-                            <div className="grid grid-cols-2 gap-3">
+                            <div className="grid grid-cols-4 gap-3">
 
                                 {categories.map(
                                     (category) => (
@@ -205,13 +205,13 @@ function KategoriContent() {
                                                 />
                                             </div>
 
-                                            <p className="mt-2 text-center text-[10px] font-semibold text-slate-800">
+                                            <p className="mt-2 text-center text-[12px] font-semibold text-slate-800">
                                                 {
                                                     category.name
                                                 }
                                             </p>
 
-                                            <p className="mt-0.5 text-[8px] text-slate-400">
+                                            <p className="mt-0.5 text-[9px] text-slate-400">
                                                 {
                                                     category.count
                                                 }{" "}
@@ -230,18 +230,18 @@ function KategoriContent() {
                         <section className="mt-7">
 
                             {/* HEADER */}
-                            <div className="mb-4">
-                                <h2 className="text-[14px] font-bold text-slate-900">
+                            <div className="mb-2">
+                                <h2 className="text-[16px] font-bold text-blue-600">
                                     {selectedCategory}
                                 </h2>
 
-                                <p className="mt-1 text-[9px] text-slate-400">
+                                <p className="mt-1 text-[11px] text-slate-400">
                                     {uniqueCategoryBooks.length} buku
                                 </p>
                             </div>
 
                             {/* LIST BUKU */}
-                            <div className="flex flex-col gap-2.5">
+                            <div className="flex flex-col gap-2.5 pb-20">
 
                                 {uniqueCategoryBooks.map((book) => {
 
@@ -313,25 +313,25 @@ function KategoriContent() {
                                             {/* INFO */}
                                             <div className="min-w-0 flex-1">
 
-                                                <p className="text-[8px] font-semibold text-blue-600">
+                                                <p className="text-[11px] font-semibold text-blue-600">
                                                     {book.kategori}
                                                 </p>
 
-                                                <h3 className="mt-1 line-clamp-2 text-[12px] font-bold leading-tight text-slate-900">
+                                                <h3 className="mt-1 line-clamp-2 text-[16px] font-bold leading-tight text-slate-900">
                                                     {book.judul}
                                                 </h3>
 
-                                                <p className="mt-1 line-clamp-1 text-[9px] text-slate-500">
+                                                <p className="mt-1 line-clamp-1 text-[11px] text-slate-500">
                                                     {book.penulis}
                                                 </p>
 
                                                 <div className="mt-2 flex gap-1">
 
-                                                    <span className="rounded-full bg-green-50 px-2 py-0.5 text-[7px] font-semibold text-green-600">
+                                                    <span className="rounded-full bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-600">
                                                         Ready : {ready}
                                                     </span>
 
-                                                    <span className="rounded-full bg-red-50 px-2 py-0.5 text-[7px] font-semibold text-red-500">
+                                                    <span className="rounded-full bg-red-50 px-2 py-0.5 text-[11px] font-semibold text-red-500">
                                                         Dipinjam : {borrowed}
                                                     </span>
 

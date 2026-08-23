@@ -59,7 +59,7 @@ export default function OtolinkAppPage() {
           LMS
           <br />
           <span className="dashboard-enter text-red-500">
-            Perpustakaan Digital
+            Azhar Library
           </span>
         </h1>
 
@@ -90,10 +90,10 @@ export default function OtolinkAppPage() {
           </h2>
 
           <p className="mt-3 text-sm leading-6 text-zinc-400">
-            Library Management System (LMS) Perpustakaan Digital adalah platform digital yang dirancang untuk memudahkan pengelolaan koleksi buku, informasi ketersediaan buku, serta proses peminjaman secara lebih praktis, cepat, dan terstruktur.
+            Library Management System (LMS) Azhar Library adalah platform digital yang dirancang untuk memudahkan pengelolaan koleksi buku, informasi ketersediaan buku, serta proses peminjaman secara lebih praktis, cepat, dan terstruktur.
             Melalui LMS, pengguna dapat menjelajahi koleksi buku, mencari berdasarkan judul, penulis, atau kategori, melihat detail dan sinopsis buku, serta mengetahui jumlah buku yang tersedia dan sedang dipinjam. Setiap buku juga dilengkapi informasi status ketersediaan sehingga pengguna dapat mengetahui kondisi koleksi secara real-time.
             Bagi Admin, LMS menyediakan fasilitas untuk mengelola data buku, cover buku, kategori, jumlah copy, status ketersediaan, serta informasi koleksi perpustakaan yang terintegrasi dengan database.
-            Dengan tampilan yang modern, responsif, dan mobile-friendly, Perpustakaan Digital memberikan pengalaman yang lebih sederhana dan nyaman dalam mengakses serta mengelola koleksi perpustakaan.
+            Dengan tampilan yang modern, responsif, dan mobile-friendly, Azhar Library memberikan pengalaman yang lebih sederhana dan nyaman dalam mengakses serta mengelola koleksi perpustakaan.
           </p>
         </div>
 
@@ -110,11 +110,11 @@ export default function OtolinkAppPage() {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
               <p className="text-sm font-semibold text-white">
-                Digital Library
+                Up to Date
               </p>
 
               <p className="mt-1 text-[11px] leading-5 text-zinc-500">
-                Perpustakaan digital dengan data Up to Date
+                Informasi dari Azhar Library dengan data Up to Date
               </p>
 
             </div>

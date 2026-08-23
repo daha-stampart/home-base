@@ -147,7 +147,7 @@ export default function LMSPage() {
                             {/* Book Icon */}
                             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white shadow-sm">
                                 <BookOpen
-                                    size={20}
+                                    size={24}
                                     strokeWidth={2.5}
                                     className="text-blue-600"
                                 />
@@ -155,11 +155,11 @@ export default function LMSPage() {
 
                             {/* Logo Text */}
                             <div className="leading-none text-white">
-                                <div className="text-[16px] font-extrabold tracking-[3px]]">
+                                <div className="text-[18px] font-extrabold tracking-[3px]]">
                                     LIBRARY
                                 </div>
 
-                                <div className="mt-[3px] text-[8px] font-semibold tracking-[1.4px]">
+                                <div className="mt-[3px] text-[11px] font-semibold tracking-[1.4px]">
                                     MANAGEMENT SYSTEM
                                 </div>
                             </div>
@@ -170,9 +170,9 @@ export default function LMSPage() {
                         <button
                             type="button"
                             onClick={() => router.push("/web-partner/lms/admin")}
-                            className="absolute right-4 top-6 z-10 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[9px] font-semibold text-blue-600 shadow-md transition active:scale-95">
+                            className="absolute right-4 top-6 z-10 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-blue-600 shadow-md transition active:scale-95">
                             <LockKeyhole
-                                size={12}
+                                size={18}
                                 strokeWidth={2.5}
                             />
                             Admin
@@ -184,11 +184,11 @@ export default function LMSPage() {
                                 Selamat datang di
                             </p>
 
-                            <h1 className="mt-1 text-[18px] font-bold leading-tight text-slate-900">
-                                Perpustakaan Digital
+                            <h1 className="mt-1 text-[24px] font-bold leading-tight text-blue-600">
+                                Azhar Library
                             </h1>
 
-                            <p className="mt-1 text-[11px] font-medium leading-tight text-slate-500">
+                            <p className="mt-1 text-[12px] font-medium leading-tight text-slate-500">
                                 Temukan buku favoritmu di sini.
                             </p>
                         </div>
