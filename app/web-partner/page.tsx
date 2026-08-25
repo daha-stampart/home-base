@@ -61,7 +61,7 @@ export default function WebPartnerPage() {
             </a>
 
             <a
-              href="/maintenance"
+              href="/produk"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               Produk
@@ -78,7 +78,7 @@ export default function WebPartnerPage() {
             </a>
 
             <a
-              href="/maintenance"
+              href="/about"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               All About Me
@@ -107,7 +107,7 @@ export default function WebPartnerPage() {
 
             {/* HUBUNGI SAYA */}
             <a
-              href="/maintenance"
+              href="/about"
               className="hidden items-center gap-2 rounded-full border border-red-500/70 px-5 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-500 hover:text-white sm:flex"
             >
               <MessageCircle size={16} />
@@ -131,7 +131,6 @@ export default function WebPartnerPage() {
         {/* =================================================
             MOBILE NAVIGATION
         ================================================= */}
-
         {isMobileMenuOpen && (
           <div className="fixed left-0 right-0 top-16 z-40 border-b border-white/[0.06] bg-[#07090f]/95 backdrop-blur-xl lg:hidden">
 
@@ -160,7 +159,7 @@ export default function WebPartnerPage() {
 
 
                 <a
-                    href="/maintenance"
+                    href="/produk"
                     onClick={() =>
                     setIsMobileMenuOpen(false)
                         }
@@ -183,7 +182,7 @@ export default function WebPartnerPage() {
 
 
                 <a
-                    href="/maintenance"
+                    href="/about"
                     onClick={() =>
                         setIsMobileMenuOpen(false)
                     }
@@ -202,7 +201,6 @@ export default function WebPartnerPage() {
       {/* =====================================================
         HERO WEB PARTNER
       ===================================================== */}
-
      <section className="dashboard-enter px-4 pt-5">
 
         <div className="relative h-[260px] overflow-hidden rounded-2xl">
@@ -249,9 +247,9 @@ export default function WebPartnerPage() {
             <div className="mt-3 flex items-center gap-2">
 
               <a
-                href="/maintenance"
+                href="/produk/web-partner"
                 className="rounded-lg bg-red-600 px-3 py-2 text-[9px] font-semibold text-white transition hover:bg-red-500"
-              >
+                >
                 Daftar Sekarang →
               </a>
 
@@ -267,7 +265,6 @@ export default function WebPartnerPage() {
       {/* =====================================================
         PARTNER AKTIF
       ===================================================== */}
-
       <section
       id="partner"
       className="dashboard-enter px-4 pb-12 pt-8"

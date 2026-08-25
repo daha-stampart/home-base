@@ -35,11 +35,8 @@ export default function PortfolioPage() {
   const [portfolios, setPortfolios] = useState<Portfolio[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [activeCategory, setActiveCategory] =
-    useState("Semua Karya");
-  const [sortOrder, setSortOrder] = useState("Terbaru");
+  const [activeCategory, setActiveCategory] = useState("Semua Karya");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [showSortMenu, setShowSortMenu] = useState(false);
   const [showCategoryMenu, setShowCategoryMenu] = useState(false);
 
   useEffect(() => {
@@ -85,17 +82,6 @@ export default function PortfolioPage() {
         (item) =>
           item.kategori === activeCategory
       );
-
-filteredPortfolios.sort((a, b) => {
-  const dateA = new Date(a.tanggal).getTime();
-  const dateB = new Date(b.tanggal).getTime();
-
-  if (sortOrder === "Terbaru") {
-    return dateB - dateA;
-  }
-
-  return dateA - dateB;
-});
 
   const getCoverUrl = (fileId: string) => {
   if (!fileId) return "";
@@ -152,7 +138,7 @@ filteredPortfolios.sort((a, b) => {
             </a>
 
             <a
-              href="/maintenance"
+              href="/produk"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               Produk
@@ -166,7 +152,7 @@ filteredPortfolios.sort((a, b) => {
             </a>
 
             <a
-              href="/maintenance"
+              href="/about"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               All About Me
@@ -189,7 +175,7 @@ filteredPortfolios.sort((a, b) => {
 
             {/* Hubungi Saya */}
             <a
-              href="/maintenance"
+              href="/about"
               className="hidden items-center gap-2 rounded-full border border-red-500/70 px-5 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-500 hover:text-white sm:flex"
               >
               <MessageCircle size={16} />
@@ -229,7 +215,7 @@ filteredPortfolios.sort((a, b) => {
                 </a>
 
                 <a
-                  href="/maintenance"
+                  href="/produk"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
                   >
@@ -245,7 +231,7 @@ filteredPortfolios.sort((a, b) => {
                 </a>
 
                 <a
-                  href="/maintenance"
+                  href="/about"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="py-3 text-sm font-medium text-zinc-300"
                   >
@@ -312,7 +298,7 @@ filteredPortfolios.sort((a, b) => {
         </section>
 
         {/* STATS */}
-        <section className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
+        <section className="relative z-10 mx-auto mb-5 max-w-[1400px] px-6 lg:px-10">
 
           <div className="-translate-y-30 translate-x-5 w-full max-w-[720px] py-5">
 
@@ -402,7 +388,7 @@ filteredPortfolios.sort((a, b) => {
 
       </div>
 
-      <div className="relative -translate-y-34 z-10 mx-6 h-[2px] bg-white/20" />
+      <div className="relative -translate-y-33 z-10 mx-6 h-[1px] bg-white/20" />
 
       {/* PORTFOLIO GRID */}
       <section className="relative z-10 mx-auto max-w-[1400px] px-6 pb-20 lg:px-10">
@@ -411,7 +397,6 @@ filteredPortfolios.sort((a, b) => {
         <div className="relative z-[100] mt-8 flex -translate-y-40 flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
           {/* LEFT */}
-
           {/* MOBILE CATEGORY */}
             <div className="relative w-full lg:hidden">
               <button
@@ -458,7 +443,6 @@ filteredPortfolios.sort((a, b) => {
               )}
             </div>
 
-
             {/* DESKTOP CATEGORY */}
             <div className="hidden min-w-0 items-center gap-2 lg:flex">
 
@@ -488,73 +472,29 @@ filteredPortfolios.sort((a, b) => {
             </div>
 
           {/* RIGHT */}
-         <div className="flex shrink-0 items-left gap-6">
+          <div className="flex shrink-0 items-left gap-6">
 
-         <div className="relative">
-             <button
-                 onClick={() => setShowSortMenu(!showSortMenu)}
-                 className="flex h-10 items-center gap-5 rounded-lg border border-white/10 bg-white/[0.03] px-4 text-xs font-medium text-zinc-300 transition hover:border-white/20 hover:text-white"
-                 >
-                 {sortOrder}
-                 <ChevronDown size={15} />
-             </button>
+            <button
+              onClick={() => setViewMode("grid")}
+              className={`flex h-10 w-10 items-center justify-center rounded-lg border transition ${
+              viewMode === "grid"
+                ? "border-red-500/30 bg-red-500/10 text-red-500"
+                : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/20 hover:text-white"
+              }`}
+              >
+              <Grid3X3 size={17} />
+            </button>
 
-             {showSortMenu && (
-             <div className="absolute right-0 translate-x-10 top-12 z-50 w-40 overflow-hidden rounded-xl border border-white/10 bg-[#111318] p-1 shadow-2xl">
-                 <button
-                     onClick={() => {
-                     setSortOrder("Terbaru");
-                     setShowSortMenu(false);
-                     }}
-                     className="w-full rounded-lg px-3 py-2.5 text-left text-xs text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
-                     >
-                     Terbaru
-                 </button>
-
-                 <button
-                     onClick={() => {
-                     setSortOrder("Kategori");
-                     setShowSortMenu(false);
-                     }}
-                     className="w-full rounded-lg px-3 py-2.5 text-left text-xs text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
-                     >
-                     Kategori
-                 </button>
-
-                 <button
-                     onClick={() => {
-                     setSortOrder("By Nama");
-                     setShowSortMenu(false);
-                     }}
-                     className="w-full rounded-lg px-3 py-2.5 text-left text-xs text-zinc-300 transition hover:bg-white/[0.06] hover:text-white"
-                     >
-                     By Nama
-                 </button>
-             </div>
-             )}
-         </div>
-
-         <button
-             onClick={() => setViewMode("grid")}
-                 className={`flex h-10 w-10 items-center justify-center rounded-lg border transition ${
-                 viewMode === "grid"
-                 ? "border-red-500/30 bg-red-500/10 text-red-500"
-                 : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/20 hover:text-white"
-                }`}
-             >
-             <Grid3X3 size={17} />
-         </button>
-
-         <button
-             onClick={() => setViewMode("list")}
-                 className={`flex h-10 w-10 items-center justify-center rounded-lg border transition ${
-                 viewMode === "list"
-                 ? "border-red-500/30 bg-red-500/10 text-red-500"
-                 : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/20 hover:text-white"
-                }`}
-             >
-             <List size={17} />
-         </button>
+            <button
+              onClick={() => setViewMode("list")}
+              className={`flex h-10 w-10 items-center justify-center rounded-lg border transition ${
+              viewMode === "list"
+                ? "border-red-500/30 bg-red-500/10 text-red-500"
+                : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/20 hover:text-white"
+              }`}
+                >
+              <List size={17} />
+            </button>
 
           </div>
         </div> 

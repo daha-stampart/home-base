@@ -9,7 +9,7 @@ import {
   Palette,
   Monitor,
   Lightbulb,
-  Clapperboard,
+  Sparkles,
   LogOut,
   Mail,
 } from "lucide-react";
@@ -30,10 +30,10 @@ const services = [
   },
 
   {
-    icon: Clapperboard,
-    title: "Konten Visual",
+    icon: Sparkles,
+    title: "Jenis desain lainnya",
     description:
-      "Desain konten media sosial, feed, story dan kebutuhan digital lainnya.",
+      "Pilihan opsi desain lainnya, atau konsultasikan kebutuhan anda sesuai ide yang anda inginkan.",
   },
 
   {
@@ -115,15 +115,13 @@ export default function DashboardPage() {
     <main className="dashboard-enter min-h-screen bg-[#07090f] text-white">
 
       {/* =========================================================
-          NAVBAR
+        NAVBAR
       ========================================================= */}
-
       <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#07090f]/90 backdrop-blur-xl">
 
         <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 lg:px-10">
 
           {/* Logo */}
-
           <a
             href="/dashboard"
             className="-translate-x-10 translate-y-2 flex items-center gap-3"
@@ -131,7 +129,7 @@ export default function DashboardPage() {
             <img
               src="/images/logo-ds.png"
               alt="Daha.Stampart"
-              className="h-30 w-40"
+              className="h-22 w-38"
             />
 
             <span className="hidden text-xl font-semibold tracking-tight sm:block">
@@ -142,7 +140,6 @@ export default function DashboardPage() {
 
 
           {/* Navigation */}
-
           <nav className="hidden items-center gap-8 lg:flex">
 
             <a
@@ -164,7 +161,7 @@ export default function DashboardPage() {
 
 
             <a
-              href="/maintenance"
+              href="/produk"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               Produk
@@ -180,7 +177,7 @@ export default function DashboardPage() {
 
 
             <a
-              href="/maintenance"
+              href="/about"
               className="py-20 text-base font-medium text-zinc-300 transition hover:text-white"
             >
               All About Me
@@ -188,11 +185,7 @@ export default function DashboardPage() {
 
           </nav>
 
-
-          {/* Right */}
-
           {/* Mobile Menu Button */}
-
           <div className="flex items-center gap-3">
 
             <button
@@ -206,7 +199,7 @@ export default function DashboardPage() {
 
 
             <a
-              href="/maintenance"
+              href="/about"
               className="hidden items-center gap-2 rounded-full border border-red-500/70 px-5 py-2.5 text-sm font-semibold text-red-500 transition hover:bg-red-500 hover:text-white sm:flex"
             >
               <MessageCircle size={16} />
@@ -227,7 +220,6 @@ export default function DashboardPage() {
 
 
         {/* Mobile Navigation */}
-
         {isMobileMenuOpen && (
           <div className="fixed left-0 right-0 top-20 z-40 border-b border-white/[0.06] bg-[#07090f]/95 backdrop-blur-xl lg:hidden">
 
@@ -252,7 +244,7 @@ export default function DashboardPage() {
 
 
               <a
-                href="/maintenance"
+                href="/produk"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="border-b border-white/[0.06] py-3 text-sm font-medium text-zinc-300"
               >
@@ -270,7 +262,7 @@ export default function DashboardPage() {
 
 
               <a
-                href="/maintenance"
+                href="/about"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="py-3 text-sm font-medium text-zinc-300"
               >
@@ -286,13 +278,11 @@ export default function DashboardPage() {
 
 
       {/* =========================================================
-          HERO
+        HERO
       ========================================================= */}
-
       <section className="relative overflow-hidden">
 
         {/* Background utama */}
-
         <div
           className="hero-background absolute inset-0 bg-no-repeat opacity-70"
           style={{
@@ -313,7 +303,6 @@ export default function DashboardPage() {
 
 
         {/* LEFT */}
-
         <div className="hero-bounce translate-y-6 translate-x-5">
 
           <p className="text-xs font-medium text-white sm:text-lg">
@@ -360,7 +349,6 @@ export default function DashboardPage() {
 
 
           {/* Buttons */}
-
           <div className="mt-15 flex flex-wrap gap-10 -translate-y-2">
 
             <a
@@ -391,38 +379,34 @@ export default function DashboardPage() {
 
 
         {/* Contact & Exit */}
-
-        <div className="mt-7 flex items-center gap-1 translate-x-5 translate-y-0">
+        <div className="mt-9 flex items-center gap-1 translate-x-5 translate-y-0">
 
           {/* WhatsApp */}
-
           <a
-            href="https://wa.me/6285772051611"
+            href="https://wa.me/6281351919309"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 w-10 items-center justify-center rounded-full border border-white/10 bg-black/[0.5] text-zinc-400 transition hover:border-green-500/40 hover:text-green-400"
+            className="flex h-10 w-15 items-center justify-center rounded-full border border-white/10 bg-black/[0.5] text-zinc-400 transition hover:border-green-500/40 hover:text-green-400"
             aria-label="WhatsApp"
           >
-            <MessageCircle size={19} />
+            <MessageCircle size={24} />
           </a>
 
 
           {/* Gmail */}
-
           <a
             href="mailto:daha.stampart@gmail.com"
-            className="flex h-9 w-10 items-center justify-center rounded-full border border-white/10 bg-black/[0.5] text-zinc-400 transition hover:border-red-500/40 hover:text-red-400"
+            className="flex h-10 w-15 items-center justify-center translate-x-5 rounded-full border border-white/10 bg-black/[0.5] text-zinc-400 transition hover:border-red-500/40 hover:text-red-400"
             aria-label="Gmail"
           >
-            <Mail size={19} />
+            <Mail size={24} />
           </a>
 
 
           {/* Exit */}
-
           <a
             href="/"
-            className="group ml-2 flex items-center gap-2 rounded-full border border-white/10 bg-black/[0.5] px-4 py-2 text-sm font-medium text-zinc-400 transition hover:border-red-500/40 hover:text-white"
+            className="group ml-2 flex items-center gap-2 translate-x-35 rounded-full border border-white/10 bg-black/[0.5] px-4 py-2 text-sm font-medium text-red-500 transition hover:border-red-500/40 hover:text-white"
           >
             <LogOut
               size={15}
@@ -436,18 +420,15 @@ export default function DashboardPage() {
 
 
         {/* RIGHT VISUAL */}
-
         {/* Red glow */}
-
-        <div className="absolute bottom-0 right-0 h-40 w-40 rounded-full bg-red-600/20 blur-[70px]" />
+        <div className="absolute bottom-10 right-0 h-40 w-40 rounded-full bg-red-600/20 blur-[70px]" />
 
       </section>
 
 
       {/* =========================================================
-          SERVICES
+        SERVICES
       ========================================================= */}
-
       <section className="relative z-20 mx-auto -mt-10 max-w-[1400px] px-6 translate-y-12 lg:px-10">
 
         <h2 className="mt-8 mb-5 text-2xl font-bold tracking-tight text-white sm:text-3xl">
@@ -466,9 +447,15 @@ export default function DashboardPage() {
               <a
                 key={service.title}
                 href={
-                  service.title === "Web Partner"
-                    ? "/web-partner"
-                    : "/maintenance"
+                  service.title === "Desain Grafis"
+                  ? "/produk/desain-grafis"
+                  : service.title === "Branding & Identity"
+                  ? "/produk/branding"
+                  : service.title === "Jenis Desain Lainnya"
+                  ? "/produk"
+                  : service.title === "Web Partner"
+                  ? "/produk/web-partner"
+                  : "/maintenance"
                 }
                 className={`group p-7 transition hover:bg-white/[0.04] ${
                   index !== services.length - 1
@@ -511,9 +498,8 @@ export default function DashboardPage() {
 
 
       {/* =========================================================
-          PORTOFOLIO
+        PORTOFOLIO
       ========================================================= */}
-
       <section className="mx-auto max-w-[1400px] px-6 py-20 lg:px-10">
 
         <div className="flex items-end translate-y-5 justify-between gap-5">
@@ -535,8 +521,8 @@ export default function DashboardPage() {
           <a
             href="/portofolio"
             className="hidden items-center gap-2 text-sm font-semibold text-red-500 transition hover:text-red-400 sm:flex"
-          >
-            Lihat Semua Desain
+            >
+            Lihat Semua Desain Selesai
 
             <ArrowRight size={16} />
           </a>
@@ -579,7 +565,6 @@ export default function DashboardPage() {
               >
 
                 {/* IMAGE */}
-
                 <div className="w-full overflow-hidden bg-zinc-900">
 
                   <img
@@ -599,7 +584,6 @@ export default function DashboardPage() {
 
 
                 {/* INFO */}
-
                 <div className="p-5">
 
                   <div className="flex items-start justify-between gap-3">
@@ -640,14 +624,13 @@ export default function DashboardPage() {
 
 
         {/* MOBILE — LIHAT SEMUA */}
-
         <div className="mt-6 flex justify-center sm:hidden">
 
           <a
             href="/portofolio"
-            className="flex items-center gap-2 text-sm font-semibold text-blue-500"
+            className="flex items-center gap-2 text-sm font-semibold text-red-500"
           >
-            Lihat Semua Desain
+            Lihat Semua Desain Selesai
 
             <ArrowRight size={16} />
           </a>
@@ -658,9 +641,8 @@ export default function DashboardPage() {
 
 
       {/* =========================================================
-          WEB PARTNER
+        WEB PARTNER
       ========================================================= */}
-
       <section className="mx-auto max-w-[1400px] px-6 pb-20 lg:px-10">
 
         <div className="flex items-end justify-between gap-5">
@@ -683,7 +665,7 @@ export default function DashboardPage() {
             href="/web-partner"
             className="hidden items-center gap-2 text-sm font-semibold text-red-500 transition hover:text-red-400 sm:flex"
           >
-            Lihat Semua
+            Lihat Semua Partner kami
 
             <ArrowRight size={16} />
           </a>
@@ -692,14 +674,12 @@ export default function DashboardPage() {
 
 
         {/* WEB OTOLINK */}
-
         <a
           href="/web-partner/web-otolink"
           className="group mt-6 block overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] transition duration-300 hover:-translate-y-1 hover:border-red-500/30"
         >
 
           {/* IMAGE */}
-
           <div className="w-full overflow-hidden bg-zinc-900">
 
             <img
@@ -712,7 +692,6 @@ export default function DashboardPage() {
 
 
           {/* INFO */}
-
           <div className="flex items-center justify-between gap-4 p-5">
 
             <div>
@@ -741,14 +720,13 @@ export default function DashboardPage() {
 
 
         {/* MOBILE — LIHAT SEMUA */}
-
         <div className="mt-5 flex justify-center sm:hidden">
 
           <a
             href="/web-partner"
-            className="flex items-center gap-2 text-sm font-semibold text-blue-500"
-          >
-            Lihat Semua Web Partner
+            className="flex items-center gap-2 text-sm font-semibold text-red-500"
+            >
+            Lihat Semua Partner kami
 
             <ArrowRight size={16} />
 
@@ -760,9 +738,8 @@ export default function DashboardPage() {
 
 
       {/* =========================================================
-          CTA
+        CTA
       ========================================================= */}
-
       <section className="mx-auto max-w-[1400px] px-6 pb-12 lg:px-10">
 
         <div className="flex flex-col items-center justify-between gap-8 rounded-2xl border border-white/10 bg-white/[0.025] p-8 text-center md:flex-row md:text-left lg:px-12">
@@ -834,9 +811,8 @@ export default function DashboardPage() {
 
 
       {/* =========================================================
-          FOOTER
+        FOOTER
       ========================================================= */}
-
       <footer className="border-t text-center border-white/[0.06] px-6 py-7">
 
         <div className="mx-auto flex max-w-[1400px] flex-col justify-center gap-3 text-xs text-zinc-600 sm:flex-row">
