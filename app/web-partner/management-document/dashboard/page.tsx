@@ -27,52 +27,88 @@ type UserData = {
   status: string;
 };
 
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzb-cstuDVHCxESFXpfmZdAKfqMMKMQmJ1pwLPGxJxcznGTgqFdRGITbLsnDgyixcxR/exec"
+
 export default function ManagementDocumentDashboard() {
     const router = useRouter();
     const [user, setUser] = useState<UserData | null>(null);
+    const [dokumen, setDokumen] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
     
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
-        const savedUser = sessionStorage.getItem(
-            "managementDocumentUser"
-        );
-
-        if (!savedUser) {
-            router.replace(
-            "/web-partner/management-document"
-            );
-            return;
-        }
-
-        try {
-            const parsedUser: UserData =
-            JSON.parse(savedUser);
-
-            setUser(parsedUser);
-        } catch (error) {
-            console.error("Session user error:", error);
-
-            sessionStorage.removeItem(
-            "managementDocumentUser"
+        const loadData = async () => {
+            const savedUser = sessionStorage.getItem(
+                "managementDocumentUser"
             );
 
-            router.replace(
-            "/web-partner/management-document"
-            );
-        }
+            if (!savedUser) {
+                router.replace(
+                "/web-partner/management-document"
+                );
+                return;
+            }
+
+            try {
+
+                const parsedUser: UserData =
+                JSON.parse(savedUser);
+
+                setUser(parsedUser);
+                setLoading(true);
+                const response = await fetch(
+                    `${API_URL}?action=getDokumen`
+                );
+
+                const result = await response.json();
+
+                if (result.success) {
+                    setDokumen(result.data || []);
+                }
+                setLoading(false);
+
+            } catch (error) {
+                console.error("Session user error:", error);
+
+                sessionStorage.removeItem(
+                "managementDocumentUser"
+                );
+
+                router.replace(
+                "/web-partner/management-document"
+                );
+            }
+        };
+
+        loadData();
     }, [router]);
 
   /*
-   * DATA SEMENTARA
-   * Nanti kita ambil dari Google Apps Script / Google Sheets.
+   * DATA
+   * kita ambil dari Google Apps Script / Google Sheets.
    */
   const summary = {
-    totalDokumen: 0,
-    menungguTerima: 0,
-    dokumenReady: 0,
-    perluPerhatian: 0,
-  };
+        totalDokumen: dokumen.length,
+
+        menungguTerima: dokumen.filter(
+            (item) => item.status === "PROSES PENGAMBILAN"
+        ).length,
+
+        dokumenReady: dokumen.filter(
+            (item) => item.status === "READY"
+        ).length,
+
+        dokumenRelease: dokumen.filter(
+            (item) => item.status === "DONE"
+        ).length,
+
+        perluPerhatian: dokumen.filter(
+            (item) => item.perlu_perhatian === true
+        ).length,
+
+    };
 
     if (!user) {
         return (
@@ -82,9 +118,46 @@ export default function ManagementDocumentDashboard() {
         );
     }
 
+    const isAdministrator =
+    user.level === "Administrator";
+
+    const isAdminHO =
+    user.level === "Admin HO";
+
+    const isAdminDaerah =
+    user.level === "Admin Cabang";
+
+    const isAdminDokumen =
+    user.level === "Admin Dokumen";
+
   return (
     <main className="min-h-[100dvh] w-full bg-[#f5f8fc] text-slate-800">
-        
+        {loading && (
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90 backdrop-blur-sm">
+                <div className="flex flex-col items-center">
+                
+                <div className="relative flex h-32 w-32 items-center justify-center">
+                    <div className="absolute inset-0 animate-spin rounded-full border-4 border-slate-200 border-t-[#0759d1]" />
+
+                    <img
+                    src="/images/logo-otolink-v2.png"
+                    alt="Otolink"
+                    className="h-9 w-auto object-contain"
+                    />
+                </div>
+
+                <p className="mt-4 text-[12px] font-bold text-[#102852]">
+                    Memuat data...
+                </p>
+
+                <p className="mt-1 text-[9px] text-slate-400">
+                    Mohon tunggu sebentar
+                </p>
+
+                </div>
+            </div>
+        )}
+
         {/* =====================================================
             NAVBAR
         ====================================================== */}
@@ -258,7 +331,7 @@ export default function ManagementDocumentDashboard() {
                     {/* MENUNGGU TERIMA */}
                         <SummaryCard
                         icon={<Inbox size={19} />}
-                        label="Menunggu Terima"
+                        label="Proses Pengambilan"
                         value={summary.menungguTerima}
                         iconClass="bg-amber-50 text-amber-600"
                     />
@@ -271,10 +344,18 @@ export default function ManagementDocumentDashboard() {
                         iconClass="bg-emerald-50 text-emerald-600"
                     />
 
+                    {/* DOKUMEN RELEASE */}
+                    <SummaryCard
+                        icon={<PackageCheck size={19} />}
+                        label="Dokumen Release"
+                        value={summary.dokumenRelease}
+                        iconClass="bg-emerald-50 text-emerald-600"
+                    />
+
                     {/* PERLU PERHATIAN */}
                     <SummaryCard
                         icon={<AlertTriangle size={19} />}
-                        label="Perlu Perhatian"
+                        label="Perlu Perhatian!"
                         value={summary.perluPerhatian}
                         iconClass="bg-red-50 text-red-500"
                         
@@ -292,40 +373,64 @@ export default function ManagementDocumentDashboard() {
                         <h2 className="text-[15px] font-extrabold text-[#09275a]">
                             Follow up Dokumen
                         </h2>
-                    </div>
+                </div>
 
-                    <div className="mt-3 overflow-hidden rounded-2xl border border-red-100 bg-white shadow-sm">
-                
+                <button
+                    type="button"
+                    onClick={() =>
+                        router.push(
+                            "/web-partner/management-document/follow-up"
+                        )
+                    }
+                    className="
+                        mt-3
+                        w-full
+                        overflow-hidden
+                        rounded-2xl
+                        border
+                        border-red-100
+                        bg-white
+                        text-left
+                        shadow-sm
+                        transition
+                        hover:border-red-200
+                        hover:bg-red-50/30
+                        active:scale-[0.99]
+                    "
+                    >
+
                     {/* HEADER */}
                     <div className="flex items-center gap-3 border-b border-red-100 bg-red-50/70 px-4 py-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500">
-                            <AlertTriangle size={18} />
-                        </div>
+                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-500">
+                                <AlertTriangle size={18} />
+                            </div>
 
-                        <div>
-                            <p className="text-[12px] font-bold text-red-600">
-                                Follow up dokumen belum diterima
-                            </p>
+                            <div>
+                                <p className="text-[12px] font-bold text-red-600">
+                                    Follow up dokumen belum diterima
+                                </p>
 
-                            <p className="mt-0.5 text-[10px] text-slate-500">
-                                Dokumen yang masih menunggu proses penerimaan.
-                            </p>
-                        </div>
+                                <p className="mt-0.5 text-[10px] text-slate-500">
+                                    Dokumen yang belum diterima admin lebih dari 3 hari
+                                    setelah tanggal pembuatan surat pengambilan terbentuk.
+                                </p>
+                            </div>
                     </div>
 
                     {/* EMPTY STATE */}
                     {summary.perluPerhatian === 0 ? (
-                        <div className="px-4 py-5 text-center">
-                            <p className="text-[11px] font-medium text-slate-400">
-                                Belum ada dokumen yang perlu di-follow up.
-                            </p>
-                        </div>
+                            <div className="px-4 py-5 text-center">
+                                <p className="text-[11px] font-medium text-slate-400">
+                                    Belum ada dokumen yang perlu di-follow up.
+                                </p>
+                            </div>
                     ) : (
                         <div className="divide-y divide-slate-100">
-                            {/* NANTI DATA FOLLOW UP DITAMPILKAN DI SINI */}
+                            {/* DATA FOLLOW UP DITAMPILKAN DI SINI */}
                         </div>
                     )}
-                </div>
+                </button>
+                
             </section>
 
             {/* ===================================================
@@ -335,26 +440,42 @@ export default function ManagementDocumentDashboard() {
                 <SectionTitle title="Menu Utama" />
 
                 <div className="mt-3 space-y-2.5">
-                    <MenuItem
-                        icon={<PackageOpen size={20} />}
-                        title="Pengambilan Dokumen"
-                        description="Kelola data pengambilan dokumen"
-                        iconClass="bg-blue-50 text-blue-700"
-                    />
 
-                    <MenuItem
-                        icon={<Inbox size={20} />}
-                        title="Penerimaan Dokumen"
-                        description="Kelola dokumen yang telah diterima"
-                        iconClass="bg-blue-50 text-blue-700"
-                    />
+                    {/* PENGAMBILAN → Administrator + Admin HO */}
+                    {(isAdministrator || isAdminHO) && (
+                        <MenuItem
+                            icon={<PackageOpen size={20} />}
+                            title="Pengambilan Dokumen"
+                            description="Kelola data pengambilan dokumen"
+                            iconClass="bg-blue-50 text-blue-700"
+                            onClick={() =>
+                                router.push(
+                                    "/web-partner/management-document/pengambilan"
+                                )
+                            }
+                        />
+                    )}
 
-                    <MenuItem
-                        icon={<PackageCheck size={20} />}
-                        title="Pengeluaran Dokumen"
-                        description="Kelola dokumen yang dikeluarkan"
-                        iconClass="bg-blue-50 text-blue-700"
-                    />
+                    {/* PENERIMAAN → Administrator + Admin Cabang + Admin Dokumen */}
+                    {(isAdministrator || isAdminDaerah || isAdminDokumen) && (
+                        <MenuItem
+                            icon={<Inbox size={20} />}
+                            title="Penerimaan Dokumen"
+                            description="Kelola dokumen yang telah diterima"
+                            iconClass="bg-blue-50 text-blue-700"
+                        />
+                    )}
+
+                    {/* PENGELUARAN → Administrator + Admin Cabang + Admin Dokumen */}
+                    {(isAdministrator || isAdminDaerah || isAdminDokumen) && (
+                        <MenuItem
+                            icon={<PackageCheck size={20} />}
+                            title="Pengeluaran Dokumen"
+                            description="Kelola dokumen yang dikeluarkan"
+                            iconClass="bg-blue-50 text-blue-700"
+                        />
+                    )}
+
                 </div>
             </section>
 
@@ -370,21 +491,26 @@ export default function ManagementDocumentDashboard() {
                         title="Data Semua Dokumen"
                         description="Lihat dan kelola seluruh data dokumen"
                         iconClass="bg-slate-100 text-slate-600"
+                        onClick={() =>
+                            router.push(
+                            "/web-partner/management-document/semua-dokumen"
+                            )
+                        }
+                        
                     />
 
                     <MenuItem
                         icon={<Users size={20} />}
-                        title="Data PIC Otolink"
-                        description="Kelola data PIC Otolink"
+                        title="Staff Operasional"
+                        description="Informasi semua staff operasional Otolink"
                         iconClass="bg-slate-100 text-slate-600"
+                        onClick={() =>
+                            router.push(
+                                "/web-partner/management-document/staff"
+                            )
+                        }
                     />
 
-                    <MenuItem
-                        icon={<Building2 size={20} />}
-                        title="Data Cabang"
-                        description="Kelola data cabang Otolink"
-                        iconClass="bg-slate-100 text-slate-600"
-                    />
                 </div>
             </section>
 
@@ -459,7 +585,7 @@ function SummaryCard({
                 )}
             </div>
 
-            <p className="mt-3 text-[10px] font-medium text-slate-500">
+            <p className="mt-3 text-[14px] font-medium text-slate-500">
                 {label}
             </p>
 
@@ -497,6 +623,7 @@ type MenuItemProps = {
   title: string;
   description: string;
   iconClass: string;
+  onClick?: () => void;
 };
 
 function MenuItem({
@@ -504,10 +631,12 @@ function MenuItem({
   title,
   description,
   iconClass,
+  onClick,
 }: MenuItemProps) {
     return (
         <button
             type="button"
+            onClick={onClick}
             className="
                 group
                 flex
