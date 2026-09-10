@@ -226,15 +226,12 @@ function DetailDokumenPage() {
                         href={`https://wa.me/${String(
                             dokumen.no_hp_pic || ""
                         ).replace(/^0/, "62")}?text=${encodeURIComponent(
-                        `Follow up dokumen (model : ${dokumen.model}), dengan ket :
-
-                        vendor : ${dokumen.vendor}
-                        cabang : ${dokumen.vendor_cabang}
-                        no polisi : ${dokumen.no_polisi}
-                        merk type : ${dokumen.merk_type}
-                        tgl pembuatan surat : ${dokumen.tgl_pembuatan_surat}
-
-                        Terimakasih`
+                            `Follow up dokumen ${dokumen.model}, dengan ket :
+                            vendor : ${dokumen.vendor}
+                            cabang : ${dokumen.vendor_cabang}
+                            no polisi : ${dokumen.no_polisi}
+                            merk type : ${dokumen.merk_type}
+                            tgl pembuatan surat : ${dokumen.tgl_pembuatan_surat}`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -266,15 +263,12 @@ function DetailDokumenPage() {
                         href={`https://wa.me/${String(
                             dokumen.no_hp_pengambil || ""
                         ).replace(/^0/, "62")}?text=${encodeURIComponent(
-                        `Follow up dokumen (model : ${dokumen.model}), dengan ket :
-
-                        vendor : ${dokumen.vendor}
-                        cabang : ${dokumen.vendor_cabang}
-                        no polisi : ${dokumen.no_polisi}
-                        merk type : ${dokumen.merk_type}
-                        tgl pembuatan surat : ${dokumen.tgl_pembuatan_surat}
-
-                        Terimakasih`
+                            `Follow up dokumen ${dokumen.model}, dengan ket :
+                            vendor : ${dokumen.vendor}
+                            cabang : ${dokumen.vendor_cabang}
+                            no polisi : ${dokumen.no_polisi}
+                            merk type : ${dokumen.merk_type}
+                            tgl pembuatan surat : ${dokumen.tgl_pembuatan_surat}`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -307,15 +301,12 @@ function DetailDokumenPage() {
                             href={`https://wa.me/${String(
                                 dokumen.no_hp_admin_cabang || ""
                             ).replace(/^0/, "62")}?text=${encodeURIComponent(
-                            `Follow up dokumen (model : ${dokumen.model}), dengan ket :
-
-                            vendor : ${dokumen.vendor}
-                            cabang : ${dokumen.vendor_cabang}
-                            no polisi : ${dokumen.no_polisi}
-                            merk type : ${dokumen.merk_type}
-                            tgl pembuatan surat : ${dokumen.tgl_pembuatan_surat}
-
-                            Terimakasih`
+                                `Follow up dokumen ${dokumen.model}, dengan ket :
+                                vendor : ${dokumen.vendor}
+                                cabang : ${dokumen.vendor_cabang}
+                                no polisi : ${dokumen.no_polisi}
+                                merk type : ${dokumen.merk_type}
+                                tgl pembuatan surat : ${dokumen.tgl_pembuatan_surat}`
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"

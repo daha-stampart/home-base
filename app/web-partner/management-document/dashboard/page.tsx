@@ -219,7 +219,7 @@ export default function ManagementDocumentDashboard() {
                             </p>
 
                             <p className="text-[12px] text-slate-500">
-                                {user.nama}
+                                {user.level}
                             </p>
                         </div>
 
@@ -240,9 +240,45 @@ export default function ManagementDocumentDashboard() {
                             </p>
 
                             <p className="mt-1 text-sm font-bold text-[#0b2857]">
-                                {user.level}
+                                {user.nama}
                             </p>
+
+                            <div className="my-3 border-t border-blue-100" />
+
+                            <div>
+                                <p className="text-[9px] font-semibold uppercase tracking-wide text-slate-400">
+                                    Jabatan
+                                </p>
+
+                                <p className="mt-0.5 text-[12px] font-bold text-[#0b2857]">
+                                    {user.jabatan}
+                                </p>
+                            </div>
+
+                            <div className="mt-3">
+                                <p className="text-[9px] font-semibold uppercase tracking-wide text-slate-400">
+                                    Cabang Otolink
+                                </p>
+
+                                <p className="mt-0.5 text-[12px] font-bold text-[#0b2857]">
+                                    {user.cabang}
+                                </p>
+                            </div>
                         </div>
+
+                        {/* AJUKAN PERUBAHAN DATA */}
+                        <a
+                            href="https://wa.me/6281351919309"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mb-3 flex w-full items-center justify-center rounded-xl border border-[#0759d1] bg-white py-3 text-[11px] font-bold text-[#0759d1] transition hover:bg-blue-50 active:scale-[0.98]"
+                            >
+                            AJUKAN PERUBAHAN DATA
+                        </a>
+
+                        <p className="mb-5 mt-2 text-center text-[9px] text-slate-400">
+                            *Hubungi Administrator untuk request perubahan data
+                        </p>
 
                         {/* LOGOUT */}
                         <button
@@ -463,6 +499,11 @@ export default function ManagementDocumentDashboard() {
                             title="Penerimaan Dokumen"
                             description="Kelola dokumen yang telah diterima"
                             iconClass="bg-blue-50 text-blue-700"
+                            onClick={() =>
+                                router.push(
+                                    "/web-partner/management-document/penerimaan"
+                                )
+                            }
                         />
                     )}
 
