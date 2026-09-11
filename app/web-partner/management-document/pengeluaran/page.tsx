@@ -2,7 +2,6 @@
 
 import {
   useEffect,
-  useMemo,
   useState,
 } from "react";
 
@@ -12,7 +11,6 @@ import {
   ArrowLeft,
   Search,
   Inbox,
-  FileText,
 } from "lucide-react";
 
 const API_URL =
@@ -30,14 +28,26 @@ type UserData = {
 type Dokumen = {
   _row: number;
   cabang: string;
+  pic: string;
+  no_hp_pic: string;
+  no_surat: string;
   vendor: string;
+  vendor_cabang: string;
   no_polisi: string;
   status: string;
   model: string;
+  merk_type: string;
   tgl_pembuatan_surat: string;
+  nama_pengambil: string;
+  no_hp_pengambil: string;
+  tgl_diserahkan: string;
+  nama_penerima: string;
+  tgl_pengeluaran: string;
+  penerima_pengeluaran: string;
+  keterangan: string;
 };
 
-export default function PenerimaanDokumenPage() {
+export default function PengeluaranPage() {
   const router = useRouter();
 
   const [user, setUser] =
@@ -46,11 +56,11 @@ export default function PenerimaanDokumenPage() {
   const [dokumen, setDokumen] =
     useState<Dokumen[]>([]);
 
-  const [search, setSearch] =
-    useState("");
-
   const [loading, setLoading] =
     useState(true);
+
+  const [search, setSearch] =
+    useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -79,16 +89,66 @@ export default function PenerimaanDokumenPage() {
         const result =
           await response.json();
 
-        if (result.success) {
-          setDokumen(
-            result.data || []
+        if (!result.success) {
+          console.error(
+            "Gagal mengambil dokumen:",
+            result.message
           );
+
+          setDokumen([]);
+          return;
         }
+
+        const allDokumen: Dokumen[] =
+          result.data || [];
+
+        /*
+         * Hanya dokumen dengan status READY
+         */
+        const readyDokumen =
+          allDokumen.filter(
+            (item) =>
+              String(item.status || "")
+                .trim()
+                .toUpperCase() === "READY"
+          );
+
+        /*
+         * Jika user bukan Head Office,
+         * hanya tampilkan dokumen cabangnya.
+         *
+         * Head Office dapat melihat semua cabang.
+         */
+        const filteredByCabang =
+          String(
+            parsedUser.cabang || ""
+          )
+            .trim()
+            .toLowerCase() ===
+          "head office"
+            ? readyDokumen
+            : readyDokumen.filter(
+                (item) =>
+                  String(item.cabang || "")
+                    .trim()
+                    .toLowerCase() ===
+                  String(
+                    parsedUser.cabang || ""
+                  )
+                    .trim()
+                    .toLowerCase()
+              );
+
+        setDokumen(
+          filteredByCabang
+        );
       } catch (error) {
         console.error(
-          "Gagal mengambil data penerimaan:",
+          "Gagal mengambil data pengeluaran:",
           error
         );
+
+        setDokumen([]);
       } finally {
         setLoading(false);
       }
@@ -97,75 +157,39 @@ export default function PenerimaanDokumenPage() {
     loadData();
   }, [router]);
 
-  // =====================================================
-  // FILTER DATA
-  // =====================================================
+  const formatTanggal = (
+    value: string
+  ) => {
+    if (!value) return "-";
 
-  const dokumenPenerimaan =
-    useMemo(() => {
-      if (!user) return [];
+    const parts =
+      value.split("-");
 
-      const cabangUser =
-        user.cabang
-          ?.trim()
-          .toLowerCase();
+    if (parts.length !== 3) {
+      return value;
+    }
 
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  };
+
+  const filteredDokumen =
+    dokumen.filter((item) => {
       const keyword =
         search
           .trim()
           .toLowerCase();
 
-      return dokumen.filter(
-        (item) => {
+      if (!keyword) return true;
 
-          // Hanya PROSES PENGAMBILAN
-          if (
-            String(item.status || "")
-              .trim()
-              .toUpperCase() !==
-            "PROSES PENGAMBILAN"
-          ) {
-            return false;
-          }
-
-          // Head Office melihat semua cabang
-          if (
-            cabangUser !==
-            "head office"
-          ) {
-            const cabangDokumen =
-              item.cabang
-                ?.trim()
-                .toLowerCase();
-
-            if (
-              cabangDokumen !==
-              cabangUser
-            ) {
-              return false;
-            }
-          }
-
-          // Search Nopol / Vendor
-          if (!keyword) {
-            return true;
-          }
-
-          return (
-            item.no_polisi
-              ?.toLowerCase()
-              .includes(keyword) ||
-            item.vendor
-              ?.toLowerCase()
-              .includes(keyword)
-          );
-        }
+      return (
+        String(item.no_polisi || "")
+          .toLowerCase()
+          .includes(keyword) ||
+        String(item.vendor || "")
+          .toLowerCase()
+          .includes(keyword)
       );
-    }, [
-      dokumen,
-      search,
-      user,
-    ]);
+    });
 
   return (
     <main className="min-h-[100dvh] bg-[#f5f8fc] text-slate-800">
@@ -173,10 +197,8 @@ export default function PenerimaanDokumenPage() {
       {/* =====================================================
           LOADING
       ====================================================== */}
-
       {loading && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/90 backdrop-blur-sm">
-
           <div className="flex flex-col items-center">
 
             <div className="relative flex h-32 w-32 items-center justify-center">
@@ -200,14 +222,12 @@ export default function PenerimaanDokumenPage() {
             </p>
 
           </div>
-
         </div>
       )}
 
       {/* =====================================================
           HEADER
       ====================================================== */}
-
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur-md">
 
         <div className="mx-auto flex h-[64px] max-w-[430px] items-center px-4">
@@ -226,15 +246,13 @@ export default function PenerimaanDokumenPage() {
           </button>
 
           <div>
-
             <p className="text-[16px] font-extrabold text-[#09275a]">
-              Penerimaan Dokumen
+              Pengeluaran Dokumen
             </p>
 
             <p className="text-[9px] text-slate-400">
-              Dokumen proses pengambilan
+              Dokumen yang siap dikeluarkan
             </p>
-
           </div>
 
         </div>
@@ -244,33 +262,22 @@ export default function PenerimaanDokumenPage() {
       {/* =====================================================
           CONTENT
       ====================================================== */}
-
-      <div className="mx-auto w-full max-w-[430px] px-4 pb-8">
+      <div className="mx-auto w-full max-w-[430px] px-4 pb-10">
 
         {/* =================================================
-            CABANG USER
+            CABANG OTOLINK
         ================================================== */}
-
         <section className="pt-5">
 
-          <div className="flex items-center gap-2">
+          <div className="rounded-2xl border border-blue-100 bg-white px-4 py-3 shadow-sm">
 
-            <Inbox
-              size={17}
-              className="text-[#0759d1]"
-            />
+            <p className="text-[9px] font-semibold text-slate-400">
+              User Login
+            </p>
 
-            <div>
-
-              <p className="text-[10px] font-semibold text-slate-400">
-                Cabang Otolink
-              </p>
-
-              <p className="text-[12px] font-bold text-[#09275a]">
-                {user?.cabang || "-"}
-              </p>
-
-            </div>
+            <p className="mt-0.5 text-[12px] font-extrabold text-[#09275a]">
+              {user?.cabang || "-"}
+            </p>
 
           </div>
 
@@ -279,13 +286,12 @@ export default function PenerimaanDokumenPage() {
         {/* =================================================
             SEARCH
         ================================================== */}
-
         <section className="mt-4">
 
           <div className="relative">
 
             <Search
-              size={17}
+              size={16}
               className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
             />
 
@@ -297,8 +303,8 @@ export default function PenerimaanDokumenPage() {
                   e.target.value
                 )
               }
-              placeholder="Cari No Polisi / Vendor..."
-              className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-[11px] font-medium text-[#102852] outline-none transition placeholder:text-slate-400 focus:border-blue-300 focus:ring-2 focus:ring-blue-50"
+              placeholder="Cari No Polisi atau Vendor"
+              className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-9 pr-3 text-[11px] font-medium text-[#102852] outline-none placeholder:text-slate-400 focus:border-blue-300 focus:ring-2 focus:ring-blue-50"
             />
 
           </div>
@@ -306,26 +312,31 @@ export default function PenerimaanDokumenPage() {
         </section>
 
         {/* =================================================
-            HASIL
+            HEADER LIST
         ================================================== */}
-
         <section className="mt-5">
 
           <div className="mb-3 flex items-center justify-between">
 
-            <div className="flex items-center gap-2">
+            <div>
 
-              <div className="h-5 w-1 rounded-full bg-[#0759d1]" />
+              <p className="text-[13px] font-extrabold text-[#09275a]">
+                Dokumen Siap Keluar
+              </p>
 
-              <h2 className="text-[14px] font-extrabold text-[#09275a]">
-                Dokumen Menunggu Penerimaan
-              </h2>
+              <p className="mt-0.5 text-[9px] text-slate-400">
+                Pilih dokumen untuk diproses
+              </p>
 
             </div>
 
-            <span className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-bold text-[#0759d1]">
-              {dokumenPenerimaan.length}
-            </span>
+            <div className="rounded-full bg-blue-50 px-3 py-1.5">
+
+              <p className="text-[10px] font-extrabold text-[#0759d1]">
+                {filteredDokumen.length}
+              </p>
+
+            </div>
 
           </div>
 
@@ -334,26 +345,29 @@ export default function PenerimaanDokumenPage() {
         {/* =================================================
             EMPTY
         ================================================== */}
+        {filteredDokumen.length === 0 ? (
 
-        {dokumenPenerimaan.length === 0 ? (
-
-          <div className="rounded-2xl border border-slate-200 bg-white px-4 py-10 text-center shadow-sm">
+          <div className="mt-8 rounded-2xl border border-slate-200 bg-white px-5 py-10 text-center shadow-sm">
 
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100">
 
-              <FileText
+              <Inbox
                 size={22}
                 className="text-slate-400"
               />
 
             </div>
 
-            <p className="mt-3 text-[11px] font-semibold text-slate-500">
-              Tidak ada dokumen
+            <p className="mt-3 text-[11px] font-bold text-slate-500">
+              {search
+                ? "Dokumen tidak ditemukan"
+                : "Belum Ada Dokumen Ready"}
             </p>
 
             <p className="mt-1 text-[9px] text-slate-400">
-              Belum ada dokumen yang menunggu penerimaan.
+              {search
+                ? "Coba gunakan kata kunci lain."
+                : "Belum ada dokumen yang siap dikeluarkan."}
             </p>
 
           </div>
@@ -363,10 +377,9 @@ export default function PenerimaanDokumenPage() {
           /* =================================================
              LIST DOKUMEN
           ================================================== */
-
           <div className="space-y-3">
 
-            {dokumenPenerimaan.map(
+            {filteredDokumen.map(
               (item) => (
 
                 <button
@@ -374,36 +387,31 @@ export default function PenerimaanDokumenPage() {
                   type="button"
                   onClick={() =>
                     router.push(
-                      `/web-partner/management-document/penerimaan/terima?_row=${item._row}`
+                      `/web-partner/management-document/pengeluaran/keluar?_row=${item._row}`
                     )
                   }
                   className="w-full rounded-2xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-blue-200 hover:shadow-md active:scale-[0.99]"
                 >
 
-                  {/* =================================================
-                      TOP
-                  ================================================== */}
-
+                  {/* TOP */}
                   <div className="flex items-start justify-between gap-3">
 
                     <div className="min-w-0">
 
-                      <p className="truncate text-[13px] font-extrabold text-[#09275a]">
-                        {item.no_polisi || "-"}
+                      <p className="text-[13px] font-extrabold text-[#09275a]">
+                        {item.no_polisi ||
+                          "-"}
                       </p>
 
                     </div>
 
                     <span className="shrink-0 rounded-full bg-blue-50 px-2.5 py-1 text-[8px] font-extrabold text-[#0759d1]">
-                      {item.model || "-"}
+                        {item.model || "-"}
                     </span>
 
                   </div>
 
-                  {/* =================================================
-                      DETAIL
-                  ================================================== */}
-
+                  {/* DETAIL */}
                   <div className="mt-3 border-t border-slate-100 pt-3">
 
                     <div className="grid grid-cols-[95px_10px_1fr] gap-y-1 text-[9px]">
@@ -417,7 +425,8 @@ export default function PenerimaanDokumenPage() {
                       </span>
 
                       <span className="font-bold text-[#243b63]">
-                        {item.vendor || "-"}
+                        {item.vendor ||
+                          "-"}
                       </span>
 
                       <span className="font-medium text-slate-400">
@@ -429,11 +438,12 @@ export default function PenerimaanDokumenPage() {
                       </span>
 
                       <span className="font-bold text-[#243b63]">
-                        {item.cabang || "-"}
+                        {item.vendor_cabang ||
+                          "-"}
                       </span>
 
                       <span className="font-medium text-slate-400">
-                        Tgl Pembuatan Surat
+                        Tgl Diterima
                       </span>
 
                       <span className="text-slate-300">
@@ -442,7 +452,7 @@ export default function PenerimaanDokumenPage() {
 
                       <span className="font-bold text-[#243b63]">
                         {formatTanggal(
-                          item.tgl_pembuatan_surat
+                          item.tgl_diserahkan
                         )}
                       </span>
 
@@ -463,24 +473,4 @@ export default function PenerimaanDokumenPage() {
 
     </main>
   );
-}
-
-
-// =========================================================
-// FORMAT TANGGAL
-// =========================================================
-
-function formatTanggal(
-  value: string
-) {
-  if (!value) return "-";
-
-  const parts =
-    value.split("-");
-
-  if (parts.length !== 3) {
-    return value;
-  }
-
-  return `${parts[2]}/${parts[1]}/${parts[0]}`;
 }

@@ -44,10 +44,19 @@ export default function ManagementDocumentDashboard() {
                 "managementDocumentUser"
             );
 
-            if (!savedUser) {
-                router.replace(
-                "/web-partner/management-document"
+            if (
+                !savedUser ||
+                savedUser === "undefined" ||
+                savedUser === "null"
+                ) {
+                sessionStorage.removeItem(
+                    "managementDocumentUser"
                 );
+
+                router.replace(
+                    "/web-partner/management-document"
+                );
+
                 return;
             }
 
@@ -109,6 +118,15 @@ export default function ManagementDocumentDashboard() {
         ).length,
 
     };
+
+    const cabangPerluPerhatian = Array.from(
+        new Set(
+            dokumen
+            .filter((item) => item.perlu_perhatian === true)
+            .map((item) => item.cabang)
+            .filter(Boolean)
+        )
+    );
 
     if (!user) {
         return (
@@ -389,13 +407,83 @@ export default function ManagementDocumentDashboard() {
                     />
 
                     {/* PERLU PERHATIAN */}
-                    <SummaryCard
-                        icon={<AlertTriangle size={19} />}
-                        label="Perlu Perhatian!"
-                        value={summary.perluPerhatian}
-                        iconClass="bg-red-50 text-red-500"
+                    <div
+                        className="
+                        col-span-2
+                        rounded-2xl
+                        border
+                        border-red-400
+                        bg-white
+                        p-3.5
+                        shadow-sm
+                        "
+                        >
+                        <div className="flex items-stretch">
                         
-                    />
+                            {/* KIRI - JUMLAH */}
+                            <div className="flex min-w-0 flex-1 flex-col">
+                                <div
+                                    className="
+                                    flex
+                                    h-9
+                                    w-9
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    bg-red-50
+                                    text-red-500
+                                    "
+                                    >
+                                    <AlertTriangle size={19} />
+                                </div>
+
+                                <p className="mt-3 text-[14px] font-medium text-slate-500">
+                                    Perlu Perhatian!
+                                </p>
+
+                                <p className="mt-0.5 text-[23px] font-extrabold leading-none text-[#09275a]">
+                                    {summary.perluPerhatian.toLocaleString("id-ID")}
+                                </p>
+                            </div>
+
+                            {/* KANAN - CABANG */}
+                            <div className="ml-4 min-w-0 flex-1 border-l border-red-100 pl-4">
+                                <p className="text-[11px] font-bold text-[#09275a]">
+                                    Cabang
+                                </p>
+
+                                <div className="mt-2 space-y-1.5">
+                                    {cabangPerluPerhatian.length === 0 ? (
+                                    <p className="text-[10px] text-slate-400">
+                                        Tidak ada
+                                    </p>
+                                    ) : (
+                                    cabangPerluPerhatian.map((cabang) => (
+                                        <div
+                                        key={cabang}
+                                        className="
+                                            flex
+                                            items-center
+                                            gap-2
+                                            rounded-lg
+                                            bg-red-50
+                                            px-2.5
+                                            py-1.5
+                                        "
+                                        >
+                                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+
+                                        <span className="truncate text-[10px] font-semibold text-red-600">
+                                            {cabang}
+                                        </span>
+                                        </div>
+                                    ))
+                                    )}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -497,7 +585,7 @@ export default function ManagementDocumentDashboard() {
                         <MenuItem
                             icon={<Inbox size={20} />}
                             title="Penerimaan Dokumen"
-                            description="Kelola dokumen yang telah diterima"
+                            description="Kelola dokumen yang akan diterima"
                             iconClass="bg-blue-50 text-blue-700"
                             onClick={() =>
                                 router.push(
@@ -512,8 +600,13 @@ export default function ManagementDocumentDashboard() {
                         <MenuItem
                             icon={<PackageCheck size={20} />}
                             title="Pengeluaran Dokumen"
-                            description="Kelola dokumen yang dikeluarkan"
+                            description="Kelola dokumen yang sudah Ready"
                             iconClass="bg-blue-50 text-blue-700"
+                            onClick={() =>
+                                router.push(
+                                    "/web-partner/management-document/pengeluaran"
+                                )
+                            }
                         />
                     )}
 
@@ -600,7 +693,7 @@ function SummaryCard({
                 shadow-sm
                 ${
                 danger
-                    ? "border-red-100"
+                    ? "border-red-500"
                     : "border-slate-200"
                 }
             `}
@@ -621,9 +714,7 @@ function SummaryCard({
                     {icon}
                 </div>
 
-                {danger && (
-                <span className="h-2 w-2 rounded-full bg-red-500" />
-                )}
+                
             </div>
 
             <p className="mt-3 text-[14px] font-medium text-slate-500">
