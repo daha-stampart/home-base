@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
@@ -46,7 +46,7 @@ type UserData = {
   cabang?: string;
 };
 
-export default function KeluarDokumenPage() {
+function KeluarDokumenPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -693,5 +693,23 @@ function DetailRow({
         {value || "-"}
       </span>
     </div>
+  );
+}
+
+export default function KeluarDokumenPageWrapper() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen bg-slate-50">
+          <div className="mx-auto flex min-h-screen w-full max-w-md items-center justify-center px-5">
+            <p className="text-sm font-medium text-slate-500">
+              Memuat detail dokumen...
+            </p>
+          </div>
+        </main>
+      }
+    >
+      <KeluarDokumenPage />
+    </Suspense>
   );
 }
